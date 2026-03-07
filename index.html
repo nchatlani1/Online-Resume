@@ -34,20 +34,21 @@
     [data-theme="light"] {
       --bg:       #f5f4f0;
       --surface:  #ffffff;
-      --surface2: #ececec;
-      --border:   rgba(0,0,0,0.09);
-      --text:     #0f0f1a;
-      --muted:    #888899;
+      --surface2: #e8e6e0;
+      --border:   rgba(0,0,0,0.12);
+      --accent:   #2a8fd4;
+      --text:     #0a0a0f;
+      --muted:    #3a3a4a;
       --card-bg:  #ffffff;
-      --shadow:   0 4px 32px rgba(0,0,0,0.1);
+      --shadow:   0 2px 12px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
     }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-body);
-      font-size: 14px;
-      line-height: 1.7;
+      font-size: 15px;
+      line-height: 1.75;
       overflow-x: hidden;
     }
 
@@ -263,6 +264,7 @@
       border-radius: var(--radius);
       padding: 24px;
       transition: var(--transition);
+      box-shadow: var(--shadow);
     }
     .stat-card:hover {
       border-color: rgba(137,196,244,0.35);
@@ -356,6 +358,10 @@
       transition: var(--transition);
       position: relative;
       overflow: visible;
+      box-shadow: var(--shadow);
+    }
+    [data-theme="light"] .project-card {
+      border: 1px solid rgba(0,0,0,0.1);
     }
     .project-card::before {
       content: '';
