@@ -1,663 +1,899 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nitin Chatlani — CS Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-DQG1VE1M5D"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <style>
+    /* ── RESET & BASE ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-  gtag('config', 'G-DQG1VE1M5D');
-</script>
-  <!-- Google Analytics End-->
+    /* ── THEME TOKENS ── */
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #111118;
+      --surface2:  #1a1a26;
+      --border:    rgba(255,255,255,0.07);
+      --accent:    #89c4f4;
+      --accent2:   #ff6b6b;
+      --text:      #e8e8f0;
+      --muted:     #6b6b80;
+      --card-bg:   #13131e;
+      --shadow:    0 4px 32px rgba(0,0,0,0.5);
+      --radius:    14px;
+      --font-head: 'Syne', sans-serif;
+      --font-body: 'DM Mono', monospace;
+      --font-serif:'Instrument Serif', serif;
+      --transition: 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    [data-theme="light"] {
+      --bg:       #f5f4f0;
+      --surface:  #ffffff;
+      --surface2: #ececec;
+      --border:   rgba(0,0,0,0.09);
+      --text:     #0f0f1a;
+      --muted:    #888899;
+      --card-bg:  #ffffff;
+      --shadow:   0 4px 32px rgba(0,0,0,0.1);
+    }
 
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
 
-  <title>Nitin Chatlani&trade;</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    /* ── CURSOR GLOW ── */
+    #cursor-glow {
+      position: fixed; width: 350px; height: 350px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(137,196,244,0.07) 0%, transparent 70%);
+      pointer-events: none; z-index: 1;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+    }
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    /* ── SCROLL PROGRESS ── */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: var(--accent); z-index: 1000;
+      width: 0%; transition: width 0.1s;
+    }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 48px;
+      backdrop-filter: blur(20px);
+      background: rgba(245,244,240,0.85);
+      border-bottom: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    [data-theme="dark"] nav { background: rgba(10,10,15,0.7); }
 
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+    .nav-logo {
+      font-family: var(--font-head);
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
 
-  <!-- =======================================================
-  * Template Name: MyResume - v4.9.2
-  * Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    .nav-links {
+      display: flex; align-items: center; gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--accent);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* theme toggle */
+    #theme-btn {
+      background: var(--surface2); border: 1px solid var(--border);
+      color: var(--text); border-radius: 50px;
+      padding: 6px 14px; cursor: pointer; font-size: 13px;
+      transition: var(--transition); font-family: var(--font-body);
+    }
+    #theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 48px 80px;
+      position: relative; z-index: 2;
+      max-width: 1100px; margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .hero-tag::before {
+      content: ''; width: 24px; height: 1px; background: var(--accent);
+    }
+
+    .hero-name {
+      font-family: var(--font-head);
+      font-size: clamp(56px, 10vw, 110px);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -3px;
+      margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
+    }
+    .hero-name .accent { color: var(--accent); }
+    .hero-name .serif {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-tagline {
+      font-size: 15px; color: var(--muted);
+      max-width: 480px; line-height: 1.8;
+      margin-bottom: 48px;
+      opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+    }
+
+    #typed-text {
+      color: var(--accent);
+      font-family: var(--font-body);
+    }
+    #typed-cursor {
+      display: inline-block;
+      width: 2px; height: 1em;
+      background: var(--accent);
+      margin-left: 2px;
+      animation: blink 1s step-end infinite;
+      vertical-align: middle;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 50px;
+      font-family: var(--font-body); font-size: 13px;
+      text-decoration: none; cursor: pointer; transition: var(--transition);
+      letter-spacing: 0.04em;
+    }
+    .btn-primary {
+      background: var(--accent); color: #0a0a0f;
+      border: none; font-weight: 500;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(137,196,244,0.35); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute; bottom: 40px; left: 48px;
+      display: flex; align-items: center; gap: 10px;
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0; animation: fadeUp 0.9s 1s forwards;
+    }
+    .scroll-line {
+      width: 40px; height: 1px; background: var(--muted);
+      animation: expandLine 1.5s 1.2s forwards;
+      transform-origin: left; transform: scaleX(0);
+    }
+    @keyframes expandLine { to { transform: scaleX(1); } }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 100px 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative; z-index: 2;
+    }
+
+    .section-label {
+      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border); max-width: 60px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.05;
+      margin-bottom: 56px;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted); font-size: 15px; line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: var(--transition);
+    }
+    .stat-card:hover {
+      border-color: rgba(137,196,244,0.35);
+      transform: translateY(-3px);
+    }
+    .stat-num {
+      font-family: var(--font-head);
+      font-size: 36px; font-weight: 800;
+      color: var(--accent); letter-spacing: -1px;
+      display: block;
+    }
+    .stat-label {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 12px;
+    }
+    .skill-pill {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      text-align: center;
+      font-size: 12px; letter-spacing: 0.05em;
+      color: var(--muted);
+      transition: var(--transition);
+      cursor: default;
+    }
+    .skill-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(137,196,244,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ── EXPERIENCE ── */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateX(-16px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .timeline-item.visible {
+      opacity: 1; transform: translateX(0);
+    }
+    .timeline-dot {
+      position: absolute; left: -37px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%; background: var(--accent);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 4px rgba(126,255,212,0.15);
+    }
+    .timeline-date {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .timeline-role {
+      font-family: var(--font-head);
+      font-size: 20px; font-weight: 700;
+      letter-spacing: -0.5px; margin-bottom: 2px;
+    }
+    .timeline-company {
+      font-size: 13px; color: var(--muted); margin-bottom: 14px;
+    }
+    .timeline-desc {
+      color: var(--muted); font-size: 13px; line-height: 1.8;
+    }
+    .timeline-desc li { margin-bottom: 6px; list-style: none; padding-left: 16px; position: relative; }
+    .timeline-desc li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(137,196,244,0.07), transparent 60%);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .project-card:hover { transform: translateY(-6px); border-color: rgba(137,196,244,0.3); }
+    .project-card:hover::before { opacity: 1; }
+
+    .project-icon {
+      font-size: 28px; margin-bottom: 16px;
+      display: block;
+    }
+    .project-title {
+      font-family: var(--font-head);
+      font-size: 20px; font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+    .project-sub {
+      font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .project-desc {
+      color: var(--muted); font-size: 13px; line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .project-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tag {
+      font-size: 11px; padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(137,196,244,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(137,196,244,0.2);
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    #contact {
+      text-align: center;
+      padding: 80px 48px 120px;
+    }
+    #contact .section-label { justify-content: center; }
+    #contact .section-label::after { display: none; }
+
+    .contact-email {
+      font-family: var(--font-head);
+      font-size: clamp(24px, 4vw, 48px);
+      font-weight: 800; letter-spacing: -1px;
+      color: var(--text); text-decoration: none;
+      display: block; margin: 16px 0 40px;
+      transition: color 0.3s;
+    }
+    .contact-email:hover { color: var(--accent); }
+
+    .social-links {
+      display: flex; justify-content: center; gap: 20px;
+      list-style: none; margin-bottom: 60px;
+    }
+    .social-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .social-links a:hover { color: var(--accent); }
+
+    .footer-line {
+      font-size: 11px; color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      #hero { padding: 100px 24px 60px; }
+      section { padding: 80px 24px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      #contact { padding: 60px 24px 80px; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <!-- ======= Mobile nav toggle button ======= -->
-  <!-- <button type="button" class="mobile-nav-toggle d-xl-none"><i class="bi bi-list mobile-nav-toggle"></i></button> -->
-  <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
-  <!-- ======= Header ======= -->
-  <header id="header" class="d-flex flex-column justify-content-center">
+<div id="cursor-glow"></div>
+<div id="scroll-progress"></div>
 
-    <nav id="navbar" class="navbar nav-menu">
-      <ul>
-        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Home</span></a></li>
-        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>About</span></a></li>
-        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resume</span></a></li>
-        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Portfolio</span></a></li>
-        <!-- <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li> -->
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">NC<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#currently">Now</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button id="theme-btn" onclick="toggleTheme()">☽ Dark</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">CS Engineer · Product Thinker · SDSU 2026</div>
+  <h1 class="hero-name">
+    Nitin<br>
+    <span class="serif accent">Chatlani</span>
+  </h1>
+  <p class="hero-tagline">
+    I build things that are <span id="typed-text"></span><span id="typed-cursor"></span>
+    <br><br>
+    Engineer with a product mindset. I go from 0→1 fast — shipping full-stack apps, AI models, and hardware prototypes, then owning the outcome.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View my work →</a>
+    <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About Me</div>
+  <h2 class="section-title reveal">Engineer. Builder.<br><span style="color:var(--accent)">Product Thinker.</span></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>Computer Science senior at SDSU</strong> graduating May 2026, with a Mathematics minor. I'm wired to think like a PM and build like an engineer — I care deeply about <em>why</em> something is built, not just <em>how</em>.</p>
+      <p>I've shipped patent-pending ML models, submitted research to IEEE/ACM, led a <strong>450-member coding community</strong>, and built production software used company-wide — all while TA-ing graduate courses as the only undergrad TA in my department. I thrive at the intersection of user problems, technical craft, and cross-functional leadership.</p>
+      <p>Off-screen: I'm a <strong>certified spin instructor</strong> — which means I'm equally comfortable reading a room, setting the pace, and making sure everyone leaves having given everything they've got. 🚴</p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-card">
+        <span class="stat-num">450+</span>
+        <span class="stat-label">eLeetCoders Members</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">10+</span>
+        <span class="stat-label">Research Projects Managed</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">30+</span>
+        <span class="stat-label">Grad Students TA'd</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">4+</span>
+        <span class="stat-label">Internships & Research Roles</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Technical Skills</div>
+  <h2 class="section-title reveal">What I work with</h2>
+  <div class="skills-grid reveal">
+    <!-- Languages -->
+    <div class="skill-pill">Python</div>
+    <div class="skill-pill">Java</div>
+    <div class="skill-pill">C++</div>
+    <div class="skill-pill">C</div>
+    <div class="skill-pill">SQL</div>
+    <div class="skill-pill">JavaScript</div>
+    <div class="skill-pill">HTML</div>
+    <div class="skill-pill">CSS</div>
+    <div class="skill-pill">Assembly</div>
+    <!-- Tools / Frameworks -->
+    <div class="skill-pill">Git</div>
+    <div class="skill-pill">Bootstrap</div>
+    <div class="skill-pill">Google Cloud</div>
+    <div class="skill-pill">Firebase</div>
+    <div class="skill-pill">AWS</div>
+    <div class="skill-pill">ML / AI</div>
+    <div class="skill-pill">LLMs</div>
+    <div class="skill-pill">Arduino</div>
+    <div class="skill-pill">React</div>
+    <!-- Product / Leadership -->
+    <div class="skill-pill">0→1 Building</div>
+    <div class="skill-pill">Cross-functional</div>
+    <div class="skill-pill">User Research</div>
+    <div class="skill-pill">Data Viz</div>
+    <div class="skill-pill">Agile / Scrum</div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-title reveal">Where I've <span style="color:var(--accent)">worked</span></h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Summer 2025 – Present</div>
+      <div class="timeline-role">Software Engineering + AI Intern</div>
+      <div class="timeline-company">Airbuild Inc. — Remote</div>
+      <ul class="timeline-desc">
+        <li>Built and deployed a full-stack project-management web app, currently in company-wide beta testing.</li>
+        <li>Created an internal LLM trained on company drawings and proprietary data.</li>
+        <li>Built data pipelines and visualizations using Firebase, AWS, Pandas, and NumPy to analyze live sensor data from Airbuild's microalgae-based wastewater treatment system — part of a carbon-negative cleantech platform with a patent-pending automated harvesting system.</li>
       </ul>
-    </nav><!-- .nav-menu -->
+    </div>
 
-  </header><!-- End Header -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Spring & Summer 2024</div>
+      <div class="timeline-role">Data Integration + Platform Insights Intern</div>
+      <div class="timeline-company">pladis Global — Remote</div>
+      <ul class="timeline-desc">
+        <li>Built and deployed a brand dynamics dashboard used by the entire North American Insights & Marketing groups.</li>
+        <li>Delivered key market-shift insights that influenced website changes, social media activations, and product initiatives.</li>
+      </ul>
+    </div>
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container" data-aos="zoom-in" data-aos-delay="100">
-      <h1>Nitin Chatlani</h1>
-      <p>I'm a <span class="typed" data-typed-items="Computer Science Student, Musician, Cycling Enthusiast, Skincare Aficionado, Entrepreneur"></span></p>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/nitinchatlani/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://www.instagram.com/n.chatlani" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="https://twitter.com/nitinchatlani" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/nk.chatlani" class="facebook"><i class="bx bxl-facebook"></i></a>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Spring 2024 – Present</div>
+      <div class="timeline-role">Lab Coordinator</div>
+      <div class="timeline-company">SDSU AI4Business Research Lab</div>
+      <ul class="timeline-desc">
+        <li>Managing 10+ Python-based research projects under Professor Vivian Huangfu.</li>
+        <li>Contributing to CodeGPT — enhancing a deep learning code search model with LLM pre-training techniques.</li>
+        <li>Interviewing and evaluating research assistant candidates.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2024–25 School Year</div>
+      <div class="timeline-role">Graduate Teaching Assistant</div>
+      <div class="timeline-company">SDSU — Business Systems Analysis & Design (MIS695 + MIS515)</div>
+      <ul class="timeline-desc">
+        <li>Sole undergraduate TA responsible for 20+ assignments, weekly office hours, and in-class support for 30+ grad students.</li>
+        <li>Wrote Python scripts to automate and streamline grading workflows.</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Summer 2023</div>
+      <div class="timeline-role">IT Intern + Instructor</div>
+      <div class="timeline-company">Lavner Education — University of San Diego</div>
+      <ul class="timeline-desc">
+        <li>Taught Java, Python, and C to 100+ students in group and one-on-one settings.</li>
+        <li>Managed on-site hardware, software, and internet connectivity setup and maintenance.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CURRENTLY -->
+<section id="currently" style="padding-top:0">
+  <div class="section-label">What I'm up to now</div>
+  <h2 class="section-title reveal">Currently <span style="color:var(--accent)">active</span></h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <span class="project-icon">⚡</span>
+      <div class="project-title">Hack the Future</div>
+      <div class="project-sub">SDSU Hackathon — Organizer · Sponsored by Zip Launchpad</div>
+      <p class="project-desc">Organizing SDSU's AI-focused hackathon, sponsored by the Zip Launchpad. Built around fast-tracked, AI-powered development — giving students a high-pressure environment to go from idea to shipped product in hours. Coordinating sponsors, mentors, judges, and the full event experience end-to-end.</p>
+      <div class="project-tags">
+        <span class="tag">AI / LLMs</span>
+        <span class="tag">Event Leadership</span>
+        <span class="tag">Zip Launchpad</span>
+        <span class="tag">0→1</span>
       </div>
     </div>
-  </section><!-- End Hero -->
 
-  <main id="main">
-
-    <!-- ======= About Section ======= -->
-    <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>About</h2>
-          <p></p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
-            <img src="assets/img/image-under-about.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3>Data Integration and Platform Insights Intern 📈 | SDSU Computer Science Undergraduate Student🎓 | Transforming Insights into Action at pladis Global 🍬 | Committed to Data-Driven Excellence 💡
-            </h3>
-            <p class="fst-italic">
-            </p>
-            <div class="row">
-              <!-- <div class="col-lg-6"> -->
-                <!-- <ul> -->
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.nitinchatlani.com</span></li> -->
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>Github:</strong> <span>+760 402 6231</span></li> -->
-                <!-- </ul> -->
-              <!-- </div> -->
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Year:</strong> <span>Sophomore</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelor's of Science (in progress)</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>nitin.k.chatlani@gmail.com</span></li>
-                  <!-- <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>San Diego, CA</span></li> -->
-                </ul>
-              </div>
-            </div>
-            <p>
-              👋 Hey there! I'm Nitin Chatlani, a dedicated Computer Science student at San Diego State University (SDSU) with a passion for leveraging technology to drive innovation. I am currently interning as a Data Integration + Platform Insights Intern at pladis Global, where I specialize in developing internal tools. My focus is on creating a dynamic dashboard that consolidates various data sources, providing key insights to impact website changes, social media activations, and other brand-related initiatives.
-              <br><br>
-              💡 Skills and Coursework
-              <br>
-              My skill set spans Java, C++, Python, HTML, CSS, and more. I've delved into coursework covering Data Structures, Algorithms, Software Systems, and Computer Organization, amongst others. As a developer, some projects I've worked on include my web portfolio, the Anxiety Asset website, and various in-class coding projects. 
-              <br><br>
-              🔧 Certifications + Clubs
-              <br>
-              Certified in Java, MS Office Suite, and cybersecurity through Armis Cyber Defense Core. Actively involved in the Cyberdefense Team and eLeetCoders Club at SDSU. Recognized for volunteering with the Presidential Gold Volunteer Service Award and as a FIRST Dean's List Semifinalist.
-             
-            </p>
-        </div>
-
-      </div>
-    </section><!-- End About Section -->
-
-    <!-- ======= Skills Section ======= -->
-    <section id="skills" class="skills section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Skills</h2>
-          <!-- <p>By taking multiple college-level computer science and math courses combined with the STEM knowledge I've gained in my extracurricular activities, I have a strong understanding of many different softwares, topics, and languages:</p> -->
-        </div>
-
-        <div class="row skills-content">
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill">Java <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              
-            </div>
-            <!-- <p> I took CS111 and AP Computer Science in highschool (recieving college credit for both), and I am currently enrolled in CS150 -- all of which focusing on Java. I was also in the programming branch of the robotics team for two years and programmed the robots in Java.</p> -->
-
-            <div class="progress">
-              <span class="skill">CSS <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-
-            </div>
-            <!-- <p>I made this website using a bit of CSS. </p> -->
-
-
-            <div class="progress">
-              <span class="skill">HTML <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">C++ <i class="val">85%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-            <!-- <p> The majority of this website, however, was programmed in HTML.</p> -->
-
-
-          </div>
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill">Git <i class="val">70%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Python <i class="val">100%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Server & Domain Management <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-            <div class="progress">
-              <span class="skill">Spanish <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Skills Section -->
-
-    <!-- ======= Resume Section ======= -->
-    <section id="resume" class="resume">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Resume</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-6">
-            <h3 class="resume-title">Summary</h3>
-            <div class="resume-item pb-0">
-              <h4>Nitin Chatlani
-              </h4>
-              <p><em>Innovative and creativity-driven Computer Science Student at San Diego State University with 4+ years of coding experience from intial concept to final, polished deliverable.</em></p>
-              <!-- <ul> -->
-                <!-- <li>San Diego State University</li> -->
-                <!-- <li>(760) 402-6231</li> -->
-                <!-- <li>nitin.k.chatlani@gmail.com</li> -->
-              <!-- </ul> -->
-            </div>
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Bachelors of Science - Computer Science (in progress)</h4>
-              <h5>2022 - 2026</h5>
-              <p><em>San Diego State University, CA</em></p>
-              <p>Ranked the 13th best Computer Science school in California and top 100 in the US for Computer Science.</p>
-              <p>Coursework:</p>
-              <ul>
-                <li>Computer Science:</li>
-                <ul>
-                  <li>CS150 - Java</li>
-                  <li>CS160 - Advanced Java</li>
-                  <li>CS210 - Data Structures + Algorithms</li>
-                  <li>CS240 - Computer Organization (Assembly)</li>
-                  <li>CS250 - Software Systems</li>
-                </ul>
-
-                <li>Mathematics:</li>
-                <ul>
-                  <li>MATH150 - Calculus I</li>
-                  <li>MATH151 - Calculus II</li>
-                  <li>MATH254 - Linear Algebra</li>
-                  <li>MATH245 - Discrete Math</li>
-                  <li>STAT250 - Statistical Principles + Practices</li>
-                </ul>
-                
-                <li>Physical Sciences:</li>
-                <ul>
-                  <li>PHYS195 - Calculus-Based Physics</li>
-                  <li>PHYS196 - Electricity + Magnetism</li>
-                  <li>BIO100 - Introdution to Biology</li>
-                </ul>
-
-              </ul>
-
-            </div>
-            <div class="resume-item">
-              <h4>High School Diploma</h4>
-              <h5>2018 - 2022</h5> <h5>GPA - 4.45</h5>
-
-              <p><em>San Dieguito High School Academy, Encinitas, CA</em></p>
-              <p>Coursework and Statistics:</p>
-              <ul>
-                <li>AP Computer Science P (CS100 & CS299 Equivalent)</li>
-                <li>AP Calculus AB & BC (MATH120, 140, 141, & 150 Equivalent)</li>
-                <li>AP Physics 1 (PHYS180A & 182A Equivalent)</li>
-                <li>AP Language and Literature Composition (RWS100 & ENGL220 Equivalent)</li>
-                <li>AP World and US History (HIST101, 109, & 110 Equivalent)</li>
-                <li>AP Microeconomics & US Government</li>
-                <li>AP Music Theory</li>
-                <li>Spanish 1-3 (Biliterate)</li>
-
-
-              </ul>
-            </div>
-
-          </div>
-          <div class="col-lg-6">
-            <h3 class="resume-title">Extracurriculars & Work Experience</h3>
-            <div class="resume-item">
-              <h4>Data Integration and Platform Insights Intern</h4>
-              <h5>Spring 2024 (present)</h5>
-              <p><em>pladis Global </em></p>
-              <ul>
-                <li>Developing dynamic dashboards to consolidate diverse data for the Flipz brand</li>
-                <li>Contributing key insights for impactful marketing activations, website changes, and product initiatives</li>
-                <li>Introducing data science capabilities and automating planning processes</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Member</h4>
-              <h5>2023 - Present</h5>
-              <p><em>eLeetCoders Club, San Diego State University</em></p>
-            </div>
-
-            <div class="resume-item">
-              <h4>IT Intern and Instructor</h4>
-              <h5>Summer 2023</h5>
-              <p><em>Lavner Education, University of San Diego</em></p>
-              <ul>
-                <li>Assisted with the setup and maintanence of on-site computer hardware, software, and internet connectivity</li>
-                <li>Delivered quality, educational instruction to students in both a class and one-on-one environment</li>
-                <li>Assisted with debugging, deploying, and clean-up of code in C++, Python, and HTML</li>
-              </ul>
-            </div>
-
-            <div class="resume-item">
-              <h4>Student Research Assistant</h4>
-              <h5>Spring 2023</h5>
-              <p><em>San Diego State University Research Foundation</em></p>
-              <ul>
-                <li>Worked with Assistant Professor Miranda Parker to better understand how to best train Computer Science students' spatial awareness</li>
-                <li>Designed the official research study flyer</li>
-                <li>Designed and Developed the research study procedure to be later conducted on human subjects</li>
-              </ul>
-            </div>
-            <div class="resume-item">
-              <h4>Member</h4>
-              <h5>2022 - Present</h5>
-              <p><em>Cybersecurity Club, San Diego State University </em></p> 
-            </div>
-            <div class="resume-item">
-              <h4>Robotics President</h4>
-              <h5>2020 - 2021</h5>
-              <p><em>FIRST Team Paradox 2102, Encinitas, CA </em></p>
-              <ul>
-                <li>Led over 100 students with guidance from 20+ experts in STEAM fields</li>
-                <li>Supervised the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                <li>Oversaw the efficient use of production project budgets ranging from $2,000 - $75,000</li>
-                <li>Facilitated the engineering (CAD, programming, etc.), marketing, and financial teams' deadlines and goals annually</li>
-              </ul>
-            </div>
-            
-            <!--
-            <div class="resume-item">
-              <h4>English and Critical Thinking Course Teacher Aide</h4>
-              <h5>2019 - 2021</h5>
-              <p><em>Univerity of California San Diego</em></p>
-              <ul>
-                <li>Developed class curriculum for international students from China</li>
-                <li>Taught students how to write compelling speeches while incorporating creative and critical thinking strategies</li>
-                <li>Taught appropriate rhetorical strategies to strengthen rhetoric and writing skills</li>
-                <li>Practiced speeches with students and gave feedback to ensure eloquent oration</li>
-              </ul>
-            </div>
-          -->
-
-           <!-- <div class="resume-item">
-              <h4>Head of Sponsor Relations</h4>
-              <h5>2019 - 2020</h5>
-              <p><em>FIRST Team Paradox 2102, Encinitas, CA</em></p>
-              <ul>
-                <li>Led a group of business-oriented students focused on recruiting sponsors for the team </li>
-                <li>Worked with representatives from companies like Qualcomm, Viasat, Nordson, and more to help support the team</li>
-                <li>Invited guest speakers from sponsor companies to present to the team on various STEAM topics</li> 
-                <li>Organized sponsor appreciation events annually</li>
-              </ul>
-            </div> -->
-          </div>
-        
-        </div>
-
-      </div>
-    </section><!-- End Resume Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Project Portfolio</h2>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-school">School</li>
-              <li data-filter=".filter-ec">Extracurricular</li>
-              <li data-filter=".filter-personal">Personal</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-          <!--
-            <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-              <div class="portfolio-wrap">
-                <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Bubble Brand Ambassador</h4>
-                  <p>Personal</p>
-                  <div class="portfolio-links">
-                    <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Images"><i class="bx bx-plus"></i></a>
-                    <a href="portfolio-details-bubble.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="More Details"><i class="bx bx-link"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          -->
-          <div class="col-lg-4 col-md-6 portfolio-item filter-ec">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-10.png" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>CS Education Research Study</h4>
-                <p>Extracurricular</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-10.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Images"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-csED.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-1.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Bubble Brand Ambassador</h4>
-                <p>Personal</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Images"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-bubble.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-ec">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-2.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Robotics</h4>
-                <p>Extracurricular</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Images"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-robotics.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-school">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-11.png" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Mock Project Proposal</h4>
-                <p>School</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-11.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Images"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-project-proposal.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-school">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Calorie Tracker Application</h4>
-                <p>School</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Image"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-calorie-tracker.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="More Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-ec">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-9.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Armis Cyber Defense Core Badge</h4>
-                <p>Extracurricular</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-9.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-armis.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-5.png" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Anxiety Asset</h4>
-                <p>Personal</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-5.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 2"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-anxiety-asset.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-school">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Mental Health Initiative</h4>
-                <p>School</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 3"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-mhi.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-7.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web Portfolio</h4>
-                <p>Personal</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-7.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Image"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-portfolio.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-school">
-            <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/portfolio-8.jpg" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>PALs Presentations Series</h4>
-                <p>School</p>
-                <div class="portfolio-links">
-                  <a href="assets/img/portfolio/portfolio-8.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Enlarge Image"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details-pals.html" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-
-    <!-- ======= Contact Section COMMENTED OUT======= 
-    <section id="contact" class="contact">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-        </div>
-
-        <div class="row mt-1">
-
-          
-
-          <div class="col-lg-15 mt-5 mt-lg-0">
-
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->-->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="container">
-      <h3>Nitin Chatlani&trade;	</h3>
-      <p></p>
-      <div class="social-links">
-        <a href="https://www.linkedin.com/in/nitinchatlani/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-        <a href="https://www.instagram.com/n.chatlani" class="instagram"><i class="bx bxl-instagram"></i></a>
-        <a href="https://twitter.com/nitinchatlani" class="twitter"><i class="bx bxl-twitter"></i></a>
-        <a href="https://www.facebook.com/nk.chatlani" class="facebook"><i class="bx bxl-facebook"></i></a>
-      </div>
-      <div class="copyright">
-        &copy; Copyright <strong><span>Nitin Chatlani</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: [license-url] -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/ -->
-        <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <span class="project-icon">🏆</span>
+      <div class="project-title">CodeBlitz</div>
+      <div class="project-sub">SDSU Coding Competition — Organizer</div>
+      <p class="project-desc">Designed and built SDSU's CodeBlitz competitive programming competition from the ground up — personally authored the problem sets, wrote Python autograding scripts for instant judging, and managed all event logistics. Creating the kind of high-stakes competitive environment that sharpens real engineering instincts.</p>
+      <div class="project-tags">
+        <span class="tag">Problem Design</span>
+        <span class="tag">Python Autograder</span>
+        <span class="tag">Competitive Programming</span>
+        <span class="tag">Event Ops</span>
       </div>
     </div>
-  </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <span class="project-icon">🩺</span>
+      <div class="project-title">FallSense — Ongoing</div>
+      <div class="project-sub">Embedded IoT + AI · Zip Launchpad · <span style="color:var(--accent2)">IEEE/ACM Submitted 📄</span> · <a href="https://drive.google.com/file/d/1QG9nnAi5VCKbfzMGnRojBYpNkttT8AF5/view?usp=sharing" target="_blank" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
+      <p class="project-desc">Continuing development of FallSense at SDSU's Zip Launchpad. Current focus: embedding AI into the detection pipeline using OpenClaw to move beyond threshold-based logic toward smarter, adaptive fall recognition. Aiming to make the $35 device even more robust for real-world elderly care.</p>
+      <div class="project-tags">
+        <span class="tag">OpenClaw</span>
+        <span class="tag">AI / Edge ML</span>
+        <span class="tag">ESP32</span>
+        <span class="tag">IoT</span>
+        <span class="tag">Zip Launchpad</span>
+      </div>
+    </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/typed.js/typed.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <span class="project-icon">🎧</span>
+      <div class="project-title">Spin Architect — Ongoing</div>
+      <div class="project-sub">Personal Project · <a href="https://6996cac613ee3a12ece0e8d5--doseplaylistbuilder.netlify.app/" target="_blank" style="color:var(--accent);text-decoration:none;">Live Demo ↗</a></div>
+      <p class="project-desc">Still building out the playlist curator I made for my spin classes. Solving a problem I live every week as an instructor — architecting rides that hit the right energy, BPM, and emotional arc. Built because I needed it, shipped because others do too.</p>
+      <div class="project-tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">Music API</span>
+        <span class="tag">UX Design</span>
+        <span class="tag">Netlify</span>
+      </div>
+    </div>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <span class="project-icon">🚴</span>
+      <div class="project-title">Spin Instructor</div>
+      <div class="project-sub">DOSE Fitness — Encinitas · <a href="https://www.thedosefitness.com/schedule/?_mt=%2Fschedule%2Fdaily%2F48541%3FactiveDate%3D2026-03-08%26instructors%3D6403%26locations%3D48717" target="_blank" style="color:var(--accent);text-decoration:none;">Book my class ↗</a></div>
+      <p class="project-desc">Certified part-time spin instructor at The Dose Fitness. Teaching is an exercise in product thinking — read the room, set the tempo, adjust on the fly, and deliver an experience people come back for. That same energy shows up in everything I build. Come ride with me.</p>
+      <div class="project-tags">
+        <span class="tag">The Dose Fitness</span>
+        <span class="tag">San Diego</span>
+        <span class="tag">Leadership</span>
+        <span class="tag">Community</span>
+      </div>
+    </div>
 
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-title reveal">Things I've <span style="color:var(--accent)">built</span></h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <span class="project-icon">🤖</span>
+      <div class="project-title">CodeGPT</div>
+      <div class="project-sub">AI Research — AI4Business Lab @ SDSU</div>
+      <p class="project-desc">Reviewed 100+ academic papers in 100+ hours to produce a comprehensive literature synthesis on LLM use-cases in code understanding. Enhanced a deep learning code search engine using LLM pre-training techniques and natural language query optimization — helping developers find code with plain English.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">LLMs</span>
+        <span class="tag">Deep Learning</span>
+        <span class="tag">NLP</span>
+        <span class="tag">Research</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-icon">🌿</span>
+      <div class="project-title">Algae Growth Analysis</div>
+      <div class="project-sub">Data Engineering — <a href="https://airbuildinc.com" target="_blank" style="color:var(--accent);text-decoration:none;">Airbuild Inc. ↗</a> · <span style="color:var(--accent2)">Patent Pending 🔒</span></div>
+      <p class="project-desc">Built data pipelines and visualizations to analyze algae growth patterns for Airbuild's microalgae-based wastewater treatment system — a carbon-negative cleantech platform treating water for municipalities. Used Firebase, AWS, Pandas, and NumPy to process and surface live sensor data. Airbuild's automated algae harvesting system is separately patent pending.</p>
+      <div class="project-tags">
+        <span class="tag">Python</span>
+        <span class="tag">Pandas / NumPy</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Data Viz</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-icon">🩺</span>
+      <div class="project-title">FallSense</div>
+      <div class="project-sub">Embedded IoT · <span style="color:var(--accent2)">IEEE/ACM Paper Submitted 📄</span> · <a href="https://drive.google.com/file/d/1QG9nnAi5VCKbfzMGnRojBYpNkttT8AF5/view?usp=sharing" target="_blank" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
+      <p class="project-desc">Standalone WiFi-enabled wearable fall detector built with an Arduino Nano ESP32 + MPU6050 IMU. Uses a Signal Magnitude Vector (SMV) threshold algorithm running locally on-device for orientation-independent detection — achieving sub-2-second alert latency via Discord webhook. Under $35 to build with no subscription. Currently being developed further at SDSU's Zip Launchpad.</p>
+      <div class="project-tags">
+        <span class="tag">Arduino / ESP32</span>
+        <span class="tag">Embedded C</span>
+        <span class="tag">IoT</span>
+        <span class="tag">3D Printing</span>
+        <span class="tag">Discord API</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-icon">🏗️</span>
+      <div class="project-title">Airbuild PM Web App</div>
+      <div class="project-sub">Full-Stack — Airbuild Inc.</div>
+      <p class="project-desc">Designed and shipped a full-stack project-management platform from zero — currently in company-wide beta. Wearing many hats as AI + Software Engineer II: built backend APIs, integrated Firebase and AWS infrastructure, and trained an internal LLM on company drawings and operational data for intelligent task assistance.</p>
+      <div class="project-tags">
+        <span class="tag">Full-Stack</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">AWS</span>
+        <span class="tag">LLM</span>
+        <span class="tag">React</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-icon">📊</span>
+      <div class="project-title">Brand Dynamics Dashboard</div>
+      <div class="project-sub">Data / BI — pladis Global</div>
+      <p class="project-desc">Integrated multi-source data pipeline into a dynamic insights dashboard deployed to the entire North American marketing and insights teams. Influenced real product and social media strategy decisions.</p>
+      <div class="project-tags">
+        <span class="tag">Data</span>
+        <span class="tag">Dashboard</span>
+        <span class="tag">Google Cloud</span>
+        <span class="tag">BI</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-icon">🎓</span>
+      <div class="project-title">AI Course Tutor GPT</div>
+      <div class="project-sub">CS Education Research · <a href="https://drive.google.com/file/d/1taMt_k8VkPiAO56eR0K2uSNhHHyhmCih/view?usp=sharing" target="_blank" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
+      <p class="project-desc">Researching and building custom GPTs that emulate a course-specific tutor — trained on a class's actual materials, syllabi, and assignments. Designed to give students a personalized, always-available learning assistant that knows exactly what they're studying.</p>
+      <div class="project-tags">
+        <span class="tag">LLMs</span>
+        <span class="tag">Custom GPT</span>
+        <span class="tag">CS Education</span>
+        <span class="tag">RAG</span>
+      </div>
+    </div>
+
+    <div class="project-card reveal">
+      <span class="project-icon">🌐</span>
+      <div class="project-title">Personal Portfolio</div>
+      <div class="project-sub">Frontend Dev</div>
+      <p class="project-desc">Custom portfolio website built with Bootstrap, HTML, CSS, and JS — published and maintained on GitHub Pages. Continuously updated as a living showcase of work and skills.</p>
+      <div class="project-tags">
+        <span class="tag">HTML</span>
+        <span class="tag">CSS</span>
+        <span class="tag">Bootstrap</span>
+        <span class="tag">GitHub Pages</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title reveal" style="margin-bottom:0">Let's build something<br><span style="color:var(--accent)">together.</span></h2>
+  <a href="/cdn-cgi/l/email-protection#751b1c011c1b5b1e5b161d140119141b1c351218141c195b161a18" class="contact-email reveal"><span class="__cf_email__" data-cfemail="b2dcdbc6dbdc9cd99cd1dad3c6ded3dcdbf2d5dfd3dbde9cd1dddf">[email&#160;protected]</span></a>
+  <ul class="social-links reveal">
+    <li><a href="https://linkedin.com/in/nitinchatlani" target="_blank">LinkedIn</a></li>
+    <li><a href="https://instagram.com/n.chatlani" target="_blank">Instagram</a></li>
+    <li><a href="mailto:nitin.k.chatlani@gmail.com">Email</a></li>
+    <li><a href="tel:7604026231">760.402.6231</a></li>
+  </ul>
+  <p class="footer-line reveal">Designed & built by Nitin Chatlani · SDSU CS 2026</p>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── CURSOR GLOW ──
+  const glow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  // ── SCROLL PROGRESS ──
+  window.addEventListener('scroll', () => {
+    const prog = document.getElementById('scroll-progress');
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    prog.style.width = pct + '%';
+  });
+
+  // ── REVEAL ON SCROLL ──
+  const revealEls = document.querySelectorAll('.reveal, .timeline-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+  // Fallback: mark anything already visible on load
+  setTimeout(() => {
+    revealEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) el.classList.add('visible');
+    });
+  }, 100);
+
+  // ── TYPED TEXT ──
+  const phrases = [
+    'actually useful.',
+    'worth shipping.',
+    'user-obsessed.',
+    'built to scale.',
+    'surprisingly elegant.',
+    'from 0 to 1.',
+    'AI-powered.',
+  ];
+  let pi = 0, ci = 0, deleting = false;
+  const typedEl = document.getElementById('typed-text');
+
+  function type() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      typedEl.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 2000); return; }
+    } else {
+      typedEl.textContent = phrase.slice(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
+    }
+    setTimeout(type, deleting ? 40 : 80);
+  }
+  setTimeout(type, 1200);
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isLight = html.getAttribute('data-theme') === 'light';
+    html.setAttribute('data-theme', isLight ? 'dark' : 'light');
+    document.getElementById('theme-btn').textContent = isLight ? '☀ Light' : '☽ Dark';
+  }
+</script>
 </body>
-
 </html>
