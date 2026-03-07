@@ -138,7 +138,7 @@
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--accent); margin-bottom: 32px;
-      opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+      animation: fadeUp 0.8s 0.2s forwards;
     }
     .hero-tag::before {
       content: ''; width: 24px; height: 1px; background: var(--accent);
@@ -151,7 +151,7 @@
       line-height: 0.92;
       letter-spacing: -3px;
       margin-bottom: 28px;
-      opacity: 0; animation: fadeUp 0.9s 0.35s forwards;
+      animation: fadeUp 0.9s 0.35s forwards;
     }
     .hero-name .accent { color: var(--accent); }
     .hero-name .serif {
@@ -164,7 +164,7 @@
       font-size: 15px; color: var(--muted);
       max-width: 480px; line-height: 1.8;
       margin-bottom: 48px;
-      opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+      animation: fadeUp 0.9s 0.5s forwards;
     }
 
     #typed-text {
@@ -183,7 +183,7 @@
 
     .hero-cta {
       display: flex; gap: 16px; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.9s 0.65s forwards;
+      animation: fadeUp 0.9s 0.65s forwards;
     }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -208,14 +208,12 @@
       display: flex; align-items: center; gap: 10px;
       font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--muted);
-      opacity: 0; animation: fadeUp 0.9s 1s forwards;
+      animation: fadeUp 0.9s 1s forwards;
     }
     .scroll-line {
       width: 40px; height: 1px; background: var(--muted);
-      animation: expandLine 1.5s 1.2s forwards;
-      transform-origin: left; transform: scaleX(0);
+      transform-origin: left;
     }
-    @keyframes expandLine { to { transform: scaleX(1); } }
 
     /* ── SECTION SHARED ── */
     section {
@@ -453,7 +451,7 @@
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
+      from { opacity: 0.2; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .reveal {
@@ -873,7 +871,7 @@
 <section id="contact">
   <div class="section-label">Contact</div>
   <h2 class="section-title reveal" style="margin-bottom:0">Let's build something<br><span style="color:var(--accent)">together.</span></h2>
-  <a id="contact-email" href="#" class="contact-email reveal">nitin.k.chatlani@gmail.com</a>
+  <a id="contact-email" href="#" class="contact-email reveal"><span class="__cf_email__" data-cfemail="66080f120f08480d48050e07120a07080f26010b070f0a4805090b">[email&#160;protected]</span></a>
   <ul class="social-links reveal">
     <li><a id="link-linkedin" href="#">LinkedIn</a></li>
     <li><a id="link-instagram" href="#">Instagram</a></li>
@@ -883,7 +881,7 @@
   <p class="footer-line reveal">Designed & built by Nitin Chatlani · SDSU CS 2026</p>
 </section>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // ── CURSOR GLOW ──
   const glow = document.getElementById('cursor-glow');
   document.addEventListener('mousemove', e => {
