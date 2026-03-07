@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Nitin Chatlani — CS Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Plus+Jakarta+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
   <style>
     /* ── RESET & BASE ── */
@@ -26,7 +26,8 @@
       --shadow:    0 4px 32px rgba(0,0,0,0.5);
       --radius:    14px;
       --font-head: 'Syne', sans-serif;
-      --font-body: 'DM Mono', monospace;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
       --font-serif:'Instrument Serif', serif;
       --transition: 0.35s cubic-bezier(0.22,1,0.36,1);
     }
@@ -315,12 +316,6 @@
     .timeline-item {
       position: relative;
       margin-bottom: 48px;
-      opacity: 0;
-      transform: translateX(-16px);
-      transition: opacity 0.6s, transform 0.6s;
-    }
-    .timeline-item.visible {
-      opacity: 1; transform: translateX(0);
     }
     .timeline-dot {
       position: absolute; left: -37px; top: 6px;
@@ -362,13 +357,15 @@
       cursor: pointer;
       transition: var(--transition);
       position: relative;
-      overflow: hidden;
+      overflow: visible;
     }
     .project-card::before {
       content: '';
       position: absolute; inset: 0;
+      border-radius: var(--radius);
       background: radial-gradient(circle at 80% 20%, rgba(137,196,244,0.07), transparent 60%);
       opacity: 0; transition: opacity 0.4s;
+      pointer-events: none;
     }
     .project-card:hover { transform: translateY(-6px); border-color: rgba(137,196,244,0.3); }
     .project-card:hover::before { opacity: 1; }
@@ -433,7 +430,21 @@
     }
     .social-links a:hover { color: var(--accent); }
 
-    .footer-line {
+    .project-sub a, .timeline-company a {
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--accent);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .project-sub a:hover, .timeline-company a:hover {
+      border-bottom-color: var(--accent);
+    }
+
+    .nav-links a, #theme-btn, .btn, .skill-pill, .tag, .hero-tag,
+    .section-label, .timeline-date, .project-sub, .stat-label {
+      font-family: var(--font-mono);
+    }
       font-size: 11px; color: var(--muted);
       border-top: 1px solid var(--border);
       padding-top: 32px;
@@ -446,10 +457,22 @@
       to   { opacity: 1; transform: translateY(0); }
     }
     .reveal {
-      opacity: 0; transform: translateY(32px);
+      opacity: 1; transform: translateY(0);
       transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.animate-ready {
+      opacity: 0; transform: translateY(32px);
+    }
+    .reveal.animate-ready.visible { opacity: 1; transform: translateY(0); }
+
+    .timeline-item {
+      opacity: 1; transform: translateX(0);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .timeline-item.animate-ready {
+      opacity: 0; transform: translateX(-16px);
+    }
+    .timeline-item.animate-ready.visible { opacity: 1; transform: translateX(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
@@ -877,22 +900,26 @@
 
   // ── REVEAL ON SCROLL ──
   const revealEls = document.querySelectorAll('.reveal, .timeline-item');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 60);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-  revealEls.forEach(el => observer.observe(el));
-  // Fallback: mark anything already visible on load
-  setTimeout(() => {
-    revealEls.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) el.classList.add('visible');
-    });
-  }, 100);
+  // Only hide elements if IntersectionObserver is supported
+  if ('IntersectionObserver' in window) {
+    revealEls.forEach(el => el.classList.add('animate-ready'));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 60);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+    // Immediately reveal anything already in viewport
+    setTimeout(() => {
+      revealEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('visible');
+      });
+    }, 50);
+  }
 
   // ── TYPED TEXT ──
   const phrases = [
