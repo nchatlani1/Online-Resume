@@ -353,26 +353,75 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 32px;
       cursor: pointer;
       transition: var(--transition);
       position: relative;
-      overflow: visible;
+      overflow: hidden;
       box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
     }
     [data-theme="light"] .project-card {
       border: 1px solid rgba(0,0,0,0.1);
     }
-    .project-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      border-radius: var(--radius);
-      background: radial-gradient(circle at 80% 20%, rgba(137,196,244,0.07), transparent 60%);
-      opacity: 0; transition: opacity 0.4s;
-      pointer-events: none;
+
+    /* ── CARD IMAGE PANEL (top half, hidden by default) ── */
+    .card-img-panel {
+      width: 100%;
+      height: 0;
+      overflow: hidden;
+      transition: height 0.45s cubic-bezier(0.22,1,0.36,1);
+      flex-shrink: 0;
+      background: var(--surface2);
+      position: relative;
     }
-    .project-card:hover { transform: translateY(-6px); border-color: rgba(137,196,244,0.3); }
-    .project-card:hover::before { opacity: 1; }
+    .card-img-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    /* Placeholder gradient for cards without a photo */
+    .card-img-panel.no-photo {
+      background: linear-gradient(135deg, var(--surface2) 0%, var(--surface) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-img-panel.no-photo::after {
+      content: attr(data-label);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* ── CARD CONTENT PANEL (always visible) ── */
+    .card-content {
+      padding: 28px 32px 32px;
+      flex: 1;
+    }
+
+    /* ── HOVER STATE ── */
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(137,196,244,0.35);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    .project-card:hover .card-img-panel {
+      height: 200px;
+    }
+    .project-card:hover .card-img-panel img {
+      transform: scale(1.04);
+    }
+    .project-card:hover .card-img-panel.no-photo::after {
+      opacity: 1;
+    }
+    [data-theme="light"] .project-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
 
     .project-icon {
       font-size: 28px; margin-bottom: 16px;
@@ -488,6 +537,33 @@
       .projects-grid { grid-template-columns: 1fr; }
       #contact { padding: 60px 24px 80px; }
     }
+
+    /* ── HERO PHOTO ── */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 60px;
+    }
+    .hero-photo {
+      width: 260px; height: 320px;
+      border-radius: 20px;
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+      flex-shrink: 0;
+      filter: grayscale(10%);
+      transition: filter 0.4s;
+    }
+    .hero-photo:hover { filter: grayscale(0%); }
+    [data-theme="light"] .hero-photo {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+    @media (max-width: 768px) {
+      .hero-layout { grid-template-columns: 1fr; }
+      .hero-photo { width: 160px; height: 200px; margin: 0 auto; }
+    }
   </style>
 </head>
 <body>
@@ -511,6 +587,8 @@
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-layout">
+  <div class="hero-content">
   <div class="hero-tag">CS Engineer · Product Thinker · SDSU 2026</div>
   <h1 class="hero-name">
     Nitin<br>
@@ -524,6 +602,9 @@
   <div class="hero-cta">
     <a href="#projects" class="btn btn-primary">View my work →</a>
     <a href="#contact" class="btn btn-ghost">Get in touch</a>
+  </div>
+  </div>
+  <img class="hero-photo" src="assets/img/headshot.jpg" alt="Nitin Chatlani" />
   </div>
   <div class="hero-scroll">
     <span class="scroll-line"></span>
@@ -701,6 +782,8 @@
   <div class="projects-grid">
 
     <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <div class="card-img-panel"><img src="assets/img/fallsense.png" alt="FallSense hardware and Discord alert" /></div>
+      <div class="card-content">
       <span class="project-icon">⚡</span>
       <div class="project-title">Hack the Future</div>
       <div class="project-sub">SDSU Hackathon — Organizer · Sponsored by Zip Launchpad</div>
@@ -712,8 +795,11 @@
         <span class="tag">0→1</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <div class="card-img-panel"><img src="assets/img/airbuild-site.jpg" alt="Airbuild algae system in Green River, Utah" /></div>
+      <div class="card-content">
       <span class="project-icon">🏆</span>
       <div class="project-title">CodeBlitz</div>
       <div class="project-sub">SDSU Coding Competition — Organizer</div>
@@ -725,35 +811,31 @@
         <span class="tag">Event Ops</span>
       </div>
     </div>
-
-    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
-      <span class="project-icon">🩺</span>
-      <div class="project-title">FallSense — Ongoing</div>
-      <div class="project-sub">Embedded IoT + AI · Zip Launchpad · <span style="color:var(--accent2)">IEEE/ACM Submitted 📄</span> · <a id="link-fallsense-paper2" href="#" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
-      <p class="project-desc">Continuing development of FallSense at SDSU's Zip Launchpad. Current focus: embedding AI into the detection pipeline using OpenClaw to move beyond threshold-based logic toward smarter, adaptive fall recognition. Aiming to make the $35 device even more robust for real-world elderly care.</p>
-      <div class="project-tags">
-        <span class="tag">OpenClaw</span>
-        <span class="tag">AI / Edge ML</span>
-        <span class="tag">ESP32</span>
-        <span class="tag">IoT</span>
-        <span class="tag">Zip Launchpad</span>
-      </div>
     </div>
 
+    
+
     <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <div class="card-img-panel"><img src="assets/img/airbuild-one.png" alt="Airbuild One project management dashboard" /></div>
+      <div class="card-content">
       <span class="project-icon">🎧</span>
-      <div class="project-title">Spin Architect — Ongoing</div>
-      <div class="project-sub">Personal Project · <a id="link-spinarchitect" href="#" style="color:var(--accent);text-decoration:none;">Live Demo ↗</a></div>
-      <p class="project-desc">Still building out the playlist curator I made for my spin classes. Solving a problem I live every week as an instructor — architecting rides that hit the right energy, BPM, and emotional arc. Built because I needed it, shipped because others do too.</p>
+      <div class="project-title">Spin Architect</div>
+      <div class="project-sub">Full-Stack App · <a id="link-spinarchitect" href="#" style="color:var(--accent);text-decoration:none;">Live Demo ↗</a></div>
+      <p class="project-desc">A full-featured spin class planning tool built from scratch because I needed it myself. Instructors can build complete ride playlists with RPM ranges, intensity levels (Low → MAX), and per-move durations — with a real-time total duration tracker. Integrates Spotify and SoundCloud for track search and BPM detection, includes an inspiration bank, drag-and-drop move ordering, and one-click playlist export. Designed for working instructors, not as a demo.</p>
       <div class="project-tags">
         <span class="tag">JavaScript</span>
-        <span class="tag">Music API</span>
+        <span class="tag">Spotify API</span>
+        <span class="tag">SoundCloud API</span>
+        <span class="tag">BPM Detection</span>
         <span class="tag">UX Design</span>
         <span class="tag">Netlify</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
+      <div class="card-img-panel"><img src="assets/img/spin.jpg" alt="Nitin teaching spin at DOSE Fitness" /></div>
+      <div class="card-content">
       <span class="project-icon">🚴</span>
       <div class="project-title">Spin Instructor</div>
       <div class="project-sub">DOSE Fitness — Encinitas · <a id="link-dose" href="#" style="color:var(--accent);text-decoration:none;">Book my class ↗</a></div>
@@ -764,6 +846,7 @@
         <span class="tag">Leadership</span>
         <span class="tag">Community</span>
       </div>
+    </div>
     </div>
 
   </div>
@@ -776,6 +859,8 @@
   <div class="projects-grid">
 
     <div class="project-card reveal">
+      <div class="card-img-panel"><img src="assets/img/pladis-dashboard.png" alt="pladis Insights Intelligence Dashboard" /></div>
+      <div class="card-content">
       <span class="project-icon">🤖</span>
       <div class="project-title">CodeGPT</div>
       <div class="project-sub">AI Research — AI4Business Lab @ SDSU</div>
@@ -788,8 +873,11 @@
         <span class="tag">Research</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal">
+      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
+      <div class="card-content">
       <span class="project-icon">🌿</span>
       <div class="project-title">Algae Growth Analysis</div>
       <div class="project-sub">Data Engineering — <a id="link-airbuild" href="#" style="color:var(--accent);text-decoration:none;">Airbuild Inc. ↗</a> · <span style="color:var(--accent2)">Patent Pending 🔒</span></div>
@@ -802,8 +890,11 @@
         <span class="tag">Data Viz</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal">
+      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
+      <div class="card-content">
       <span class="project-icon">🩺</span>
       <div class="project-title">FallSense</div>
       <div class="project-sub">Embedded IoT · <span style="color:var(--accent2)">IEEE/ACM Paper Submitted 📄</span> · <a id="link-fallsense-paper" href="#" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
@@ -816,8 +907,11 @@
         <span class="tag">Discord API</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal">
+      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
+      <div class="card-content">
       <span class="project-icon">🏗️</span>
       <div class="project-title">Airbuild PM Web App</div>
       <div class="project-sub">Full-Stack — Airbuild Inc.</div>
@@ -830,8 +924,11 @@
         <span class="tag">React</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal">
+      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
+      <div class="card-content">
       <span class="project-icon">📊</span>
       <div class="project-title">Brand Dynamics Dashboard</div>
       <div class="project-sub">Data / BI — pladis Global</div>
@@ -843,8 +940,11 @@
         <span class="tag">BI</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal">
+      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
+      <div class="card-content">
       <span class="project-icon">🎓</span>
       <div class="project-title">AI Course Tutor GPT</div>
       <div class="project-sub">CS Education Research · <a id="link-gpt-paper" href="#" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
@@ -856,8 +956,11 @@
         <span class="tag">RAG</span>
       </div>
     </div>
+    </div>
 
     <div class="project-card reveal">
+      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
+      <div class="card-content">
       <span class="project-icon">🌐</span>
       <div class="project-title">Personal Portfolio</div>
       <div class="project-sub">Frontend Dev</div>
@@ -868,6 +971,7 @@
         <span class="tag">Bootstrap</span>
         <span class="tag">GitHub Pages</span>
       </div>
+    </div>
     </div>
 
   </div>
