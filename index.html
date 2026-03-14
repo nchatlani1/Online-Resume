@@ -11,6 +11,14 @@
     /* ── RESET & BASE ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
+    @keyframes skill-highlight {
+      0%   { box-shadow: 0 0 0 0 rgba(137,196,244,0); }
+      30%  { box-shadow: 0 0 0 8px rgba(137,196,244,0.25); }
+      100% { box-shadow: 0 0 0 0 rgba(137,196,244,0); }
+    }
+    .skill-target-flash {
+      animation: skill-highlight 1.2s ease-out;
+    }
 
     /* ── THEME TOKENS ── */
     :root {
@@ -125,6 +133,44 @@
       transition: var(--transition); font-family: var(--font-body);
     }
     #theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── BACK BUTTON ── */
+    #back-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 999;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 10px 18px 10px 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s, border-color 0.2s, color 0.2s;
+      pointer-events: none;
+    }
+    #back-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    #back-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    #back-btn .back-arrow {
+      font-size: 14px;
+      line-height: 1;
+    }
 
     /* ── HERO ── */
     #hero {
@@ -283,25 +329,42 @@
 
     /* ── SKILLS ── */
     .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-      gap: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     .skill-pill {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 10px 16px;
+      padding: 10px 18px;
       text-align: center;
       font-size: 12px; letter-spacing: 0.05em;
       color: var(--muted);
       transition: var(--transition);
       cursor: default;
+      white-space: nowrap;
     }
     .skill-pill:hover {
       border-color: var(--accent);
       color: var(--accent);
       background: rgba(137,196,244,0.06);
       transform: translateY(-2px);
+    }
+    a.skill-pill {
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+    }
+    a.skill-pill::after {
+      content: ' ↗';
+      font-size: 9px;
+      opacity: 0;
+      transition: opacity 0.2s;
+      vertical-align: super;
+    }
+    a.skill-pill:hover::after {
+      opacity: 0.6;
     }
 
     /* ── EXPERIENCE ── */
@@ -570,6 +633,10 @@
 
 <div id="cursor-glow"></div>
 <div id="scroll-progress"></div>
+<button id="back-btn" onclick="goBack()">
+  <span class="back-arrow">←</span>
+  <span id="back-label">Back</span>
+</button>
 
 <!-- NAV -->
 <nav>
@@ -649,31 +716,40 @@
   <h2 class="section-title reveal">What I work with</h2>
   <div class="skills-grid reveal">
     <!-- Languages -->
-    <div class="skill-pill">Python</div>
-    <div class="skill-pill">Java</div>
-    <div class="skill-pill">C++</div>
-    <div class="skill-pill">C</div>
-    <div class="skill-pill">SQL</div>
-    <div class="skill-pill">JavaScript</div>
-    <div class="skill-pill">HTML</div>
-    <div class="skill-pill">CSS</div>
-    <div class="skill-pill">Assembly</div>
+    <a href="#proj-algae" class="skill-pill skill-linked" title="See where I used Python">Python</a>
+    <a href="#proj-codeblitz" class="skill-pill skill-linked" title="See where I used Java">Java</a>
+    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used C++">C++</a>
+    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used C">C</a>
+    <a href="#exp-pladis" class="skill-pill skill-linked" title="See where I used SQL">SQL</a>
+    <a href="#proj-spinarchitect" class="skill-pill skill-linked" title="See where I used JavaScript">JavaScript</a>
+    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used HTML">HTML</a>
+    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used CSS">CSS</a>
+    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used Assembly">Assembly</a>
     <!-- Tools / Frameworks -->
-    <div class="skill-pill">Git</div>
-    <div class="skill-pill">Bootstrap</div>
-    <div class="skill-pill">Google Cloud</div>
-    <div class="skill-pill">Firebase</div>
-    <div class="skill-pill">AWS</div>
-    <div class="skill-pill">ML / AI</div>
-    <div class="skill-pill">LLMs</div>
-    <div class="skill-pill">Arduino</div>
-    <div class="skill-pill">React</div>
+    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Git">Git</a>
+    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Bootstrap">Bootstrap</a>
+    <a href="#exp-pladis" class="skill-pill skill-linked" title="See where I used Google Cloud">Google Cloud</a>
+    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used Firebase">Firebase</a>
+    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used AWS">AWS</a>
+    <a href="#proj-codegpt" class="skill-pill skill-linked" title="See where I used ML / AI">ML / AI</a>
+    <a href="#proj-codegpt" class="skill-pill skill-linked" title="See where I used LLMs">LLMs</a>
+    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used Arduino">Arduino</a>
+    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used React">React</a>
+    <!-- Design / UI/UX / Web -->
+    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Figma">Figma</a>
+    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used UI / UX Design">UI / UX Design</a>
+    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Wireframing">Wireframing</a>
+    <a href="#proj-spinarchitect" class="skill-pill skill-linked" title="See where I used Prototyping">Prototyping</a>
+    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Responsive Design">Responsive Design</a>
+    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Design Systems">Design Systems</a>
+    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Web Development">Web Development</a>
+    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used Component Design">Component Design</a>
     <!-- Product / Leadership -->
-    <div class="skill-pill">0→1 Building</div>
-    <div class="skill-pill">Cross-functional</div>
-    <div class="skill-pill">User Research</div>
-    <div class="skill-pill">Data Viz</div>
-    <div class="skill-pill">Agile / Scrum</div>
+    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used 0→1 Building">0→1 Building</a>
+    <a href="#exp-pladis" class="skill-pill skill-linked" title="See where I used Cross-functional">Cross-functional</a>
+    <a href="#exp-research" class="skill-pill skill-linked" title="See where I used User Research">User Research</a>
+    <a href="#proj-algae" class="skill-pill skill-linked" title="See where I used Data Viz">Data Viz</a>
+    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Agile / Scrum">Agile / Scrum</a>
   </div>
 </section>
 
@@ -686,11 +762,12 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-date">Summer 2025 – Present</div>
-      <div class="timeline-role">Software Engineering + AI Intern</div>
+      <div id="exp-airbuild" class="timeline-role">Software Engineering + AI Intern</div>
       <div class="timeline-company">Airbuild Inc. — Remote</div>
       <ul class="timeline-desc">
         <li>Built and deployed a full-stack project-management web app, currently in company-wide beta testing.</li>
         <li>Created an internal LLM trained on company drawings and proprietary data.</li>
+        <li>Rebuilt and currently maintain the Airbuild public-facing website — owning all UI/UX, design, and front-end development.</li>
         <li>Built data pipelines and visualizations using Firebase, AWS, Pandas, and NumPy to analyze live sensor data from Airbuild's microalgae-based wastewater treatment system — part of a carbon-negative cleantech platform with a patent-pending automated harvesting system.</li>
       </ul>
     </div>
@@ -698,7 +775,7 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-date">Spring & Summer 2024</div>
-      <div class="timeline-role">Data Integration + Platform Insights Intern</div>
+      <div id="exp-pladis" class="timeline-role">Data Integration + Platform Insights Intern</div>
       <div class="timeline-company">pladis Global — Remote</div>
       <ul class="timeline-desc">
         <li>Built and deployed a brand dynamics dashboard used by the entire North American Insights & Marketing groups.</li>
@@ -709,7 +786,7 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-date">Spring 2024 – Present</div>
-      <div class="timeline-role">Lab Coordinator</div>
+      <div id="exp-lab" class="timeline-role">Lab Coordinator</div>
       <div class="timeline-company">SDSU AI4Business Research Lab</div>
       <ul class="timeline-desc">
         <li>Managing 10+ Python-based research projects under Professor Vivian Huangfu.</li>
@@ -764,7 +841,7 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-date">Spring 2023</div>
-      <div class="timeline-role">Student Research Assistant</div>
+      <div id="exp-research" class="timeline-role">Student Research Assistant</div>
       <div class="timeline-company">San Diego State University — Prof. Miranda Parker</div>
       <ul class="timeline-desc">
         <li>Conducted CS Education research on how spatial skills training affects student success in CS courses.</li>
@@ -785,7 +862,7 @@
       <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
       <div class="card-content">
       <span class="project-icon">⚡</span>
-      <div class="project-title">Hack the Future</div>
+      <div id="proj-hackthefuture" class="project-title">Hack the Future</div>
       <div class="project-sub">SDSU Hackathon — Organizer · Sponsored by Anthropic</div>
       <p class="project-desc">Organizing SDSU's AI-focused hackathon, sponsored by the Zip Launchpad. Built around fast-tracked, AI-powered development — giving students a high-pressure environment to go from idea to shipped product in hours. Coordinating sponsors, mentors, judges, and the full event experience end-to-end.</p>
       <div class="project-tags">
@@ -801,7 +878,7 @@
       <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
       <div class="card-content">
       <span class="project-icon">🏆</span>
-      <div class="project-title">CodeBlitz</div>
+      <div id="proj-codeblitz" class="project-title">CodeBlitz</div>
       <div class="project-sub">SDSU Coding Competition — Organizer</div>
       <p class="project-desc">Designed and built SDSU's CodeBlitz competitive programming competition from the ground up — personally authored the problem sets, wrote Python autograding scripts for instant judging, and managed all event logistics. Creating the kind of high-stakes competitive environment that sharpens real engineering instincts.</p>
       <div class="project-tags">
@@ -819,7 +896,7 @@
       <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
       <div class="card-content">
       <span class="project-icon">🎧</span>
-      <div class="project-title">Spin Architect</div>
+      <div id="proj-spinarchitect" class="project-title">Spin Architect</div>
       <div class="project-sub">Full-Stack App · <a id="link-spinarchitect" href="#" style="color:var(--accent);text-decoration:none;">Live Demo ↗</a></div>
       <p class="project-desc">A full-featured spin class planning tool built from scratch because I needed it myself. Instructors can build complete ride playlists with RPM ranges, intensity levels (Low → MAX), and per-move durations — with a real-time total duration tracker. Integrates Spotify and SoundCloud for track search and BPM detection, includes an inspiration bank, drag-and-drop move ordering, and one-click playlist export. Designed for working instructors, not as a demo.</p>
       <div class="project-tags">
@@ -862,7 +939,7 @@
       <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
       <div class="card-content">
       <span class="project-icon">🤖</span>
-      <div class="project-title">CodeGPT</div>
+      <div id="proj-codegpt" class="project-title">CodeGPT</div>
       <div class="project-sub">AI Research — AI4Business Lab @ SDSU</div>
       <p class="project-desc">Reviewed 100+ academic papers in 100+ hours to produce a comprehensive literature synthesis on LLM use-cases in code understanding. Enhanced a deep learning code search engine using LLM pre-training techniques and natural language query optimization — helping developers find code with plain English.</p>
       <div class="project-tags">
@@ -879,7 +956,7 @@
       <div class="card-img-panel"><img src="assets/img/airbuild-site.jpg" alt="Airbuild algae system in Green River, Utah" /></div>
       <div class="card-content">
       <span class="project-icon">🌿</span>
-      <div class="project-title">Algae Growth Analysis</div>
+      <div id="proj-algae" class="project-title">Algae Growth Analysis</div>
       <div class="project-sub">Data Engineering — <a id="link-airbuild" href="#" style="color:var(--accent);text-decoration:none;">Airbuild Inc. ↗</a> · <span style="color:var(--accent2)">Patent Pending 🔒</span></div>
       <p class="project-desc">Built data pipelines and visualizations to analyze algae growth patterns for Airbuild's microalgae-based wastewater treatment system — a carbon-negative cleantech platform treating water for municipalities. Used Firebase, AWS, Pandas, and NumPy to process and surface live sensor data. Airbuild's automated algae harvesting system is separately patent pending.</p>
       <div class="project-tags">
@@ -896,7 +973,7 @@
       <div class="card-img-panel"><img src="assets/img/fallsense.png" alt="FallSense hardware and Discord alert" /></div>
       <div class="card-content">
       <span class="project-icon">🩺</span>
-      <div class="project-title">FallSense</div>
+      <div id="proj-fallsense" class="project-title">FallSense</div>
       <div class="project-sub">Embedded IoT · <span style="color:var(--accent2)">IEEE/ACM Paper Submitted 📄</span> · <a id="link-fallsense-paper" href="#" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
       <p class="project-desc">Standalone WiFi-enabled wearable fall detector built with an Arduino Nano ESP32 + MPU6050 IMU. Uses a Signal Magnitude Vector (SMV) threshold algorithm running locally on-device for orientation-independent detection — achieving sub-2-second alert latency via Discord webhook. Under $35 to build with no subscription. Currently being developed further at SDSU's Zip Launchpad.</p>
       <div class="project-tags">
@@ -913,7 +990,7 @@
       <div class="card-img-panel"><img src="assets/img/airbuild-one.png" alt="Airbuild One project management dashboard" /></div>
       <div class="card-content">
       <span class="project-icon">🏗️</span>
-      <div class="project-title">Airbuild PM Web App</div>
+      <div id="proj-airbuild" class="project-title">Airbuild PM Web App</div>
       <div class="project-sub">Full-Stack — Airbuild Inc.</div>
       <p class="project-desc">Designed and shipped a full-stack project-management platform from zero — currently in company-wide beta. Wearing many hats as AI + Software Engineer II: built backend APIs, integrated Firebase and AWS infrastructure, and trained an internal LLM on company drawings and operational data for intelligent task assistance.</p>
       <div class="project-tags">
@@ -930,7 +1007,7 @@
       <div class="card-img-panel"><img src="assets/img/pladis-dashboard.png" alt="pladis Insights Intelligence Dashboard" /></div>
       <div class="card-content">
       <span class="project-icon">📊</span>
-      <div class="project-title">Brand Dynamics Dashboard</div>
+      <div id="proj-pladis" class="project-title">Brand Dynamics Dashboard</div>
       <div class="project-sub">Data / BI — pladis Global</div>
       <p class="project-desc">Integrated multi-source data pipeline into a dynamic insights dashboard deployed to the entire North American marketing and insights teams. Influenced real product and social media strategy decisions.</p>
       <div class="project-tags">
@@ -946,7 +1023,7 @@
       <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
       <div class="card-content">
       <span class="project-icon">🎓</span>
-      <div class="project-title">AI Course Tutor GPT</div>
+      <div id="proj-gpt" class="project-title">AI Course Tutor GPT</div>
       <div class="project-sub">CS Education Research · <a id="link-gpt-paper" href="#" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
       <p class="project-desc">Researching and building custom GPTs that emulate a course-specific tutor — trained on a class's actual materials, syllabi, and assignments. Designed to give students a personalized, always-available learning assistant that knows exactly what they're studying.</p>
       <div class="project-tags">
@@ -962,7 +1039,7 @@
       <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
       <div class="card-content">
       <span class="project-icon">🌐</span>
-      <div class="project-title">Personal Portfolio</div>
+      <div id="proj-portfolio" class="project-title">Personal Portfolio</div>
       <div class="project-sub">Frontend Dev</div>
       <p class="project-desc">Custom portfolio website built with Bootstrap, HTML, CSS, and JS — published and maintained on GitHub Pages. Continuously updated as a living showcase of work and skills.</p>
       <div class="project-tags">
@@ -1091,6 +1168,43 @@
     html.setAttribute('data-theme', isLight ? 'dark' : 'light');
     document.getElementById('theme-btn').textContent = isLight ? '☀ Light' : '☽ Dark';
   }
+
+  // Skill pill → scroll + highlight flash
+  let lastScrollY = null;
+  let lastSectionLabel = null;
+
+  function goBack() {
+    if (lastScrollY === null) return;
+    window.scrollTo({ top: lastScrollY, behavior: 'smooth' });
+    // Hide button after going back
+    setTimeout(() => {
+      document.getElementById('back-btn').classList.remove('visible');
+      lastScrollY = null;
+      lastSectionLabel = null;
+    }, 600);
+  }
+
+  document.querySelectorAll('a.skill-pill').forEach(pill => {
+    pill.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (!target) return;
+
+      // Save current scroll position + skill name for the back button
+      lastScrollY = window.scrollY;
+      lastSectionLabel = this.textContent.trim();
+      const btn = document.getElementById('back-btn');
+      document.getElementById('back-label').textContent = `Skills`;
+      btn.classList.add('visible');
+
+      // Find the closest card or timeline item to flash
+      const flashEl = target.closest('.project-card, .timeline-item') || target;
+      setTimeout(() => {
+        flashEl.classList.remove('skill-target-flash');
+        void flashEl.offsetWidth;
+        flashEl.classList.add('skill-target-flash');
+      }, 400);
+    });
+  });
 </script>
 </body>
 </html>
