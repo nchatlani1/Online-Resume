@@ -1197,17 +1197,23 @@
 
   document.querySelectorAll('a.skill-pill').forEach(pill => {
     pill.addEventListener('click', function(e) {
+      e.preventDefault();
       const target = document.querySelector(this.getAttribute('href'));
       if (!target) return;
 
-      // Save current scroll position + skill name for the back button
+      // Save scroll position for back button
       lastScrollY = window.scrollY;
       lastSectionLabel = this.textContent.trim();
       const btn = document.getElementById('back-btn');
-      document.getElementById('back-label').textContent = `Skills`;
+      document.getElementById('back-label').textContent = 'Skills';
       btn.classList.add('visible');
 
-      // Find the closest card or timeline item to flash
+      // Scroll with offset for fixed nav
+      const navHeight = document.querySelector('nav').offsetHeight;
+      const targetY = target.getBoundingClientRect().top + window.scrollY - navHeight - 24;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+      // Flash the card
       const flashEl = target.closest('.project-card, .timeline-item') || target;
       setTimeout(() => {
         flashEl.classList.remove('skill-target-flash');
