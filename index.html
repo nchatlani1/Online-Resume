@@ -94,6 +94,7 @@
       background: rgba(245,244,240,0.85);
       border-bottom: 1px solid var(--border);
       transition: var(--transition);
+      overflow: visible;
     }
     [data-theme="dark"] nav { background: rgba(10,10,15,0.7); }
 
@@ -602,8 +603,13 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      nav { padding: 16px 24px; }
+      nav { padding: 16px 20px; }
       .nav-links { display: none; }
+      #theme-btn {
+        font-size: 10px;
+        padding: 6px 12px;
+        flex-shrink: 0;
+      }
       #hero { padding: 100px 24px 60px; }
       section { padding: 80px 24px; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
