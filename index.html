@@ -157,6 +157,7 @@
       transform: translateY(12px);
       transition: opacity 0.3s, transform 0.3s, border-color 0.2s, color 0.2s;
       pointer-events: none;
+      max-width: calc(100vw - 32px);
     }
     #back-btn.visible {
       opacity: 1;
@@ -170,6 +171,15 @@
     #back-btn .back-arrow {
       font-size: 14px;
       line-height: 1;
+    }
+    @media (max-width: 600px) {
+      #back-btn {
+        bottom: 20px;
+        right: 16px;
+        left: 16px;
+        justify-content: center;
+        max-width: calc(100vw - 32px);
+      }
     }
 
     /* ── HERO ── */
@@ -1040,7 +1050,7 @@
       <div class="card-content">
       <span class="project-icon">🌐</span>
       <div id="proj-portfolio" class="project-title">Personal Portfolio</div>
-      <div class="project-sub">Frontend Dev</div>
+      <div class="project-sub">Frontend Dev · <a id="link-github-portfolio" href="#" style="color:var(--accent);text-decoration:none;">View on GitHub ↗</a></div>
       <p class="project-desc">Custom portfolio website built with Bootstrap, HTML, CSS, and JS — published and maintained on GitHub Pages. Continuously updated as a living showcase of work and skills.</p>
       <div class="project-tags">
         <span class="tag">HTML</span>
@@ -1155,6 +1165,7 @@
       'link-fallsense-paper2': 'https://drive.google.com/file/d/1QG9nnAi5VCKbfzMGnRojBYpNkttT8AF5/view?usp=sharing',
       'link-gpt-paper':  'https://drive.google.com/file/d/1taMt_k8VkPiAO56eR0K2uSNhHHyhmCih/view?usp=sharing',
       'link-dose':       'https://www.thedosefitness.com/schedule/?_mt=%2Fschedule%2Fdaily%2F48541%3FactiveDate%3D2026-03-08%26instructors%3D6403%26locations%3D48717',
+      'link-github-portfolio': 'https://github.com/nchatlani1/Online-Resume',
     };
     Object.entries(links).forEach(([id, url]) => {
       const el = document.getElementById(id);
