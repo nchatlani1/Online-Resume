@@ -60,7 +60,7 @@ html:not(.js) .chapter-copy,html:not(.js) .chapter-proof{opacity:1}
 
 /* Compact portfolio: smaller object, two chapters, less repeated content. */
 .brain-chip-anchor{scale:.7;transform-origin:0 0}
-.intro-bio{top:50%;bottom:auto;transform:translateY(-35%);max-width:min(420px,36vw);z-index:3;pointer-events:auto}
+.intro-bio{top:50%;bottom:auto;transform:translateY(-35%);max-width:min(340px,28vw);z-index:3;pointer-events:auto}
 .intro-bio .intro-kicker{font:7px/1.6 var(--mono);letter-spacing:.06em;color:#797d6e;margin-bottom:18px}
 .intro-bio h1{font-size:clamp(36px,4vw,58px);line-height:1.02;letter-spacing:-.065em;font-weight:500;margin:0 0 22px}
 .intro-bio>p:not(.intro-kicker):not(.intro-target){font-size:12px;line-height:1.8}
