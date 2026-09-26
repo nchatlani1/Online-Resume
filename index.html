@@ -1,1233 +1,140 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nitin Chatlani — UI/UX · Web · AI</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nitin Chatlani — AI Engineer &amp; Builder</title>
+  <meta name="description" content="Nitin Chatlani builds agentic systems and applied AI for real workflows. Explore AI research, full-stack work at Airbuild, and business intelligence at pladis, with a focus on Sales Engineering and Forward Deployed Engineering.">
+  <meta name="theme-color" content="#f2efe7">
+  <meta property="og:title" content="Nitin Chatlani — AI Engineer &amp; Builder">
+  <meta property="og:description" content="Agentic systems. Real workflows. A human on both sides of the technology.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nitinchatlani.com/">
+  <meta property="og:image" content="https://nitinchatlani.com/assets/social.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://nitinchatlani.com/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Plus+Jakarta+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-  <style>
-    /* ── RESET & BASE ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    @keyframes skill-highlight {
-      0%   { box-shadow: 0 0 0 0 rgba(137,196,244,0); }
-      30%  { box-shadow: 0 0 0 8px rgba(137,196,244,0.25); }
-      100% { box-shadow: 0 0 0 0 rgba(137,196,244,0); }
-    }
-    .skill-target-flash {
-      animation: skill-highlight 1.2s ease-out;
-    }
-
-    /* ── THEME TOKENS ── */
-    :root {
-      --bg:        #0a0a0f;
-      --surface:   #111118;
-      --surface2:  #1a1a26;
-      --border:    rgba(255,255,255,0.07);
-      --accent:    #89c4f4;
-      --accent2:   #ff6b6b;
-      --text:      #e8e8f0;
-      --muted:     #6b6b80;
-      --card-bg:   #13131e;
-      --shadow:    0 4px 32px rgba(0,0,0,0.5);
-      --radius:    14px;
-      --font-head: 'Syne', sans-serif;
-      --font-body: 'Plus Jakarta Sans', sans-serif;
-      --font-mono: 'DM Mono', monospace;
-      --font-serif:'Instrument Serif', serif;
-      --transition: 0.35s cubic-bezier(0.22,1,0.36,1);
-    }
-    [data-theme="light"] {
-      --bg:       #f5f4f0;
-      --surface:  #ffffff;
-      --surface2: #e8e6e0;
-      --border:   rgba(0,0,0,0.12);
-      --accent:   #2a8fd4;
-      --text:     #0a0a0f;
-      --muted:    #3a3a4a;
-      --card-bg:  #ffffff;
-      --shadow:   0 2px 12px rgba(0,0,0,0.08), 0 8px 32px rgba(0,0,0,0.06);
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-      opacity: 0.4;
-    }
-
-    /* ── CURSOR GLOW ── */
-    #cursor-glow {
-      position: fixed; width: 350px; height: 350px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(137,196,244,0.07) 0%, transparent 70%);
-      pointer-events: none; z-index: 1;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
-    }
-
-    /* ── SCROLL PROGRESS ── */
-    #scroll-progress {
-      position: fixed; top: 0; left: 0; height: 2px;
-      background: var(--accent); z-index: 1000;
-      width: 0%; transition: width 0.1s;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 48px;
-      backdrop-filter: blur(20px);
-      background: rgba(245,244,240,0.85);
-      border-bottom: 1px solid var(--border);
-      transition: var(--transition);
-      overflow: visible;
-    }
-    [data-theme="dark"] nav { background: rgba(10,10,15,0.7); }
-
-    .nav-logo {
-      font-family: var(--font-head);
-      font-weight: 800;
-      font-size: 18px;
-      letter-spacing: -0.5px;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .nav-logo span { color: var(--accent); }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 36px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--muted); text-decoration: none;
-      transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: ''; position: absolute; bottom: -3px; left: 0;
-      width: 0; height: 1px; background: var(--accent);
-      transition: width 0.3s;
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a:hover::after { width: 100%; }
-
-    /* theme toggle */
-    #theme-btn {
-      background: var(--surface2); border: 1px solid var(--border);
-      color: var(--text); border-radius: 50px;
-      padding: 6px 14px; cursor: pointer; font-size: 13px;
-      transition: var(--transition); font-family: var(--font-body);
-    }
-    #theme-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* ── BACK BUTTON ── */
-    #back-btn {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      z-index: 999;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: 10px 18px 10px 14px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.3s, transform 0.3s, border-color 0.2s, color 0.2s;
-      pointer-events: none;
-      max-width: calc(100vw - 32px);
-    }
-    #back-btn.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: all;
-    }
-    #back-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    #back-btn .back-arrow {
-      font-size: 14px;
-      line-height: 1;
-    }
-    @media (max-width: 600px) {
-      #back-btn {
-        bottom: 20px;
-        right: 16px;
-        left: 16px;
-        justify-content: center;
-        max-width: calc(100vw - 32px);
-      }
-    }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 120px 48px 80px;
-      position: relative; z-index: 2;
-      max-width: 1100px; margin: 0 auto;
-    }
-
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 32px;
-      animation: fadeUp 0.8s 0.2s forwards;
-    }
-    .hero-tag::before {
-      content: ''; width: 24px; height: 1px; background: var(--accent);
-    }
-
-    .hero-name {
-      font-family: var(--font-head);
-      font-size: clamp(56px, 10vw, 110px);
-      font-weight: 800;
-      line-height: 0.92;
-      letter-spacing: -3px;
-      margin-bottom: 28px;
-      animation: fadeUp 0.9s 0.35s forwards;
-    }
-    .hero-name .accent { color: var(--accent); }
-    .hero-name .serif {
-      font-family: var(--font-serif);
-      font-style: italic;
-      font-weight: 400;
-    }
-
-    .hero-tagline {
-      font-size: 15px; color: var(--muted);
-      max-width: 480px; line-height: 1.8;
-      margin-bottom: 48px;
-      animation: fadeUp 0.9s 0.5s forwards;
-    }
-
-    #typed-text {
-      color: var(--accent);
-      font-family: var(--font-body);
-    }
-    #typed-cursor {
-      display: inline-block;
-      width: 2px; height: 1em;
-      background: var(--accent);
-      margin-left: 2px;
-      animation: blink 1s step-end infinite;
-      vertical-align: middle;
-    }
-    @keyframes blink { 50% { opacity: 0; } }
-
-    .hero-cta {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      animation: fadeUp 0.9s 0.65s forwards;
-    }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 13px 28px; border-radius: 50px;
-      font-family: var(--font-body); font-size: 13px;
-      text-decoration: none; cursor: pointer; transition: var(--transition);
-      letter-spacing: 0.04em;
-    }
-    .btn-primary {
-      background: var(--accent); color: #0a0a0f;
-      border: none; font-weight: 500;
-    }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(137,196,244,0.35); }
-    .btn-ghost {
-      background: transparent; color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-    .hero-scroll {
-      position: absolute; bottom: 40px; left: 48px;
-      display: flex; align-items: center; gap: 10px;
-      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--muted);
-      animation: fadeUp 0.9s 1s forwards;
-    }
-    .scroll-line {
-      width: 40px; height: 1px; background: var(--muted);
-      transform-origin: left;
-    }
-
-    /* ── SECTION SHARED ── */
-    section {
-      padding: 100px 48px;
-      max-width: 1100px;
-      margin: 0 auto;
-      position: relative; z-index: 2;
-    }
-
-    .section-label {
-      font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 16px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .section-label::after {
-      content: ''; flex: 1; height: 1px; background: var(--border); max-width: 60px;
-    }
-
-    .section-title {
-      font-family: var(--font-head);
-      font-size: clamp(32px, 5vw, 54px);
-      font-weight: 800;
-      letter-spacing: -1.5px;
-      line-height: 1.05;
-      margin-bottom: 56px;
-    }
-
-    /* ── ABOUT ── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    .about-text p {
-      color: var(--muted); font-size: 15px; line-height: 1.9;
-      margin-bottom: 20px;
-    }
-    .about-text p strong { color: var(--text); font-weight: 500; }
-
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-    }
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      transition: var(--transition);
-      box-shadow: var(--shadow);
-    }
-    .stat-card:hover {
-      border-color: rgba(137,196,244,0.35);
-      transform: translateY(-3px);
-    }
-    .stat-num {
-      font-family: var(--font-head);
-      font-size: 36px; font-weight: 800;
-      color: var(--accent); letter-spacing: -1px;
-      display: block;
-    }
-    .stat-label {
-      font-size: 11px; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--muted);
-    }
-
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .skill-pill {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 10px 18px;
-      text-align: center;
-      font-size: 12px; letter-spacing: 0.05em;
-      color: var(--muted);
-      transition: var(--transition);
-      cursor: default;
-      white-space: nowrap;
-    }
-    .skill-pill:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(137,196,244,0.06);
-      transform: translateY(-2px);
-    }
-    a.skill-pill {
-      text-decoration: none;
-      cursor: pointer;
-      position: relative;
-    }
-    a.skill-pill::after {
-      content: ' ↗';
-      font-size: 9px;
-      opacity: 0;
-      transition: opacity 0.2s;
-      vertical-align: super;
-    }
-    a.skill-pill:hover::after {
-      opacity: 0.6;
-    }
-
-    /* ── EXPERIENCE ── */
-    .timeline {
-      position: relative;
-      padding-left: 32px;
-    }
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 1px; background: var(--border);
-    }
-    .timeline-item {
-      position: relative;
-      margin-bottom: 48px;
-    }
-    .timeline-dot {
-      position: absolute; left: -37px; top: 6px;
-      width: 10px; height: 10px;
-      border-radius: 50%; background: var(--accent);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 4px rgba(126,255,212,0.15);
-    }
-    .timeline-date {
-      font-size: 11px; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 6px;
-    }
-    .timeline-role {
-      font-family: var(--font-head);
-      font-size: 20px; font-weight: 700;
-      letter-spacing: -0.5px; margin-bottom: 2px;
-    }
-    .timeline-company {
-      font-size: 13px; color: var(--muted); margin-bottom: 14px;
-    }
-    .timeline-desc {
-      color: var(--muted); font-size: 13px; line-height: 1.8;
-    }
-    .timeline-desc li { margin-bottom: 6px; list-style: none; padding-left: 16px; position: relative; }
-    .timeline-desc li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
-
-    /* ── PROJECTS ── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
-    }
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      cursor: pointer;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-    }
-    [data-theme="light"] .project-card {
-      border: 1px solid rgba(0,0,0,0.1);
-    }
-
-    /* ── CARD IMAGE PANEL (top half, hidden by default) ── */
-    .card-img-panel {
-      width: 100%;
-      height: 0;
-      overflow: hidden;
-      transition: height 0.45s cubic-bezier(0.22,1,0.36,1);
-      flex-shrink: 0;
-      background: var(--surface2);
-      position: relative;
-    }
-    .card-img-panel img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center 20%;
-      display: block;
-      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
-    }
-    /* Placeholder gradient for cards without a photo */
-    .card-img-panel.no-photo {
-      background: linear-gradient(135deg, var(--surface2) 0%, var(--surface) 100%);
-      display: flex; align-items: center; justify-content: center;
-    }
-    .card-img-panel.no-photo::after {
-      content: attr(data-label);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    /* ── CARD CONTENT PANEL (always visible) ── */
-    .card-content {
-      padding: 28px 32px 32px;
-      flex: 1;
-    }
-
-    /* ── HOVER STATE ── */
-    .project-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(137,196,244,0.35);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-    }
-    .project-card:hover .card-img-panel {
-      height: 200px;
-    }
-    .project-card:hover .card-img-panel img {
-      transform: scale(1.04);
-    }
-    .project-card:hover .card-img-panel.no-photo::after {
-      opacity: 1;
-    }
-    [data-theme="light"] .project-card:hover {
-      box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-    }
-
-    .project-icon {
-      font-size: 28px; margin-bottom: 16px;
-      display: block;
-    }
-    .project-title {
-      font-family: var(--font-head);
-      font-size: 20px; font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
-    }
-    .project-sub {
-      font-size: 11px; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--accent);
-      margin-bottom: 14px;
-    }
-    .project-desc {
-      color: var(--muted); font-size: 13px; line-height: 1.8;
-      margin-bottom: 20px;
-    }
-    .project-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-    }
-    .tag {
-      font-size: 11px; padding: 4px 10px;
-      border-radius: 4px;
-      background: rgba(137,196,244,0.08);
-      color: var(--accent);
-      border: 1px solid rgba(137,196,244,0.2);
-    }
-
-    /* ── CONTACT / FOOTER ── */
-    #contact {
-      text-align: center;
-      padding: 80px 48px 120px;
-    }
-    #contact .section-label { justify-content: center; }
-    #contact .section-label::after { display: none; }
-
-    .contact-email {
-      font-family: var(--font-head);
-      font-size: clamp(24px, 4vw, 48px);
-      font-weight: 800; letter-spacing: -1px;
-      color: var(--text); text-decoration: none;
-      display: block; margin: 16px 0 40px;
-      transition: color 0.3s;
-    }
-    .contact-email:hover { color: var(--accent); }
-
-    .social-links {
-      display: flex; justify-content: center; gap: 20px;
-      list-style: none; margin-bottom: 60px;
-    }
-    .social-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 12px; letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-    .social-links a:hover { color: var(--accent); }
-
-    .project-sub a, .timeline-company a {
-      cursor: pointer;
-      text-decoration: none;
-      color: var(--accent);
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
-    }
-    .project-sub a:hover, .timeline-company a:hover {
-      border-bottom-color: var(--accent);
-    }
-
-    .nav-links a, #theme-btn, .btn, .skill-pill, .tag, .hero-tag,
-    .section-label, .timeline-date, .project-sub, .stat-label {
-      font-family: var(--font-mono);
-    }
-      font-size: 11px; color: var(--muted);
-      border-top: 1px solid var(--border);
-      padding-top: 32px;
-      letter-spacing: 0.05em;
-    }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0.2; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .reveal {
-      opacity: 1; transform: translateY(0);
-      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
-    }
-    .reveal.animate-ready {
-      opacity: 0; transform: translateY(32px);
-    }
-    .reveal.animate-ready.visible { opacity: 1; transform: translateY(0); }
-
-    .timeline-item {
-      opacity: 1; transform: translateX(0);
-      transition: opacity 0.6s, transform 0.6s;
-    }
-    .timeline-item.animate-ready {
-      opacity: 0; transform: translateX(-16px);
-    }
-    .timeline-item.animate-ready.visible { opacity: 1; transform: translateX(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      nav { padding: 16px 20px; }
-      .nav-links { display: none; }
-      #theme-btn {
-        font-size: 10px;
-        padding: 6px 12px;
-        flex-shrink: 0;
-      }
-      #hero { padding: 100px 24px 60px; }
-      section { padding: 80px 24px; }
-      .about-grid { grid-template-columns: 1fr; gap: 40px; }
-      .projects-grid { grid-template-columns: 1fr; }
-      #contact { padding: 60px 24px 80px; }
-    }
-
-    /* ── HERO PHOTO ── */
-    .hero-layout {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 60px;
-    }
-    .hero-photo {
-      width: 260px; height: 320px;
-      border-radius: 20px;
-      object-fit: cover;
-      object-position: center top;
-      border: 3px solid var(--border);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-      flex-shrink: 0;
-      filter: grayscale(10%);
-      transition: filter 0.4s;
-    }
-    .hero-photo:hover { filter: grayscale(0%); }
-    [data-theme="light"] .hero-photo {
-      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    }
-    @media (max-width: 768px) {
-      .hero-layout { grid-template-columns: 1fr; }
-      .hero-photo { width: 160px; height: 200px; margin: 0 auto; }
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="personal.css">
+  <link rel="stylesheet" href="brain-story.css">
+  <link rel="stylesheet" href="motion-scene.css">
+  <link rel="stylesheet" href="company-chapters.css">
+  <script src="app.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="identity" href="#top" aria-label="Nitin Chatlani home"><span class="monogram">n<span>c</span><i></i></span><span>NITIN<br>CHATLANI</span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button>
+    <nav id="navigation" aria-label="Main navigation">
+      <a href="#work">My work <span>01</span></a>
+      <a href="#chapter-arm">How I build <span>02</span></a>
+      <a href="#human">About me <span>03</span></a>
+    </nav>
+    <a class="header-contact" href="assets/nitin-chatlani-resume.pdf" target="_blank" rel="noopener">My résumé <span aria-hidden="true">↗</span></a>
+  </header>
 
-<div id="cursor-glow"></div>
-<div id="scroll-progress"></div>
-<button id="back-btn" onclick="goBack()">
-  <span class="back-arrow">←</span>
-  <span id="back-label">Back</span>
-</button>
-
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">NC<span>.</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#currently">Now</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button id="theme-btn" onclick="toggleTheme()">☽ Dark</button>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-layout">
-  <div class="hero-content">
-  <div class="hero-tag">UI/UX · Web Dev · AI Engineer · SDSU 2026</div>
-  <h1 class="hero-name">
-    Nitin<br>
-    <span class="serif accent">Chatlani</span>
-  </h1>
-  <p class="hero-tagline">
-    I build things that are <span id="typed-text"></span><span id="typed-cursor"></span>
-    <br><br>
-    Engineer with a product mindset. I go from 0→1 fast — shipping full-stack apps, AI models, and hardware prototypes, then owning the outcome.
-  </p>
-  <div class="hero-cta">
-    <a href="#projects" class="btn btn-primary">View my work →</a>
-    <a href="#contact" class="btn btn-ghost">Get in touch</a>
-  </div>
-  </div>
-  <img class="hero-photo" src="assets/img/baddieshot.jpg" alt="Nitin Chatlani" />
-  </div>
-  <div class="hero-scroll">
-    <span class="scroll-line"></span>
-    Scroll to explore
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">About Me</div>
-  <h2 class="section-title reveal">Engineer. Builder.<br><span style="color:var(--accent)">Product Thinker.</span></h2>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>I'm a <strong>Computer Science senior at SDSU</strong> graduating May 2026, with a Mathematics minor. I'm wired to think like a PM and build like an engineer — I care deeply about <em>why</em> something is built, not just <em>how</em>.</p>
-      <p>I've shipped patent-pending ML models, submitted research to IEEE/ACM, led a <strong>450-member coding community</strong>, and built production software used company-wide — all while TA-ing graduate courses as the only undergrad TA in my department. I thrive at the intersection of user problems, technical craft, and cross-functional leadership.</p>
-      <p>Off-screen: I'm a <strong>certified spin instructor</strong> — which means I'm equally comfortable reading a room, setting the pace, and making sure everyone leaves having given everything they've got. 🚴</p>
-    </div>
-    <div class="about-stats reveal">
-      <div class="stat-card">
-        <span class="stat-num">450+</span>
-        <span class="stat-label">eLeetCoders Members</span>
+  <main id="main">
+    <div class="brain-story" id="top">
+      <div class="motion-stage">
+      <div class="brain-visual" aria-hidden="true">
+        <div class="scene-grid"></div><div class="scene-halo"></div>
+        <svg class="story-circuits" viewBox="0 0 1280 720" preserveAspectRatio="none"><path class="story-wire wire-1" pathLength="1" d="M640 360H640"/><path class="story-wire wire-2" pathLength="1" d="M640 360H640"/><path class="story-wire wire-3" pathLength="1" d="M640 360H640"/><path class="story-wire wire-4" pathLength="1" d="M640 360H640"/></svg>
+        <div class="brain-chip-anchor">
+          <div class="brain-chip-float"><div class="brain-chip">
+            <div class="brain-pins pins-n"></div><div class="brain-pins pins-e"></div><div class="brain-pins pins-s"></div><div class="brain-pins pins-w"></div>
+            <div class="chip-package">
+              <span class="chip-screw screw-nw"></span><span class="chip-screw screw-ne"></span><span class="chip-screw screw-sw"></span><span class="chip-screw screw-se"></span>
+              <svg class="package-traces" viewBox="0 0 300 300"><path d="M0 80H47L78 111H105M0 110H38L77 145H100M0 150H100M0 190H44L80 161H105M0 220H45L82 183H105M300 80H253L222 111H195M300 110H262L223 145H200M300 150H200M300 190H256L220 161H195M300 220H255L218 183H195M80 0V47L111 78V100M150 0V100M220 0V45L183 82V100M80 300V253L111 222V200M150 300V200M220 300V255L183 218V200"/></svg>
+              <div class="chip-interposer"><span></span><i></i></div>
+              <div class="brain-window">
+                <svg class="brain-anatomy" viewBox="0 0 180 180">
+                  <defs><linearGradient id="brain-fill" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd3ac"/><stop offset=".38" stop-color="#ed8a61"/><stop offset="1" stop-color="#aa3e2d"/></linearGradient><linearGradient id="brain-highlight" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f0dfa1"/><stop offset="1" stop-color="#a88a42"/></linearGradient><filter id="brain-shadow"><feDropShadow dx="1" dy="4" stdDeviation="3" flood-color="#301e14" flood-opacity=".45"/></filter></defs>
+                  <g filter="url(#brain-shadow)" fill="#1a231c" fill-opacity=".5" stroke="url(#brain-highlight)" stroke-width="1.4" stroke-linejoin="round">
+                    <path d="M86 32C79 20 64 20 59 32C47 26 34 37 36 49C23 49 19 63 25 73C12 81 15 96 25 102C19 115 26 129 39 130C40 144 54 151 65 143C75 151 87 142 87 132L87 42Z"/>
+                    <path d="M94 32C101 20 116 20 121 32C133 26 146 37 144 49C157 49 161 63 155 73C168 81 165 96 155 102C161 115 154 129 141 130C140 144 126 151 115 143C105 151 93 142 93 132L93 42Z"/>
+                  </g>
+                  <g fill="none" stroke="url(#brain-highlight)" stroke-width="1.7" stroke-linecap="round">
+                    <path d="M60 33C56 42 60 49 69 50C79 50 83 58 77 66M37 51C46 47 54 53 53 62C52 71 61 75 69 70M26 75C35 68 46 73 44 84C42 94 54 98 59 91M25 103C33 97 42 103 40 114C38 123 49 129 56 122M65 142C59 131 62 117 73 114C82 111 83 101 77 96M84 83C74 78 64 84 65 95C64 105 54 110 46 106M72 33C79 39 74 46 70 48M120 33C124 42 120 49 111 50C101 50 97 58 103 66M143 51C134 47 126 53 127 62C128 71 119 75 111 70M154 75C145 68 134 73 136 84C138 94 126 98 121 91M155 103C147 97 138 103 140 114C142 123 131 129 124 122M115 142C121 131 118 117 107 114C98 111 97 101 103 96M96 83C106 78 116 84 115 95C116 105 126 110 134 106M108 33C101 39 106 46 110 48"/>
+                  </g>
+                  <g fill="none" stroke="url(#brain-highlight)" stroke-width="1.4" stroke-linecap="round" opacity=".9"><path d="M43 39Q48 33 55 35M31 60Q32 54 39 55M23 88Q24 80 29 81M31 117Q32 124 39 125M46 136Q52 143 60 138M65 27Q74 22 79 30M137 39Q132 33 125 35M149 60Q148 54 141 55M157 88Q156 80 151 81M149 117Q148 124 141 125M134 136Q128 143 120 138M115 27Q106 22 101 30"/></g>
+                  <path d="M87 128Q86 151 80 158M93 128Q94 151 100 158" fill="none" stroke="#c3a55e" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <div class="brain-glass"></div>
+              </div>
+              <span class="package-name">NC<span>APPLIED INTELLIGENCE</span></span><span class="package-id">HUMAN INSIDE · 001</span>
+            </div>
+          </div></div>
+          <div class="brain-chip-shadow"></div>
+        </div>
       </div>
-      <div class="stat-card">
-        <span class="stat-num">10+</span>
-        <span class="stat-label">Research Projects Managed</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">30+</span>
-        <span class="stat-label">Grad Students TA'd</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">4+</span>
-        <span class="stat-label">Internships & Research Roles</span>
+      <div class="algae-object scene-object" aria-hidden="true"><div class="algae-orbit orbit-a"></div><div class="algae-orbit orbit-b"></div><img src="assets/algae.png" alt="" width="1024" height="1024"><span class="specimen-label mono">LIVING SYSTEMS / GREEN RIVER, UT</span></div>
+      <div class="chocolate-object scene-object" aria-hidden="true"><div class="chocolate-shadow"></div><div class="chocolate-bar"><div class="chocolate-base"></div><div class="chocolate-tiles"><i class="chocolate-tile tile-0"><img class="chocolate-brand chocolate-brand-godiva" src="assets/logos/godiva.svg" alt=""></i><i class="chocolate-tile tile-1"><img class="chocolate-brand chocolate-brand-flipz" src="assets/logos/flipz.png" alt=""></i><i class="chocolate-tile tile-2"><img class="chocolate-brand chocolate-brand-mcvities" src="assets/logos/mcvities.png" alt=""></i><i class="chocolate-tile tile-3"><img class="chocolate-brand chocolate-brand-pladis" src="assets/logos/pladis.png" alt=""></i><i class="chocolate-tile tile-4"><img class="chocolate-brand chocolate-brand-godiva" src="assets/logos/godiva.svg" alt=""></i><i class="chocolate-tile tile-5"><img class="chocolate-brand chocolate-brand-flipz" src="assets/logos/flipz.png" alt=""></i></div><div class="chocolate-foil"><img src="assets/logos/pladis.png" alt=""><small>INSIGHT INSIDE</small></div></div></div>
+      <div class="scene-caption mono" aria-hidden="true"><span>INTELLIGENCE, CONNECTED.</span><i></i><span class="scene-caption-step">01 / THE IDEA</span></div>
+      <div class="story-controls"><span class="mono story-location">NITIN CHATLANI / AI ENGINEER</span><div class="story-dots" aria-label="Story chapters"><a href="#intro" aria-label="Introduction" aria-current="step"></a><a href="#chapter-arm" aria-label="Arm"></a><a href="#chapter-airbuild" aria-label="Airbuild"></a><a href="#chapter-pladis" aria-label="pladis"></a></div><button class="story-motion" aria-pressed="false">Pause motion Ⅱ</button></div>
+      <section class="story-intro story-panel" id="intro" data-chapter="0" aria-labelledby="hero-heading">
+                <div class="intro-bio"><p class="mono intro-kicker">AI ENGINEER · BUILDER · PEOPLE PERSON</p><h1 id="hero-heading">AI, built<br>for people.</h1><p>Engineer with a product mindset. I go from 0→1 fast — shipping full-stack apps, AI models, and hardware prototypes, then owning the outcome.</p><p class="intro-target">FOCUSED ON SALES ENGINEERING<br>& FORWARD DEPLOYED ENGINEERING</p><a href="#work" class="text-link">Explore my work <span>↗</span></a></div>
+        <a class="intro-person" href="#human"><img src="assets/nitin.webp" alt="Nitin Chatlani" width="540" height="675" fetchpriority="high"><span>Human at the center.<br><b>That’s me. ↗</b></span></a>
+        <a class="intro-scroll mono" href="#chapter-arm">SCROLL TO CONNECT THE DOTS <span>↓</span></a>
+      </section>
+<section class="story-panel company-panel" id="chapter-arm" data-company="arm" aria-labelledby="arm-chapter-title"><header class="company-heading"><span class="company-wordmark mark-arm"><span class="brand-logo brand-arm"><img src="assets/logos/arm.png" alt="Arm"></span></span><h2 id="arm-chapter-title">Engineering intelligence.</h2><p class="mono">RAG · AGENTIC CHIP DESIGN · OBSERVABILITY</p></header><div class="company-feature corner-0" data-corner="0"><p class="feature-index mono">01 / KNOWLEDGE</p><h3>RAG that checks itself.</h3><p class="feature-copy">Automated intake checks documents across teams for discrepancies, then recompiles the RAG knowledge base.</p><div class="feature-figure mono">DOCS → CHECK → RECOMPILE</div></div><div class="company-feature corner-1" data-corner="1"><p class="feature-index mono">02 / AGENTS</p><h3>A toolkit for chip design.</h3><p class="feature-copy">Implemented tools and skills for a custom engineering agent, with MSAL-authenticated access.</p><div class="feature-figure mono">TOOLS + SKILLS + AUTH</div></div><div class="company-feature corner-2" data-corner="2"><p class="feature-index mono">03 / ENGINEERING</p><h3>Answers become calculations.</h3><p class="feature-copy">Connected technical retrieval with power, latency, thermal, and routing calculations.</p><div class="feature-figure mono">POWER · LATENCY · THERMAL · ROUTING</div></div><div class="company-feature corner-3" data-corner="3"><p class="feature-index mono">04 / FEEDBACK</p><h3>Measure. Learn. Improve.</h3><p class="feature-copy">Built bot analytics tracking question similarity, time to first token, and usage to guide improvements.</p><div class="feature-figure mono">SEMANTIC SIMILARITY · TTFT · USAGE</div></div><div class="company-bottom"><span class="mono patent-note">Selected work · patent pending</span><a class="text-link" href="#case-arm">Explore the work <span>↗</span></a></div></section><section class="story-panel company-panel" id="chapter-airbuild" data-company="airbuild" aria-labelledby="airbuild-chapter-title"><header class="company-heading"><span class="company-wordmark mark-airbuild"><span class="brand-logo brand-airbuild"><img src="assets/logos/airbuild.png" alt="Airbuild"></span></span><h2 id="airbuild-chapter-title">Intelligence, in the field.</h2><p class="mono">EMPLOYEE AGENTS · LIVE SENSORS · PREDICTIVE ML</p></header><div class="company-feature corner-0" data-corner="0"><p class="feature-index mono">01 / AGENT FLEET</p><h3>An agent for every employee.</h3><p class="feature-copy">Onboarding maps tasks to approved skills, with friendly schedules and connectors including Canva.</p><div class="feature-figure mono">TASKS → APPROVED SKILLS → AGENT</div></div><div class="company-feature corner-1" data-corner="1"><p class="feature-index mono">02 / LIVE CONTEXT</p><h3>Ask the algae.</h3><p class="feature-copy">Agents access the AWS sensor dashboard I built for Green River, turning live readings into algae-health answers.</p><div class="feature-figure mono">GREEN RIVER → AWS → AGENT</div></div><div class="company-feature corner-2" data-corner="2"><p class="feature-index mono">03 / MACHINE LEARNING</p><h3>Predict what grows next.</h3><p class="feature-copy">Built models using real sensor data to predict biomass growth and detect algae-health anomalies.</p><div class="feature-figure mono">SENSOR DATA → PREDICTION</div></div><div class="company-feature corner-3" data-corner="3"><p class="feature-index mono">04 / CONNECTED HARDWARE</p><h3>Keep the field connected.</h3><p class="feature-copy">Built a new Raspberry Pi 4 sensor panel with over-the-air updates, connecting on-site operations with software.</p><div class="feature-figure mono">PI 4 · SENSOR PANEL · OTA</div></div><div class="company-bottom"><span class="mono patent-note">Selected work · patent pending</span><a class="text-link" href="#case-airbuild">Explore the work <span>↗</span></a></div></section><section class="story-panel company-panel" id="chapter-pladis" data-company="pladis" aria-labelledby="pladis-chapter-title"><header class="company-heading"><span class="company-wordmark mark-pladis"><span class="brand-logo brand-pladis"><img src="assets/logos/pladis.png" alt="pladis"></span></span><h2 id="pladis-chapter-title">From inbox to insight.</h2><p class="mono">AUTOMATED WORKFLOWS · BUSINESS INTELLIGENCE</p></header><div class="company-feature corner-0" data-corner="0"><p class="feature-index mono">01 / INTAKE</p><h3>Start with an email.</h3><p class="feature-copy">Non-technical teammates send information to a service account using the tools they already know.</p><div class="feature-figure mono">TEAM → SERVICE ACCOUNT</div></div><div class="company-feature corner-1" data-corner="1"><p class="feature-index mono">02 / AUTOMATION</p><h3>The dashboard updates itself.</h3><p class="feature-copy">Automated workflows move submitted information into the dashboard, reducing manual data entry.</p><div class="feature-figure mono">EMAIL → WORKFLOW → DASHBOARD</div></div><div class="company-feature corner-2" data-corner="2"><p class="feature-index mono">03 / AI INSIGHTS</p><h3>See the competitive picture.</h3><p class="feature-copy">AI-powered insights surface competitor releases alongside internal and market information.</p><div class="feature-figure mono">COMPETITOR RELEASES → INSIGHTS</div></div><div class="company-feature corner-3" data-corner="3"><p class="feature-index mono">04 / BUSINESS IMPACT</p><h3>Help teams make the next move.</h3><p class="feature-copy">Built for North American Insights and Marketing teams, informing product, web, and social decisions.</p><div class="feature-figure mono">SIGNAL → INSIGHT → DECISION</div></div><div class="company-bottom"><span class="mono patent-note">NORTH AMERICAN INSIGHTS + MARKETING</span><a class="text-link" href="#case-pladis">Explore the work <span>↗</span></a></div></section>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">Technical Skills</div>
-  <h2 class="section-title reveal">What I work with</h2>
-  <div class="skills-grid reveal">
-    <!-- Languages -->
-    <a href="#proj-algae" class="skill-pill skill-linked" title="See where I used Python">Python</a>
-    <a href="#proj-codeblitz" class="skill-pill skill-linked" title="See where I used Java">Java</a>
-    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used C++">C++</a>
-    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used C">C</a>
-    <a href="#exp-pladis" class="skill-pill skill-linked" title="See where I used SQL">SQL</a>
-    <a href="#proj-spinarchitect" class="skill-pill skill-linked" title="See where I used JavaScript">JavaScript</a>
-    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used HTML">HTML</a>
-    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used CSS">CSS</a>
-    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used Assembly">Assembly</a>
-    <!-- Tools / Frameworks -->
-    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Git">Git</a>
-    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Bootstrap">Bootstrap</a>
-    <a href="#exp-pladis" class="skill-pill skill-linked" title="See where I used Google Cloud">Google Cloud</a>
-    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used Firebase">Firebase</a>
-    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used AWS">AWS</a>
-    <a href="#proj-codegpt" class="skill-pill skill-linked" title="See where I used ML / AI">ML / AI</a>
-    <a href="#proj-codegpt" class="skill-pill skill-linked" title="See where I used LLMs">LLMs</a>
-    <a href="#proj-fallsense" class="skill-pill skill-linked" title="See where I used Arduino">Arduino</a>
-    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used React">React</a>
-    <!-- Design / UI/UX / Web -->
-    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Figma">Figma</a>
-    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used UI / UX Design">UI / UX Design</a>
-    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Wireframing">Wireframing</a>
-    <a href="#proj-spinarchitect" class="skill-pill skill-linked" title="See where I used Prototyping">Prototyping</a>
-    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Responsive Design">Responsive Design</a>
-    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Design Systems">Design Systems</a>
-    <a href="#proj-portfolio" class="skill-pill skill-linked" title="See where I used Web Development">Web Development</a>
-    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used Component Design">Component Design</a>
-    <!-- Product / Leadership -->
-    <a href="#proj-airbuild" class="skill-pill skill-linked" title="See where I used 0→1 Building">0→1 Building</a>
-    <a href="#exp-pladis" class="skill-pill skill-linked" title="See where I used Cross-functional">Cross-functional</a>
-    <a href="#exp-research" class="skill-pill skill-linked" title="See where I used User Research">User Research</a>
-    <a href="#proj-algae" class="skill-pill skill-linked" title="See where I used Data Viz">Data Viz</a>
-    <a href="#exp-airbuild" class="skill-pill skill-linked" title="See where I used Agile / Scrum">Agile / Scrum</a>
-  </div>
-</section>
+<div class="experience-strip"><div class="wrap"><p class="mono">EXPERIENCE<br>+ RESEARCH</p><a class="wordmark arm" href="#chapter-arm"><span class="brand-logo brand-arm"><img src="assets/logos/arm.png" alt="Arm"></span></a><a class="wordmark airbuild" href="#chapter-airbuild"><span class="brand-logo brand-airbuild"><img src="assets/logos/airbuild.png" alt="Airbuild"></span></a><a class="wordmark pladis" href="#chapter-pladis"><span class="brand-logo brand-pladis"><img src="assets/logos/pladis.png" alt="pladis"></span></a><span class="wordmark sdsu">SDSU <small>AI4BUSINESS<br>RESEARCH LAB</small></span></div></div>
+<section class="work-section wrap compact-work" id="work" aria-labelledby="work-heading"><div class="section-top mono"><span>01 / MY WORK</span><span>IDEAS MADE REAL</span></div><div class="section-heading"><h2 id="work-heading">Things I’ve<br><span class="muted">built.</span></h2><p>Company systems, research, and things I build.<br>Open a project for the details.</p></div><div class="featured-company-cases"><p class="archive-label mono">SELECTED COMPANY WORK</p><details class="portfolio-row" id="case-arm"><summary><span class="row-number">01</span><span>Arm — agentic engineering</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p>Built an automated RAG intake pipeline that checks cross-team documents for discrepancies and recompiles the knowledge base after those checks. Implemented tools and skills for a custom agent, with MSAL-integrated access and engineering workflows for power, latency, thermal, and routing calculations.</p><p>Created SQL-backed bot analytics and a usage dashboard. Confirmed metrics include semantic similarity between questions and time to first token, alongside workflow and interaction telemetry. Those signals support a feedback loop for improving the assistant.</p><p class="case-patent mono">Selected work is patent pending.</p><p class="row-tags">RAG · Agent harness · MSAL · SQL · Analytics</p></div></details><details class="portfolio-row" id="case-airbuild"><summary><span class="row-number">02</span><span>Airbuild — agents meet living systems</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p>Built a custom employee-agent fleet: onboarding captures tasks to offload, then adds relevant approved skills automatically. Employees can use friendly scheduling, custom Canva connectors, and other tools to delegate work.</p><p>Connected agents to the AWS-powered sensor dashboard I built for live readings from Green River. Built machine-learning models from real algae data to predict biomass growth and detect health anomalies. Additional work includes a Raspberry Pi 4 sensor panel with OTA updates and the Airbuild website.</p><p class="case-patent mono">Selected work is patent pending.</p><p class="row-tags">Agent fleet · AWS · Sensor data · Predictive ML · Pi 4 · OTA</p></div></details><details class="portfolio-row" id="case-pladis"><summary><span class="row-number">03</span><span>pladis — inbox to intelligence</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p>Built a dashboard with automated workflows: non-technical team members email a service account, and the information automatically populates the dashboard.</p><p>Added AI-powered insights on competitor releases. The dashboard combines internal and market information for North American Insights and Marketing teams, informing product initiatives, website changes, and social activations.</p><p class="row-tags">Workflow automation · AI insights · Data integration · Business intelligence</p></div></details></div><div class="project-columns"><div><h3 class="archive-label mono">PROJECTS / 07</h3><details class="portfolio-row" id="proj-codegpt"><summary><span class="row-number">01</span><span>CodeGPT</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">AI Research — AI4Business Lab @ SDSU</p><p>Reviewed 100+ academic papers in 100+ hours to produce a comprehensive literature synthesis on LLM use-cases in code understanding. Enhanced a deep learning code search engine using LLM pre-training techniques and natural language query optimization — helping developers find code with plain English.</p><p class="row-tags">Python · LLMs · Deep Learning · NLP · Research</p></div></details><details class="portfolio-row" id="proj-algae"><summary><span class="row-number">02</span><span>Algae Growth Analysis</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">Data Engineering — <a href="https://airbuildinc.com" target="_blank" rel="noopener">Airbuild Inc. ↗</a> · Patent Pending 🔒</p><img class="archive-image" loading="lazy" src="assets/airbuild-site.jpg" alt="Airbuild algae system in Green River, Utah"><p>Built data pipelines and visualizations to analyze algae growth patterns for Airbuild&#x27;s microalgae-based wastewater treatment system — a carbon-negative cleantech platform treating water for municipalities. Used Firebase, AWS, Pandas, and NumPy to process and surface live sensor data. Airbuild&#x27;s automated algae harvesting system is separately patent pending.</p><p class="row-tags">Python · Pandas / NumPy · Firebase · AWS · Data Viz</p></div></details><details class="portfolio-row" id="proj-fallsense"><summary><span class="row-number">03</span><span>FallSense</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">Embedded IoT · IEEE/ACM Paper Submitted 📄 · <a href="https://drive.google.com/file/d/1QG9nnAi5VCKbfzMGnRojBYpNkttT8AF5/view?usp=sharing" target="_blank" rel="noopener">Read Paper ↗</a></p><img class="archive-image" loading="lazy" src="assets/fallsense.png" alt="FallSense hardware and Discord alert"><p>Standalone WiFi-enabled wearable fall detector built with an Arduino Nano ESP32 + MPU6050 IMU. Uses a Signal Magnitude Vector (SMV) threshold algorithm running locally on-device for orientation-independent detection — achieving sub-2-second alert latency via Discord webhook. Under $35 to build with no subscription. Currently being developed further at SDSU&#x27;s Zip Launchpad.</p><p class="row-tags">Arduino / ESP32 · Embedded C · IoT · 3D Printing · Discord API</p></div></details><details class="portfolio-row" id="proj-airbuild"><summary><span class="row-number">04</span><span>Airbuild PM Web App</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">Full-Stack — Airbuild Inc.</p><img class="archive-image" loading="lazy" src="assets/airbuild-one.png" alt="Airbuild One project management dashboard"><p>Designed and shipped a full-stack project-management platform from zero — currently in company-wide beta. Wearing many hats as AI + Software Engineer II: built backend APIs, integrated Firebase and AWS infrastructure, and trained an internal LLM on company drawings and operational data for intelligent task assistance.</p><p class="row-tags">Full-Stack · Firebase · AWS · LLM · React</p></div></details><details class="portfolio-row" id="proj-pladis"><summary><span class="row-number">05</span><span>Brand Dynamics Dashboard</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">Data / BI — pladis Global</p><img class="archive-image" loading="lazy" src="assets/pladis-dashboard.png" alt="pladis Insights Intelligence Dashboard"><p>Integrated multi-source data pipeline into a dynamic insights dashboard deployed to the entire North American marketing and insights teams. Influenced real product and social media strategy decisions.</p><p class="row-tags">Data · Dashboard · Google Cloud · BI</p></div></details><details class="portfolio-row" id="proj-gpt"><summary><span class="row-number">06</span><span>AI Course Tutor GPT</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">CS Education Research · <a href="https://drive.google.com/file/d/1taMt_k8VkPiAO56eR0K2uSNhHHyhmCih/view?usp=sharing" target="_blank" rel="noopener">Read Paper ↗</a></p><p>Researching and building custom GPTs that emulate a course-specific tutor — trained on a class&#x27;s actual materials, syllabi, and assignments. Designed to give students a personalized, always-available learning assistant that knows exactly what they&#x27;re studying.</p><p class="row-tags">LLMs · Custom GPT · CS Education · RAG</p></div></details><details class="portfolio-row" id="proj-portfolio"><summary><span class="row-number">07</span><span>Personal Portfolio</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">Frontend Dev · <a href="https://github.com/nchatlani1/Online-Resume" target="_blank" rel="noopener">View on GitHub ↗</a></p><p>Custom portfolio website built with Bootstrap, HTML, CSS, and JS — published and maintained on GitHub Pages. Continuously updated as a living showcase of work and skills.</p><p class="row-tags">HTML · CSS · Bootstrap · GitHub Pages</p></div></details></div><div><h3 class="archive-label mono">WHAT I’M UP TO / 04</h3><details class="portfolio-row" id="proj-hackthefuture"><summary><span class="row-number">01</span><span>Hack the Future</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">SDSU Hackathon — Organizer · Sponsored by Anthropic</p><p>Organizing SDSU&#x27;s AI-focused hackathon, sponsored by the Zip Launchpad. Built around fast-tracked, AI-powered development — giving students a high-pressure environment to go from idea to shipped product in hours. Coordinating sponsors, mentors, judges, and the full event experience end-to-end.</p><p class="row-tags">AI / LLMs · Event Leadership · Zip Launchpad · 0→1</p></div></details><details class="portfolio-row" id="proj-codeblitz"><summary><span class="row-number">02</span><span>CodeBlitz</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">SDSU Coding Competition — Organizer</p><p>Designed and built SDSU&#x27;s CodeBlitz competitive programming competition from the ground up — personally authored the problem sets, wrote Python autograding scripts for instant judging, and managed all event logistics. Creating the kind of high-stakes competitive environment that sharpens real engineering instincts.</p><p class="row-tags">Problem Design · Python Autograder · Competitive Programming · Event Ops</p></div></details><details class="portfolio-row" id="proj-spinarchitect"><summary><span class="row-number">03</span><span>Spin Architect</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">Full-Stack App · <a href="https://6996cac613ee3a12ece0e8d5--doseplaylistbuilder.netlify.app/" target="_blank" rel="noopener">Live Demo ↗</a></p><p>A full-featured spin class planning tool built from scratch because I needed it myself. Instructors can build complete ride playlists with RPM ranges, intensity levels (Low → MAX), and per-move durations — with a real-time total duration tracker. Integrates Spotify and SoundCloud for track search and BPM detection, includes an inspiration bank, drag-and-drop move ordering, and one-click playlist export. Designed for working instructors, not as a demo.</p><p class="row-tags">JavaScript · Spotify API · SoundCloud API · BPM Detection · UX Design · Netlify</p></div></details><details class="portfolio-row" id="current-4"><summary><span class="row-number">04</span><span>Spin Instructor</span><span class="row-plus" aria-hidden="true">+</span></summary><div class="row-body"><p class="row-category">DOSE Fitness — Encinitas · <a href="https://www.thedosefitness.com/schedule/?_mt=%2Fschedule%2Fdaily%2F48541%3FactiveDate%3D2026-03-08%26instructors%3D6403%26locations%3D48717" target="_blank" rel="noopener">Book my class ↗</a></p><img class="archive-image" loading="lazy" src="assets/spin.webp" alt="Nitin teaching spin at DOSE Fitness"><p>Certified part-time spin instructor at The Dose Fitness. Teaching is an exercise in product thinking — read the room, set the tempo, adjust on the fly, and deliver an experience people come back for. That same energy shows up in everything I build. Come ride with me.</p><p class="row-tags">The Dose Fitness · San Diego · Leadership · Community</p></div></details></div></div></section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">Experience</div>
-  <h2 class="section-title reveal">Where I've <span style="color:var(--accent)">worked</span></h2>
-  <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Summer 2025 – Present</div>
-      <div id="exp-airbuild" class="timeline-role">Software Engineering + AI Intern</div>
-      <div class="timeline-company">Airbuild Inc. — Remote</div>
-      <ul class="timeline-desc">
+    <section class="human-section wrap" id="human" aria-labelledby="human-heading">
+      <div class="section-top mono"><span>02 / ABOUT ME</span><span>THERE’S A PERSON BEHIND THE PROJECTS</span></div>
+      <div class="section-heading"><h2 id="human-heading">A little more<br><span class="muted">Nitin.</span></h2><p>Engineer. Builder. Product thinker.
+And a spin instructor off-screen.</p></div>
+      <div class="human-grid">        <div class="portrait-stage" aria-label="Portrait of Nitin with interactive personal notes">
+          <div class="portrait-grid" aria-hidden="true"></div>
+          <div class="portrait-halo" aria-hidden="true"><span>HELLO</span></div>
+          <div class="portrait-depth"><img class="main-portrait" src="assets/nitin.webp" alt="Nitin Chatlani smiling with his arms crossed" width="540" height="675" fetchpriority="high"></div>
+          <div class="portrait-sticker sticker-ai"><span class="mono">CURRENT OBSESSION</span><b>Agents that<br>actually do things.</b><span aria-hidden="true">↗</span></div>
+          <button class="portrait-sticker sticker-human" aria-expanded="false" aria-controls="off-duty"><span aria-hidden="true">↺</span><span>There’s an<br><b>off-duty version.</b></span></button>
+          <div id="off-duty" class="off-duty" hidden><img src="assets/spin.webp" alt="Nitin teaching a spin class" width="667" height="1000"><div><span class="mono">SAME ENERGY. DIFFERENT ROOM.</span><b>Also your<br>spin instructor.</b><p>Music up. Laptop closed.</p><button class="off-duty-close" aria-label="Back to Nitin’s portrait">Back to work ↗</button></div></div>
+          <p class="portrait-caption mono">ENGINEER AT THE KEYBOARD.<br>HUMAN EVERYWHERE ELSE.</p>
+          <span class="portrait-signature" aria-hidden="true">yep, that’s me ↗</span>
+        </div><div class="human-content live-about">
+      <p>I&#x27;m a <strong>Computer Science senior at SDSU</strong> graduating May 2026, with a Mathematics minor. I&#x27;m wired to think like a PM and build like an engineer — I care deeply about <em>why</em> something is built, not just <em>how</em>.</p>
+      <p>I&#x27;ve shipped patent-pending ML models, submitted research to IEEE/ACM, led a <strong>450-member coding community</strong>, and built production software used company-wide — all while TA-ing graduate courses as the only undergrad TA in my department. I thrive at the intersection of user problems, technical craft, and cross-functional leadership.</p>
+      <p>Off-screen: I&#x27;m a <strong>certified spin instructor</strong> — which means I&#x27;m equally comfortable reading a room, setting the pace, and making sure everyone leaves having given everything they&#x27;ve got. 🚴</p>
+    <div class="compact-stats"><div><strong>450+</strong><span>eLeetCoders Members</span></div><div><strong>10+</strong><span>Research Projects Managed</span></div><div><strong>30+</strong><span>Grad Students TA&#x27;d</span></div><div><strong>4+</strong><span>Internships &amp; Research Roles</span></div></div></div></div><details class="content-drawer" id="experience"><summary><span>Where I’ve worked</span><span class="drawer-count">08 ROLES</span><span aria-hidden="true">+</span></summary><div class="role-list"><article id="exp-airbuild"><p class="role-date mono">Summer 2025 – Present</p><h3>Software Engineering + AI Intern</h3><p class="role-company">Airbuild Inc. — Remote</p><ul>
         <li>Built and deployed a full-stack project-management web app, currently in company-wide beta testing.</li>
         <li>Created an internal LLM trained on company drawings and proprietary data.</li>
         <li>Rebuilt and currently maintain the Airbuild public-facing website — owning all UI/UX, design, and front-end development.</li>
-        <li>Built data pipelines and visualizations using Firebase, AWS, Pandas, and NumPy to analyze live sensor data from Airbuild's microalgae-based wastewater treatment system — part of a carbon-negative cleantech platform with a patent-pending automated harvesting system.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Spring & Summer 2024</div>
-      <div id="exp-pladis" class="timeline-role">Data Integration + Platform Insights Intern</div>
-      <div class="timeline-company">pladis Global — Remote</div>
-      <ul class="timeline-desc">
-        <li>Built and deployed a brand dynamics dashboard used by the entire North American Insights & Marketing groups.</li>
+        <li>Built data pipelines and visualizations using Firebase, AWS, Pandas, and NumPy to analyze live sensor data from Airbuild&#x27;s microalgae-based wastewater treatment system — part of a carbon-negative cleantech platform with a patent-pending automated harvesting system.</li>
+      </ul></article><article id="exp-pladis"><p class="role-date mono">Spring &amp; Summer 2024</p><h3>Data Integration + Platform Insights Intern</h3><p class="role-company">pladis Global — Remote</p><ul>
+        <li>Built and deployed a brand dynamics dashboard used by the entire North American Insights &amp; Marketing groups.</li>
         <li>Delivered key market-shift insights that influenced website changes, social media activations, and product initiatives.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Spring 2024 – Present</div>
-      <div id="exp-lab" class="timeline-role">Lab Coordinator</div>
-      <div class="timeline-company">SDSU AI4Business Research Lab</div>
-      <ul class="timeline-desc">
+      </ul></article><article id="exp-lab"><p class="role-date mono">Spring 2024 – Present</p><h3>Lab Coordinator</h3><p class="role-company">SDSU AI4Business Research Lab</p><ul>
         <li>Managing 10+ Python-based research projects under Professor Vivian Huangfu.</li>
         <li>Contributing to CodeGPT — enhancing a deep learning code search model with LLM pre-training techniques.</li>
         <li>Interviewing and evaluating research assistant candidates.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">June 2024 – Present</div>
-      <div class="timeline-role">Vice President — eLeetCoders Club</div>
-      <div class="timeline-company">San Diego State University</div>
-      <ul class="timeline-desc">
+      </ul></article><article id="role-3"><p class="role-date mono">June 2024 – Present</p><h3>Vice President — eLeetCoders Club</h3><p class="role-company">San Diego State University</p><ul>
         <li>Organizing club meetings for 450+ members to collaborate on LeetCode problems, sometimes with guest lecturers.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">2024–25 School Year</div>
-      <div class="timeline-role">Graduate Teaching Assistant</div>
-      <div class="timeline-company">SDSU — Business Systems Analysis & Design (MIS695 + MIS515)</div>
-      <ul class="timeline-desc">
+      </ul></article><article id="role-4"><p class="role-date mono">2024–25 School Year</p><h3>Graduate Teaching Assistant</h3><p class="role-company">SDSU — Business Systems Analysis &amp; Design (MIS695 + MIS515)</p><ul>
         <li>Sole undergraduate TA responsible for 20+ assignments, weekly office hours, and in-class support for 30+ grad students.</li>
         <li>Wrote Python scripts to automate and streamline grading workflows.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">May 2024 – August 2025</div>
-      <div class="timeline-role">Co-Founder & Vice President of Operations — ACM</div>
-      <div class="timeline-company">Association for Computing Machinery @ SDSU</div>
-      <ul class="timeline-desc">
+      </ul></article><article id="role-5"><p class="role-date mono">May 2024 – August 2025</p><h3>Co-Founder &amp; Vice President of Operations — ACM</h3><p class="role-company">Association for Computing Machinery @ SDSU</p><ul>
         <li>Co-founded and led the ACM chapter at SDSU, growing to 200+ members.</li>
         <li>Worked to fill learning gaps for CS students by providing supplementary learning material.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Summer 2023</div>
-      <div class="timeline-role">IT Intern + Instructor</div>
-      <div class="timeline-company">Lavner Education — University of San Diego</div>
-      <ul class="timeline-desc">
+      </ul></article><article id="role-6"><p class="role-date mono">Summer 2023</p><h3>IT Intern + Instructor</h3><p class="role-company">Lavner Education — University of San Diego</p><ul>
         <li>Taught Java, Python, and C to 100+ students in group and one-on-one settings.</li>
         <li>Managed on-site hardware, software, and internet connectivity setup and maintenance.</li>
-      </ul>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-date">Spring 2023</div>
-      <div id="exp-research" class="timeline-role">Student Research Assistant</div>
-      <div class="timeline-company">San Diego State University — Prof. Miranda Parker</div>
-      <ul class="timeline-desc">
+      </ul></article><article id="exp-research"><p class="role-date mono">Spring 2023</p><h3>Student Research Assistant</h3><p class="role-company">San Diego State University — Prof. Miranda Parker</p><ul>
         <li>Conducted CS Education research on how spatial skills training affects student success in CS courses.</li>
         <li>Identified and worked to reduce biases in CS assessments by developing human-subject research studies.</li>
-      </ul>
-    </div>
+      </ul></article></div></details><details class="content-drawer" id="skills"><summary><span>What I work with</span><span class="drawer-count">TECH + DESIGN + PRODUCT</span><span aria-hidden="true">+</span></summary><div class="skill-list"><span>Python</span><span>Java</span><span>C++</span><span>C</span><span>SQL</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Assembly</span><span>Git</span><span>Bootstrap</span><span>Google Cloud</span><span>Firebase</span><span>AWS</span><span>ML / AI</span><span>LLMs</span><span>Arduino</span><span>React</span><span>Figma</span><span>UI / UX Design</span><span>Wireframing</span><span>Prototyping</span><span>Responsive Design</span><span>Design Systems</span><span>Web Development</span><span>Component Design</span><span>0→1 Building</span><span>Cross-functional</span><span>User Research</span><span>Data Viz</span><span>Agile / Scrum</span></div></details>
+    </section>
 
-  </div>
-</section>
-
-<!-- CURRENTLY -->
-<section id="currently" style="padding-top:0">
-  <div class="section-label">What I'm up to now</div>
-  <h2 class="section-title reveal">Currently <span style="color:var(--accent)">active</span></h2>
-  <div class="projects-grid">
-
-    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
-      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
-      <div class="card-content">
-      <span class="project-icon">⚡</span>
-      <div id="proj-hackthefuture" class="project-title">Hack the Future</div>
-      <div class="project-sub">SDSU Hackathon — Organizer · Sponsored by Anthropic</div>
-      <p class="project-desc">Organizing SDSU's AI-focused hackathon, sponsored by the Zip Launchpad. Built around fast-tracked, AI-powered development — giving students a high-pressure environment to go from idea to shipped product in hours. Coordinating sponsors, mentors, judges, and the full event experience end-to-end.</p>
-      <div class="project-tags">
-        <span class="tag">AI / LLMs</span>
-        <span class="tag">Event Leadership</span>
-        <span class="tag">Zip Launchpad</span>
-        <span class="tag">0→1</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
-      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
-      <div class="card-content">
-      <span class="project-icon">🏆</span>
-      <div id="proj-codeblitz" class="project-title">CodeBlitz</div>
-      <div class="project-sub">SDSU Coding Competition — Organizer</div>
-      <p class="project-desc">Designed and built SDSU's CodeBlitz competitive programming competition from the ground up — personally authored the problem sets, wrote Python autograding scripts for instant judging, and managed all event logistics. Creating the kind of high-stakes competitive environment that sharpens real engineering instincts.</p>
-      <div class="project-tags">
-        <span class="tag">Problem Design</span>
-        <span class="tag">Python Autograder</span>
-        <span class="tag">Competitive Programming</span>
-        <span class="tag">Event Ops</span>
-      </div>
-    </div>
-    </div>
-
-    
-
-    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
-      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
-      <div class="card-content">
-      <span class="project-icon">🎧</span>
-      <div id="proj-spinarchitect" class="project-title">Spin Architect</div>
-      <div class="project-sub">Full-Stack App · <a id="link-spinarchitect" href="#" style="color:var(--accent);text-decoration:none;">Live Demo ↗</a></div>
-      <p class="project-desc">A full-featured spin class planning tool built from scratch because I needed it myself. Instructors can build complete ride playlists with RPM ranges, intensity levels (Low → MAX), and per-move durations — with a real-time total duration tracker. Integrates Spotify and SoundCloud for track search and BPM detection, includes an inspiration bank, drag-and-drop move ordering, and one-click playlist export. Designed for working instructors, not as a demo.</p>
-      <div class="project-tags">
-        <span class="tag">JavaScript</span>
-        <span class="tag">Spotify API</span>
-        <span class="tag">SoundCloud API</span>
-        <span class="tag">BPM Detection</span>
-        <span class="tag">UX Design</span>
-        <span class="tag">Netlify</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal" style="border-left: 2px solid var(--accent);">
-      <div class="card-img-panel"><img src="assets/img/spin.jpg" alt="Nitin teaching spin at DOSE Fitness" /></div>
-      <div class="card-content">
-      <span class="project-icon">🚴</span>
-      <div class="project-title">Spin Instructor</div>
-      <div class="project-sub">DOSE Fitness — Encinitas · <a id="link-dose" href="#" style="color:var(--accent);text-decoration:none;">Book my class ↗</a></div>
-      <p class="project-desc">Certified part-time spin instructor at The Dose Fitness. Teaching is an exercise in product thinking — read the room, set the tempo, adjust on the fly, and deliver an experience people come back for. That same energy shows up in everything I build. Come ride with me.</p>
-      <div class="project-tags">
-        <span class="tag">The Dose Fitness</span>
-        <span class="tag">San Diego</span>
-        <span class="tag">Leadership</span>
-        <span class="tag">Community</span>
-      </div>
-    </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label">Projects</div>
-  <h2 class="section-title reveal">Things I've <span style="color:var(--accent)">built</span></h2>
-  <div class="projects-grid">
-
-    <div class="project-card reveal">
-      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
-      <div class="card-content">
-      <span class="project-icon">🤖</span>
-      <div id="proj-codegpt" class="project-title">CodeGPT</div>
-      <div class="project-sub">AI Research — AI4Business Lab @ SDSU</div>
-      <p class="project-desc">Reviewed 100+ academic papers in 100+ hours to produce a comprehensive literature synthesis on LLM use-cases in code understanding. Enhanced a deep learning code search engine using LLM pre-training techniques and natural language query optimization — helping developers find code with plain English.</p>
-      <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">LLMs</span>
-        <span class="tag">Deep Learning</span>
-        <span class="tag">NLP</span>
-        <span class="tag">Research</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="card-img-panel"><img src="assets/img/airbuild-site.jpg" alt="Airbuild algae system in Green River, Utah" /></div>
-      <div class="card-content">
-      <span class="project-icon">🌿</span>
-      <div id="proj-algae" class="project-title">Algae Growth Analysis</div>
-      <div class="project-sub">Data Engineering — <a id="link-airbuild" href="#" style="color:var(--accent);text-decoration:none;">Airbuild Inc. ↗</a> · <span style="color:var(--accent2)">Patent Pending 🔒</span></div>
-      <p class="project-desc">Built data pipelines and visualizations to analyze algae growth patterns for Airbuild's microalgae-based wastewater treatment system — a carbon-negative cleantech platform treating water for municipalities. Used Firebase, AWS, Pandas, and NumPy to process and surface live sensor data. Airbuild's automated algae harvesting system is separately patent pending.</p>
-      <div class="project-tags">
-        <span class="tag">Python</span>
-        <span class="tag">Pandas / NumPy</span>
-        <span class="tag">Firebase</span>
-        <span class="tag">AWS</span>
-        <span class="tag">Data Viz</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="card-img-panel"><img src="assets/img/fallsense.png" alt="FallSense hardware and Discord alert" /></div>
-      <div class="card-content">
-      <span class="project-icon">🩺</span>
-      <div id="proj-fallsense" class="project-title">FallSense</div>
-      <div class="project-sub">Embedded IoT · <span style="color:var(--accent2)">IEEE/ACM Paper Submitted 📄</span> · <a id="link-fallsense-paper" href="#" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
-      <p class="project-desc">Standalone WiFi-enabled wearable fall detector built with an Arduino Nano ESP32 + MPU6050 IMU. Uses a Signal Magnitude Vector (SMV) threshold algorithm running locally on-device for orientation-independent detection — achieving sub-2-second alert latency via Discord webhook. Under $35 to build with no subscription. Currently being developed further at SDSU's Zip Launchpad.</p>
-      <div class="project-tags">
-        <span class="tag">Arduino / ESP32</span>
-        <span class="tag">Embedded C</span>
-        <span class="tag">IoT</span>
-        <span class="tag">3D Printing</span>
-        <span class="tag">Discord API</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="card-img-panel"><img src="assets/img/airbuild-one.png" alt="Airbuild One project management dashboard" /></div>
-      <div class="card-content">
-      <span class="project-icon">🏗️</span>
-      <div id="proj-airbuild" class="project-title">Airbuild PM Web App</div>
-      <div class="project-sub">Full-Stack — Airbuild Inc.</div>
-      <p class="project-desc">Designed and shipped a full-stack project-management platform from zero — currently in company-wide beta. Wearing many hats as AI + Software Engineer II: built backend APIs, integrated Firebase and AWS infrastructure, and trained an internal LLM on company drawings and operational data for intelligent task assistance.</p>
-      <div class="project-tags">
-        <span class="tag">Full-Stack</span>
-        <span class="tag">Firebase</span>
-        <span class="tag">AWS</span>
-        <span class="tag">LLM</span>
-        <span class="tag">React</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="card-img-panel"><img src="assets/img/pladis-dashboard.png" alt="pladis Insights Intelligence Dashboard" /></div>
-      <div class="card-content">
-      <span class="project-icon">📊</span>
-      <div id="proj-pladis" class="project-title">Brand Dynamics Dashboard</div>
-      <div class="project-sub">Data / BI — pladis Global</div>
-      <p class="project-desc">Integrated multi-source data pipeline into a dynamic insights dashboard deployed to the entire North American marketing and insights teams. Influenced real product and social media strategy decisions.</p>
-      <div class="project-tags">
-        <span class="tag">Data</span>
-        <span class="tag">Dashboard</span>
-        <span class="tag">Google Cloud</span>
-        <span class="tag">BI</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
-      <div class="card-content">
-      <span class="project-icon">🎓</span>
-      <div id="proj-gpt" class="project-title">AI Course Tutor GPT</div>
-      <div class="project-sub">CS Education Research · <a id="link-gpt-paper" href="#" style="color:var(--accent);text-decoration:none;">Read Paper ↗</a></div>
-      <p class="project-desc">Researching and building custom GPTs that emulate a course-specific tutor — trained on a class's actual materials, syllabi, and assignments. Designed to give students a personalized, always-available learning assistant that knows exactly what they're studying.</p>
-      <div class="project-tags">
-        <span class="tag">LLMs</span>
-        <span class="tag">Custom GPT</span>
-        <span class="tag">CS Education</span>
-        <span class="tag">RAG</span>
-      </div>
-    </div>
-    </div>
-
-    <div class="project-card reveal">
-      <div class="card-img-panel no-photo" data-label="📸 coming soon"></div>
-      <div class="card-content">
-      <span class="project-icon">🌐</span>
-      <div id="proj-portfolio" class="project-title">Personal Portfolio</div>
-      <div class="project-sub">Frontend Dev · <a id="link-github-portfolio" href="#" style="color:var(--accent);text-decoration:none;">View on GitHub ↗</a></div>
-      <p class="project-desc">Custom portfolio website built with Bootstrap, HTML, CSS, and JS — published and maintained on GitHub Pages. Continuously updated as a living showcase of work and skills.</p>
-      <div class="project-tags">
-        <span class="tag">HTML</span>
-        <span class="tag">CSS</span>
-        <span class="tag">Bootstrap</span>
-        <span class="tag">GitHub Pages</span>
-      </div>
-    </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">Contact</div>
-  <h2 class="section-title reveal" style="margin-bottom:0">Let's build something<br><span style="color:var(--accent)">together.</span></h2>
-  <a id="contact-email" href="#" class="contact-email reveal"><span class="__cf_email__" data-cfemail="66080f120f08480d48050e07120a07080f26010b070f0a4805090b">[email&#160;protected]</span></a>
-  <ul class="social-links reveal">
-    <li><a id="link-linkedin" href="#">LinkedIn</a></li>
-    <li><a id="link-instagram" href="#">Instagram</a></li>
-    <li><a id="footer-email" href="#">Email</a></li>
-    <li><a href="tel:7604026231">760.402.6231</a></li>
-  </ul>
-  <p class="footer-line reveal">Designed & built by Nitin Chatlani · SDSU CS 2026</p>
-</section>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ── CURSOR GLOW ──
-  const glow = document.getElementById('cursor-glow');
-  document.addEventListener('mousemove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top  = e.clientY + 'px';
-  });
-
-  // ── SCROLL PROGRESS ──
-  window.addEventListener('scroll', () => {
-    const prog = document.getElementById('scroll-progress');
-    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
-    prog.style.width = pct + '%';
-  });
-
-  // ── REVEAL ON SCROLL ──
-  const revealEls = document.querySelectorAll('.reveal, .timeline-item');
-  // Only hide elements if IntersectionObserver is supported
-  if ('IntersectionObserver' in window) {
-    revealEls.forEach(el => el.classList.add('animate-ready'));
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 60);
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(el => observer.observe(el));
-    // Immediately reveal anything already in viewport
-    setTimeout(() => {
-      revealEls.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight) el.classList.add('visible');
-      });
-    }, 50);
-  }
-
-  // ── TYPED TEXT ──
-  const phrases = [
-    'actually useful.',
-    'worth shipping.',
-    'user-obsessed.',
-    'built to scale.',
-    'surprisingly elegant.',
-    'from 0 to 1.',
-    'AI-powered.',
-  ];
-  let pi = 0, ci = 0, deleting = false;
-  const typedEl = document.getElementById('typed-text');
-
-  function type() {
-    const phrase = phrases[pi];
-    if (!deleting) {
-      typedEl.textContent = phrase.slice(0, ++ci);
-      if (ci === phrase.length) { deleting = true; setTimeout(type, 2000); return; }
-    } else {
-      typedEl.textContent = phrase.slice(0, --ci);
-      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; }
-    }
-    setTimeout(type, deleting ? 40 : 80);
-  }
-  setTimeout(type, 1200);
-
-  // ── EMAIL LINKS (set at runtime to avoid obfuscation) ──
-  (function() {
-    const u = 'nitin.k.chatlani';
-    const d = 'gmail.com';
-    const email = u + '@' + d;
-    const href = 'mailto:' + email;
-    const c = document.getElementById('contact-email');
-    const f = document.getElementById('footer-email');
-    if (c) { c.href = href; c.textContent = email; }
-    if (f) { f.href = href; }
-  })();
-
-  // ── EXTERNAL LINKS (set at runtime to bypass Cloudflare rewriting) ──
-  (function() {
-    const links = {
-      'link-linkedin':   'https://linkedin.com/in/nitinchatlani',
-      'link-instagram':  'https://instagram.com/n.chatlani',
-      'link-airbuild':   'https://airbuildinc.com',
-      'link-spinarchitect': 'https://6996cac613ee3a12ece0e8d5--doseplaylistbuilder.netlify.app/',
-      'link-fallsense-paper': 'https://drive.google.com/file/d/1QG9nnAi5VCKbfzMGnRojBYpNkttT8AF5/view?usp=sharing',
-      'link-fallsense-paper2': 'https://drive.google.com/file/d/1QG9nnAi5VCKbfzMGnRojBYpNkttT8AF5/view?usp=sharing',
-      'link-gpt-paper':  'https://drive.google.com/file/d/1taMt_k8VkPiAO56eR0K2uSNhHHyhmCih/view?usp=sharing',
-      'link-dose':       'https://www.thedosefitness.com/schedule/?_mt=%2Fschedule%2Fdaily%2F48541%3FactiveDate%3D2026-03-08%26instructors%3D6403%26locations%3D48717',
-      'link-github-portfolio': 'https://github.com/nchatlani1/Online-Resume',
-    };
-    Object.entries(links).forEach(([id, url]) => {
-      const el = document.getElementById(id);
-      if (el) { el.href = url; el.target = '_blank'; el.rel = 'noopener noreferrer'; }
-    });
-  })();
-
-  function toggleTheme() {
-    const html = document.documentElement;
-    const isLight = html.getAttribute('data-theme') === 'light';
-    html.setAttribute('data-theme', isLight ? 'dark' : 'light');
-    document.getElementById('theme-btn').textContent = isLight ? '☀ Light' : '☽ Dark';
-  }
-
-  // Skill pill → scroll + highlight flash
-  let lastScrollY = null;
-  let lastSectionLabel = null;
-
-  function goBack() {
-    if (lastScrollY === null) return;
-    window.scrollTo({ top: lastScrollY, behavior: 'smooth' });
-    // Hide button after going back
-    setTimeout(() => {
-      document.getElementById('back-btn').classList.remove('visible');
-      lastScrollY = null;
-      lastSectionLabel = null;
-    }, 600);
-  }
-
-  document.querySelectorAll('a.skill-pill').forEach(pill => {
-    pill.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (!target) return;
-
-      // Save scroll position for back button
-      lastScrollY = window.scrollY;
-      lastSectionLabel = this.textContent.trim();
-      const btn = document.getElementById('back-btn');
-      document.getElementById('back-label').textContent = 'Skills';
-      btn.classList.add('visible');
-
-      // Scroll with offset for fixed nav
-      const navHeight = document.querySelector('nav').offsetHeight;
-      const targetY = target.getBoundingClientRect().top + window.scrollY - navHeight - 24;
-      window.scrollTo({ top: targetY, behavior: 'smooth' });
-
-      // Flash the card
-      const flashEl = target.closest('.project-card, .timeline-item') || target;
-      setTimeout(() => {
-        flashEl.classList.remove('skill-target-flash');
-        void flashEl.offsetWidth;
-        flashEl.classList.add('skill-target-flash');
-      }, 400);
-    });
-  });
-</script>
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading"><div class="wrap"><div class="section-top mono"><span>03 / CONTACT ME</span><span>SAN DIEGO, CA</span></div><h2 id="contact-heading">Let’s talk.<br><a href="mailto:nitin.k.chatlani@gmail.com">Human to human.<span aria-hidden="true">↗</span></a></h2><div class="contact-bottom"><p>Hiring for Sales Engineering or Forward Deployed Engineering?<br>I’d love to hear what your team is working on.</p><div><a href="mailto:nitin.k.chatlani@gmail.com">Email me ↗</a><a href="https://linkedin.com/in/nitinchatlani" target="_blank" rel="noopener">LinkedIn ↗</a><a href="assets/nitin-chatlani-resume.pdf" target="_blank" rel="noopener">Résumé ↗</a><a href="https://instagram.com/n.chatlani" target="_blank" rel="noopener">Instagram ↗</a></div></div></div></section>
+  </main>
+  <footer class="site-footer wrap"><span class="mono">© 2026 NITIN CHATLANI</span><span>Built with intention. And a little extra.</span><a class="mono" href="#top">BACK TO TOP ↑</a></footer>
 </body>
 </html>

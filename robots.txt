@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nitinchatlani.com/sitemap.xml
