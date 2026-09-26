@@ -4,7 +4,7 @@
 .scene-grid{position:absolute;inset:0;background-image:linear-gradient(#b1b7a515 1px,transparent 1px),linear-gradient(90deg,#b1b7a515 1px,transparent 1px);background-size:42px 42px;mask-image:radial-gradient(ellipse at center,#000 0,transparent 65%)}
 .story-circuits{position:absolute;width:100%;height:100%;inset:0;fill:none;stroke-linejoin:round;stroke-linecap:round}
 .circuit-ghost{stroke:#a6ab983b;stroke-width:1}.circuit-ghost path:last-child{stroke-dasharray:3 6;opacity:.6}
-.story-wire{stroke:var(--orange);stroke-width:1.7;stroke-dasharray:650;stroke-dashoffset:650;filter:drop-shadow(0 0 3px #e5844240)}
+.story-wire{stroke:var(--orange);stroke-width:1.7;stroke-dasharray:650;stroke-dashoffset:650;filter:drop-shadow(0 0 3px #4fa8f655)}
 .wire-1{stroke-dashoffset:calc(650 * (1 - var(--wire-one)))}.wire-2{stroke-dashoffset:calc(650 * (1 - var(--wire-two)))}.wire-3{stroke-dashoffset:calc(650 * (1 - var(--wire-three)))}.wire-4{stroke-dashoffset:calc(650 * (1 - var(--wire-four)))}
 .terminal-points{fill:var(--paper);stroke:#a8ad9955;stroke-width:1.5}
 .brain-chip-anchor{position:absolute;left:50%;top:50%;width:250px;height:250px;transform:translate(-50%,-50%);perspective:950px;z-index:2}
@@ -24,7 +24,7 @@
 .signal-tag i{width:4px;height:4px;border-radius:50%;background:var(--orange)}.signal-context{left:29%;top:43%}.signal-tools{right:29%;top:43%}.signal-deploy{left:18%;top:76%}.signal-feedback{right:18%;top:76%}
 .brain-story[data-chapter="1"] .signal-context,.brain-story[data-chapter="2"] :is(.signal-context,.signal-tools),.brain-story[data-chapter="3"] :is(.signal-context,.signal-tools,.signal-deploy),.brain-story[data-chapter="4"] .signal-tag{opacity:1;transform:translateY(0)}
 .story-controls{position:sticky;top:calc(100svh - 67px);height:46px;margin-bottom:-46px;display:flex;align-items:center;justify-content:space-between;padding:0 5%;z-index:5;pointer-events:none}
-.story-location{font-size:6px;color:#767d6b;background:var(--paper);padding:4px 0}.story-dots{display:flex;gap:11px;position:absolute;left:50%;transform:translateX(-50%);pointer-events:auto;background:var(--paper);padding:7px 10px;border-radius:20px}.story-dots a{width:5px;height:5px;border-radius:50%;background:#b6bbaa;position:relative}.story-dots a::before{content:'';position:absolute;inset:-7px}.story-dots a[aria-current]{background:var(--orange);box-shadow:0 0 0 3px #d9431c18}.story-motion{background:var(--paper);border:0;color:#717865;font:6px var(--mono);padding:6px 0;pointer-events:auto}
+.story-location{font-size:6px;color:#767d6b;background:var(--paper);padding:4px 0}.story-dots{display:flex;gap:11px;position:absolute;left:50%;transform:translateX(-50%);pointer-events:auto;background:var(--paper);padding:7px 10px;border-radius:20px}.story-dots a{width:5px;height:5px;border-radius:50%;background:#b6bbaa;position:relative}.story-dots a::before{content:'';position:absolute;inset:-7px}.story-dots a[aria-current]{background:var(--orange);box-shadow:0 0 0 3px #4fa8f625}.story-motion{background:var(--paper);border:0;color:#717865;font:6px var(--mono);padding:6px 0;pointer-events:auto}
 .story-panel{position:relative;min-height:100svh;z-index:3;scroll-margin-top:0;pointer-events:none}.story-panel a{pointer-events:auto}.story-intro{min-height:calc(100svh - 96px)}
 .intro-heading{position:absolute;left:5%;right:5%;top:30px;text-align:center}.intro-heading>.mono{font-size:8px;color:#70745f}.intro-heading h1{font-size:clamp(66px,8.5vw,125px);font-weight:500;letter-spacing:-.075em;line-height:1.15;margin:10px 0 4px}.intro-heading h1>span{color:var(--orange)}.intro-role{font-size:15px;letter-spacing:-.025em}
 .intro-bio{position:absolute;left:5%;bottom:80px;max-width:280px}.intro-bio>p:first-child{font-size:13px;line-height:1.8}.intro-target{font:6px/1.9 var(--mono);letter-spacing:.035em;color:#707661;margin:16px 0}.intro-bio .text-link{font-size:11px}.intro-bio .text-link span{margin-left:28px}
@@ -60,7 +60,7 @@ html:not(.js) .chapter-copy,html:not(.js) .chapter-proof{opacity:1}
 
 /* Compact portfolio: smaller object, two chapters, less repeated content. */
 .brain-chip-anchor{scale:.7;transform-origin:0 0}
-.intro-bio{top:50%;bottom:auto;transform:translateY(-35%);max-width:295px}
+.intro-bio{top:50%;bottom:auto;transform:translateY(-35%);max-width:560px}
 .intro-bio .intro-kicker{font:7px/1.6 var(--mono);letter-spacing:.06em;color:#797d6e;margin-bottom:18px}
 .intro-bio h1{font-size:clamp(36px,4vw,58px);line-height:1.02;letter-spacing:-.065em;font-weight:500;margin:0 0 22px}
 .intro-bio>p:not(.intro-kicker):not(.intro-target){font-size:12px;line-height:1.8}
