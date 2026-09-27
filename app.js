@@ -21,23 +21,62 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
+// Sticky header scroll elevation and compacting
+const siteHeader = document.querySelector('.site-header');
+function updateHeader() {
+  if (siteHeader) {
+    siteHeader.classList.toggle('is-scrolled', window.scrollY > 30);
+  }
+}
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
+
 // A personal portrait with a keyboard-accessible off-duty reveal.
 const portrait = document.querySelector('.portrait-stage');
 const offDuty = document.getElementById('off-duty');
 const offDutyButton = document.querySelector('.sticker-human');
 const offDutyClose = document.querySelector('.off-duty-close');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let offDutyClosing = false;
+
 function setOffDuty(open) {
-  offDuty.hidden = !open;
-  offDutyButton.setAttribute('aria-expanded', String(open));
-  if (open) offDutyClose.focus();
-  else offDutyButton.focus();
+  if (open) {
+    offDuty.classList.remove('is-closing');
+    offDuty.hidden = false;
+    offDutyButton.setAttribute('aria-expanded', 'true');
+    if (offDutyClose) offDutyClose.focus();
+  } else {
+    if (reducedMotion.matches) {
+      offDuty.hidden = true;
+      offDuty.classList.remove('is-closing');
+      offDutyButton.setAttribute('aria-expanded', 'false');
+      offDutyButton.focus();
+      return;
+    }
+    if (offDutyClosing || offDuty.hidden) return;
+    offDutyClosing = true;
+    offDuty.classList.add('is-closing');
+    let finished = false;
+    const onEnd = () => {
+      if (finished) return;
+      finished = true;
+      clearTimeout(safetyTimer);
+      offDuty.removeEventListener('animationend', onEnd);
+      offDuty.classList.remove('is-closing');
+      offDuty.hidden = true;
+      offDutyClosing = false;
+      offDutyButton.setAttribute('aria-expanded', 'false');
+      offDutyButton.focus();
+    };
+    const safetyTimer = setTimeout(onEnd, 500);
+    offDuty.addEventListener('animationend', onEnd, { once: true });
+  }
 }
 offDutyButton.addEventListener('click', () => setOffDuty(true));
 offDutyClose.addEventListener('click', () => setOffDuty(false));
 offDuty.addEventListener('keydown', e => {
   if (e.key === 'Escape') setOffDuty(false);
 });
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 portrait.addEventListener('pointermove', e => {
   if (reducedMotion.matches || e.pointerType !== 'mouse') return;
   const r = portrait.getBoundingClientRect();

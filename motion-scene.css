@@ -62,5 +62,5 @@ html:not(.js) .scene-caption{display:none}
 @media print{.js .brain-story{height:auto}.js .motion-stage{position:static;height:auto;overflow:visible}.js .story-panel{position:static;height:auto;opacity:1!important;visibility:visible!important}.js .chapter-copy,.js .chapter-proof,.js .intro-bio,.js .intro-person{position:static;transform:none!important;opacity:1!important}.scene-caption{display:none}}
 /* Keep the entire opening composition inside the first viewport. */
 .js .brain-story{margin-top:-96px}
-.site-header{position:relative;z-index:10;background:var(--paper)}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(242,239,231,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 @media(max-width:760px){.js .brain-story{margin-top:-78px}.scene-caption{top:13%}}
