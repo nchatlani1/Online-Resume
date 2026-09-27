@@ -192,14 +192,59 @@ function paintScene(time){
  });
  wireValues.forEach((v,i)=>set(`--wire-${['one','two','three','four'][i]}`,v));
  set('--scene-progress',p);
+ updateActiveNav();
  if(Math.abs(target-progress)>.0001)requestFrame();else previousTime=0;
 }
+const navLinks = {
+  work: document.querySelector('.site-header nav a[href="#work"]'),
+  build: document.querySelector('.site-header nav a[href="#chapter-arm"]'),
+  human: document.querySelector('.site-header nav a[href="#human"]')
+};
+const workSection = document.getElementById('work');
+const humanSection = document.getElementById('human');
+let activeNavKey = null;
+
+function updateActiveNav() {
+  const headerH = siteHeader ? siteHeader.offsetHeight : 60;
+  const threshold = headerH + 60;
+  let current = null;
+  const isNearBottom = window.innerHeight + window.scrollY >= (document.documentElement.scrollHeight - 50);
+
+  if (isNearBottom || (humanSection && humanSection.getBoundingClientRect().top <= threshold)) {
+    current = 'human';
+  } else if (workSection && workSection.getBoundingClientRect().top <= threshold) {
+    current = 'work';
+  } else if (story && (target >= 0.10 || (window.scrollY >= storyStart + travel * 0.10))) {
+    current = 'build';
+  }
+
+  if (current !== activeNavKey) {
+    activeNavKey = current;
+    for (const [key, link] of Object.entries(navLinks)) {
+      if (!link) continue;
+      const isActive = key === current;
+      link.classList.toggle('is-active', isActive);
+      if (isActive) {
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.removeAttribute('aria-current');
+      }
+    }
+  }
+}
+
 let measureFrame=0;
 function scheduleMeasure(){if(!measureFrame)measureFrame=requestAnimationFrame(()=>{measureFrame=0;measureScene();});}
-addEventListener('scroll',scheduleMeasure,{passive:true});addEventListener('resize',scheduleMeasure,{passive:true});addEventListener('pageshow',scheduleMeasure);reducedMotion.addEventListener('change',scheduleMeasure);
+addEventListener('scroll',scheduleMeasure,{passive:true});
+addEventListener('scroll',updateActiveNav,{passive:true});
+addEventListener('resize',scheduleMeasure,{passive:true});
+addEventListener('pageshow',scheduleMeasure);
+reducedMotion.addEventListener('change',scheduleMeasure);
 const chapterPositions={'#top':0,'#intro':0,'#chapter-arm':.32,'#chapter-airbuild':.625,'#chapter-pladis':.96};
 function navigateChapter(hash,behavior='smooth'){measureScene();window.scrollTo({top:hash==='#top'?0:storyStart+chapterPositions[hash]*travel,behavior:reducedMotion.matches?'instant':behavior});}
 document.addEventListener('click',event=>{const link=event.target.closest('a'),hash=link?.getAttribute('href');if(!(hash in chapterPositions)||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;event.preventDefault();history.pushState(null,'',hash);navigateChapter(hash);});
 addEventListener('popstate',()=>{if(location.hash in chapterPositions)navigateChapter(location.hash,'instant');});
 motionControl.addEventListener('click',()=>{motionPaused=!motionPaused;story.classList.toggle('is-paused',motionPaused);motionControl.setAttribute('aria-pressed',String(motionPaused));motionControl.textContent=motionPaused?'Resume motion ▷':'Pause motion Ⅱ';requestFrame();});
-measureScene();if(location.hash in chapterPositions)requestAnimationFrame(()=>navigateChapter(location.hash,'instant'));
+measureScene();
+updateActiveNav();
+if(location.hash in chapterPositions)requestAnimationFrame(()=>navigateChapter(location.hash,'instant'));
