@@ -77,10 +77,10 @@
       <div class="story-controls"><span class="mono story-location">NITIN CHATLANI / AI ENGINEER</span><div class="story-dots" aria-label="Story chapters"><a href="#intro" aria-label="Introduction" aria-current="step"></a><a href="#chapter-arm" aria-label="Arm"></a><a href="#chapter-airbuild" aria-label="Airbuild"></a><a href="#chapter-pladis" aria-label="pladis"></a></div><button class="story-motion" aria-pressed="false">Pause motion Ⅱ</button></div>
       <section class="story-intro story-panel" id="intro" data-chapter="0" aria-labelledby="hero-heading">
         <div class="intro-bio">
-          <p class="mono intro-kicker">AI &amp; SOFTWARE ENGINEER · B.S. CS &amp; M.S. AI · SDSU</p>
+          <p class="mono intro-kicker">AI &amp; SOFTWARE ENGINEER · M.S. AI &amp; TECHNOLOGY STUDENT · SDSU</p>
           <h1 id="hero-heading">AI that works<br>in the real world.</h1>
           <p class="intro-lead">Hi, I’m Nitin. I build agentic systems, write code that matters, and bring people along for the ride.</p>
-          <p class="intro-desc">Graduating with my B.S. in Computer Science (Math minor) and completing my Master’s in AI at SDSU. Whether it’s architecting self-checking RAG pipelines at Arm, building IoT sensor ML at Airbuild, or teaching 450+ members in our coding community, I care about what happens when deep technical craft meets real humans.</p>
+          <p class="intro-desc">I’m currently pursuing my master’s in Artificial Intelligence and Technology at SDSU, building on my B.S. in Computer Science and Mathematics minor. Whether it’s architecting self-checking RAG pipelines at Arm, building IoT sensor ML at Airbuild, or teaching 450+ members in our coding community, I care about what happens when deep technical craft meets real humans.</p>
           <a href="#work" class="text-link">Explore my projects <span>↓</span></a>
         </div>
         <a class="intro-scroll mono" href="#chapter-arm">SCROLL TO CONNECT THE DOTS <span>↓</span></a>
@@ -94,54 +94,124 @@
   <div class="section-top mono"><span>01 / PORTFOLIO</span><span>APPLIED AI &amp; SOFTWARE</span></div>
   <div class="section-heading"><h2 id="work-heading">Things I’ve<br><span class="muted">built.</span></h2><p>Real-world agentic systems, machine learning pipelines, and full-stack software.<br>Select any project to explore details and skills learned.</p></div>
 
-  <div class="archive-list">
-    <details class="portfolio-row" id="proj-arm-rag" open>
-      <summary><span class="row-number">01</span><span>Autonomous RAG Intake &amp; Verification Pipeline</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<svg class="project-logo-filters" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="0" height="0"><defs><filter id="project-logo-ink" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -.2126 -.7152 -.0722 0 1"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 1 1 1 1 1 1 1 1 1"/></feComponentTransfer><feComposite in2="SourceGraphic" operator="in" result="silhouette"/><feFlood flood-color="#22231f"/><feComposite in2="silhouette" operator="in"/></filter></defs></svg>
+<div class="archive-list organization-projects">
+<section class="project-group" aria-labelledby="projects-arm"><h3 class="project-group-heading mono" id="projects-arm">Arm</h3>
+<details class="portfolio-row" id="proj-arm-rag">
+      <summary><span class="project-logo logo-arm" aria-hidden="true"><svg viewBox="0 0 4332 1319"><image href="assets/logos/arm.png" width="4332" height="1319" filter="url(#project-logo-ink)"/></svg></span><span>Autonomous RAG Intake &amp; Verification Pipeline</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">Arm · Power &amp; Performance Engineering</span>
-        <p>Built an automated RAG intake pipeline that inspects documentation across cross-functional engineering teams for discrepancies and automatically recompiles the knowledge base upon verification. Developed custom tooling and agent skills with MSAL enterprise authentication for power, latency, thermal, and routing calculations.</p>
-        <p>Created SQL-backed bot telemetry and analytics tracking query semantic similarity and Time-to-First-Token (TTFT) alongside workflow telemetry, establishing a systematic closed feedback loop for iterative assistant enhancement.</p>
         <p class="case-patent mono">Selected work is patent pending 🔒</p>
+        <p>Built an automated RAG intake pipeline using Microsoft Azure, service accounts, and multiple machine learning models. The pipeline inspects documentation across cross-functional engineering teams for discrepancies and automatically recompiles the knowledge base after verification.</p>
+        <p>Developed custom tooling and agent skills connecting technical retrieval with engineering workflows for power, latency, thermal, and routing calculations.</p>
         <div class="skills-block">
           <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
           <div class="skills-tags">
-            <span class="skill-pill">Multi-Agent Architecture</span>
+            <span class="skill-pill">Microsoft Azure</span>
+            <span class="skill-pill">Service Account Integration</span>
+            <span class="skill-pill">Machine Learning Model Integration</span>
             <span class="skill-pill">RAG Pipeline Design</span>
-            <span class="skill-pill">MSAL Enterprise Auth</span>
-            <span class="skill-pill">Function Calling &amp; Tooling</span>
-            <span class="skill-pill">Latency &amp; TTFT Observability</span>
-            <span class="skill-pill">SQL Telemetry</span>
-            <span class="skill-pill">Hardware Design Engineering Workflows</span>
+            <span class="skill-pill">Function Calling &amp; Agent Tooling</span>
+            <span class="skill-pill">Chip Design Engineering Workflows</span>
           </div>
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-algae">
-      <summary><span class="row-number">02</span><span>Predictive Biomass ML &amp; Cleantech IoT Pipelines</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<details class="portfolio-row" id="proj-arm-analytics">
+      <summary><span class="project-logo logo-arm" aria-hidden="true"><svg viewBox="0 0 4332 1319"><image href="assets/logos/arm.png" width="4332" height="1319" filter="url(#project-logo-ink)"/></svg></span><span>Internal Chip Design Platform &amp; LLM Analytics</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">Airbuild Inc. · Cleantech</span>
-        <img class="archive-image" loading="lazy" src="assets/airbuild-site.jpg" alt="Airbuild algae bioreactor in Green River, Utah">
-        <p>Engineered predictive machine learning models on real sensor telemetry from microalgae wastewater treatment bioreactors in Green River, Utah to forecast biomass yield and detect environmental anomalies. Developed end-to-end data pipelines streaming live sensor metrics into an AWS-powered analytics dashboard, paired with Raspberry Pi 4 edge sensor nodes featuring OTA updates.</p>
-        <p class="case-patent mono">Airbuild's automated algae harvesting system is separately patent pending 🔒 · <a href="https://airbuildinc.com" target="_blank" rel="noopener">Airbuild Inc. ↗</a></p>
+        <p>Created a custom analytics tracker for an internal React-based chip design platform using MSAL enterprise authentication. Instrumented page usage and application interactions to understand how engineers use the platform.</p>
+        <p>Extended the tracker with LLM and agent analytics, including agent usage, time to first token (TTFT), semantic similarity between questions, and workflow telemetry. Built SQL-backed analytics and a usage dashboard to guide improvements to the platform and its engineering assistant.</p>
         <div class="skills-block">
           <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
           <div class="skills-tags">
-            <span class="skill-pill">Predictive Time-Series ML</span>
-            <span class="skill-pill">AWS Cloud Data Pipelines</span>
-            <span class="skill-pill">Raspberry Pi 4 Edge Deployment</span>
-            <span class="skill-pill">OTA Firmware Updates</span>
-            <span class="skill-pill">Sensor Telemetry (Pandas / NumPy)</span>
-            <span class="skill-pill">Firebase Realtime DB</span>
+            <span class="skill-pill">React Application Instrumentation</span>
+            <span class="skill-pill">Custom Analytics Tracking</span>
+            <span class="skill-pill">MSAL Enterprise Authentication</span>
+            <span class="skill-pill">LLM &amp; Agent Usage Analytics</span>
+            <span class="skill-pill">Time-to-First-Token Observability</span>
+            <span class="skill-pill">Semantic Similarity Analysis</span>
+            <span class="skill-pill">SQL Telemetry &amp; Dashboards</span>
           </div>
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-agent-fleet">
-      <summary><span class="row-number">03</span><span>Autonomous Operations Agent Fleet</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<details class="portfolio-row" id="proj-arm-build-day">
+      <summary><span class="project-logo logo-arm" aria-hidden="true"><svg viewBox="0 0 4332 1319"><image href="assets/logos/arm.png" width="4332" height="1319" filter="url(#project-logo-ink)"/></svg></span><span>Byte-Sized Build Day — ESP32 &amp; E-Ink Workshop</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">Airbuild Inc. · AI Infrastructure</span>
+        <p>Led senior and principal engineers in Arm’s San Diego office through a hands-on ESP32 and e-ink build workshop, guiding participants as they turned connected displays into custom desk tools.</p>
+        <p>Participants could build a stock ticker, connect Microsoft Teams to display their next meeting, show what was playing on Spotify, or take the hardware in their own direction with a custom build.</p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">Hands-On Workshop Leadership</span>
+            <span class="skill-pill">ESP32 &amp; E-Ink Displays</span>
+            <span class="skill-pill">Connected Hardware Prototyping</span>
+            <span class="skill-pill">API Integration</span>
+            <span class="skill-pill">Technical Instruction</span>
+          </div>
+        </div>
+      </div>
+    </details>
+<details class="portfolio-row" id="proj-arm-documentation">
+      <summary><span class="project-logo logo-arm" aria-hidden="true"><svg viewBox="0 0 4332 1319"><image href="assets/logos/arm.png" width="4332" height="1319" filter="url(#project-logo-ink)"/></svg></span><span>Contextual Documentation — Agent Tools &amp; Platform Guidance</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
+        <p>Built dynamic documentation for an internal Arm platform that adapts to the page a user visits the documentation site from, bringing relevant guidance into the context of their current task.</p>
+        <p>Organized agent tool documentation separately from platform actions and quick tips, helping users find both detailed tool guidance and practical instructions for navigating the platform.</p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">Context-Aware Documentation</span>
+            <span class="skill-pill">Dynamic Web Interfaces</span>
+            <span class="skill-pill">Agent Tool Documentation</span>
+            <span class="skill-pill">Information Architecture</span>
+            <span class="skill-pill">Platform Guidance &amp; Quick Tips</span>
+          </div>
+        </div>
+      </div>
+    </details>
+</section>
+<section class="project-group" aria-labelledby="projects-airbuild"><h3 class="project-group-heading mono" id="projects-airbuild">Airbuild</h3>
+<details class="portfolio-row" id="proj-algae">
+      <summary><span class="project-logo logo-airbuild" aria-hidden="true"><svg viewBox="34 40 153 128"><image href="assets/logos/airbuild-symbol.png" width="225" height="225" filter="url(#project-logo-ink)"/></svg></span><span>Predictive Biomass &amp; Algae Health Models</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
+        <p class="case-patent mono">Patent pending / in progress</p>
+        <img class="archive-image" loading="lazy" src="assets/airbuild-site.jpg" alt="Airbuild algae bioreactor in Green River, Utah">
+        <p>Developed machine learning models using real sensor data from Airbuild’s microalgae wastewater treatment bioreactors in Green River, Utah. Paired biomass growth prediction with algae-health anomaly detection to forecast growth and identify signs of declining health.</p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">Predictive Machine Learning</span>
+            <span class="skill-pill">Biomass Growth Forecasting</span>
+            <span class="skill-pill">Algae Health Anomaly Detection</span>
+            <span class="skill-pill">Sensor Data Analysis</span>
+            <span class="skill-pill">Pandas &amp; NumPy</span>
+          </div>
+        </div>
+      </div>
+    </details>
+<details class="portfolio-row" id="proj-airbuild-iot">
+      <summary><span class="project-logo logo-airbuild" aria-hidden="true"><svg viewBox="34 40 153 128"><image href="assets/logos/airbuild-symbol.png" width="225" height="225" filter="url(#project-logo-ink)"/></svg></span><span>Algae Health IoT Pipeline — Live Dashboard &amp; Agent Access</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
+        <p class="case-patent mono">Patent pending / in progress</p>
+        <p>Connected Airbuild’s AWS data stores to a website I designed and built for a real-time view of algae health. Brought sensor readings into a live dashboard so the team could monitor conditions in one place.</p>
+        <p>Connected the same data to our agents, enabling the team to ask about algae health and get answers grounded in live readings.</p>
+        <p><strong>Coming soon:</strong> Automated nutrient dispensing to adjust algae nutrient levels when health declines.</p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">AWS Data Integration</span>
+            <span class="skill-pill">IoT Data Pipelines</span>
+            <span class="skill-pill">Real-Time Dashboard Development</span>
+            <span class="skill-pill">Web Interface Design</span>
+            <span class="skill-pill">Agent Tool Integration</span>
+            <span class="skill-pill">Live Sensor Context</span>
+          </div>
+        </div>
+      </div>
+    </details>
+<details class="portfolio-row" id="proj-agent-fleet">
+      <summary><span class="project-logo logo-airbuild" aria-hidden="true"><svg viewBox="34 40 153 128"><image href="assets/logos/airbuild-symbol.png" width="225" height="225" filter="url(#project-logo-ink)"/></svg></span><span>Autonomous Operations Agent Fleet</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
         <p>Architected and deployed an internal multi-agent workforce for team members. During onboarding, the system captures repetitive operational tasks and dynamically equips agent instances with approved enterprise skills, calendar/scheduling connectors, Canva automation, and live IoT sensor telemetry.</p>
         <div class="skills-block">
           <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
@@ -155,11 +225,9 @@
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-airbuild">
-      <summary><span class="row-number">04</span><span>Airbuild One — Full-Stack PM Web Platform</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<details class="portfolio-row" id="proj-airbuild">
+      <summary><span class="project-logo logo-airbuild" aria-hidden="true"><svg viewBox="34 40 153 128"><image href="assets/logos/airbuild-symbol.png" width="225" height="225" filter="url(#project-logo-ink)"/></svg></span><span>Airbuild One — Full-Stack PM Web Platform</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">Airbuild Inc. · Full-Stack</span>
         <img class="archive-image" loading="lazy" src="assets/airbuild-one.png" alt="Airbuild One project management dashboard">
         <p>Designed, architected, and shipped a full-stack project management platform from zero — currently in active company-wide beta testing. Built reactive user interfaces, implemented real-time database sync with Firebase, and integrated an internal LLM trained on architectural drawings and technical documentation.</p>
         <div class="skills-block">
@@ -174,11 +242,42 @@
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-pladis">
-      <summary><span class="row-number">05</span><span>Brand Dynamics &amp; Market Intelligence Dashboard</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<details class="portfolio-row" id="proj-airbuild-sensors">
+      <summary><span class="project-logo logo-airbuild" aria-hidden="true"><svg viewBox="34 40 153 128"><image href="assets/logos/airbuild-symbol.png" width="225" height="225" filter="url(#project-logo-ink)"/></svg></span><span>Second-Generation Sensor Panel &amp; OTA Updates</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">pladis Global · Data &amp; BI</span>
+        <p class="case-patent mono">Patent pending / in progress</p>
+        <p>Developed Airbuild’s second-generation sensor panel, contributing to component selection, hardware assembly, firmware code, and software. Enabled over-the-air (OTA) updates so the panel could receive updates remotely.</p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">Hardware Component Selection</span>
+            <span class="skill-pill">Sensor Panel Assembly</span>
+            <span class="skill-pill">Firmware Development</span>
+            <span class="skill-pill">Hardware–Software Integration</span>
+            <span class="skill-pill">Over-the-Air Updates</span>
+          </div>
+        </div>
+      </div>
+    </details>
+<details class="portfolio-row" id="proj-airbuild-website">
+      <summary><span class="project-logo logo-airbuild" aria-hidden="true"><svg viewBox="34 40 153 128"><image href="assets/logos/airbuild-symbol.png" width="225" height="225" filter="url(#project-logo-ink)"/></svg></span><span>Airbuild Website — Development &amp; Ownership</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
+        <p>Built Airbuild’s company website and have complete ownership of its ongoing development and maintenance. <a href="https://www.airbuildinc.com/" target="_blank" rel="noopener">Visit Airbuild ↗</a></p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">Website Development</span>
+            <span class="skill-pill">Website Maintenance</span>
+            <span class="skill-pill">End-to-End Ownership</span>
+          </div>
+        </div>
+      </div>
+    </details>
+</section>
+<section class="project-group" aria-labelledby="projects-pladis"><h3 class="project-group-heading mono" id="projects-pladis">pladis</h3>
+<details class="portfolio-row" id="proj-pladis">
+      <summary><span class="project-logo logo-pladis" aria-hidden="true"><svg viewBox="28 18 126 145"><image href="assets/logos/pladis-symbol.png" width="180" height="180" filter="url(#project-logo-ink)"/></svg></span><span>Brand Dynamics &amp; Market Intelligence Dashboard</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
         <img class="archive-image" loading="lazy" src="assets/pladis-dashboard.png" alt="pladis Insights Intelligence Dashboard">
         <p>Engineered and deployed an executive market intelligence platform used across North American Marketing and Insights teams (brands including Godiva, Flipz, McVitie's). Created an automated ingestion service allowing non-technical stakeholders to email reports to a service account for automated dashboard parsing, paired with AI-driven competitor release synthesis that directly shaped product roadmaps.</p>
         <div class="skills-block">
@@ -193,11 +292,11 @@
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-codegpt">
-      <summary><span class="row-number">06</span><span>CodeGPT — Deep Learning Neural Code Search</span><span class="row-plus" aria-hidden="true">+</span></summary>
+</section>
+<section class="project-group" aria-labelledby="projects-sdsu"><h3 class="project-group-heading mono" id="projects-sdsu">SDSU</h3>
+<details class="portfolio-row" id="proj-codegpt">
+      <summary><span class="project-logo logo-sdsu" aria-hidden="true"><svg viewBox="0 14 195 67"><image href="assets/logos/sdsu.png" width="429" height="100" filter="url(#project-logo-ink)"/></svg></span><span>CodeGPT — Deep Learning Neural Code Search</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">SDSU AI4Business Lab · Deep Learning Research</span>
         <p>Coordinated 10+ Python research projects while advancing deep learning code retrieval models under Prof. Vivian Huangfu. Enhanced neural code search representations by combining domain-specific LLM pre-training objectives with semantic code embeddings to improve developer retrieval accuracy across large codebases.</p>
         <div class="skills-block">
           <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
@@ -211,11 +310,9 @@
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-fallsense">
-      <summary><span class="row-number">07</span><span>FallSense — Wearable Edge AI Detection System</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<details class="portfolio-row" id="proj-fallsense">
+      <summary><span class="project-logo logo-sdsu" aria-hidden="true"><svg viewBox="0 14 195 67"><image href="assets/logos/sdsu.png" width="429" height="100" filter="url(#project-logo-ink)"/></svg></span><span>FallSense — Wearable Edge AI Detection System</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">SDSU &amp; Zip Launchpad · IEEE/ACM Paper Submitted 📄</span>
         <img class="archive-image" loading="lazy" src="assets/fallsense.png" alt="FallSense hardware and Discord alert">
         <p>Standalone WiFi-enabled wearable fall detector built with an Arduino Nano ESP32 + MPU6050 6-axis IMU. Uses an orientation-independent Signal Magnitude Vector (SMV) threshold algorithm running locally on-device — achieving sub-2-second alert latency via Discord webhooks. Built for under  with no recurring subscription fees. <a href="https://drive.google.com/file/d/1QG9nnAi5VCKbfzMGnRojBYpNkttT8AF5/view?usp=sharing" target="_blank" rel="noopener">Read Research Paper ↗</a></p>
         <div class="skills-block">
@@ -231,45 +328,37 @@
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-gpt">
-      <summary><span class="row-number">08</span><span>AI Course Tutor &amp; Automated Grading Pipeline</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<details class="portfolio-row" id="proj-gpt">
+      <summary><span class="project-logo logo-sdsu" aria-hidden="true"><svg viewBox="0 14 195 67"><image href="assets/logos/sdsu.png" width="429" height="100" filter="url(#project-logo-ink)"/></svg></span><span>AI Course Tutor — Research Paper</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">SDSU Graduate MIS Department · EdTech Research</span>
-        <p>Researched and authored custom GPT learning assistants grounded in master's-level course syllabi and assignments. As the sole undergraduate Teaching Assistant for graduate systems courses (MIS 695 &amp; 515), developed Python autograding scripts that cut evaluation time by over 70% while improving grading consistency across 30+ graduate students. <a href="https://drive.google.com/file/d/1taMt_k8VkPiAO56eR0K2uSNhHHyhmCih/view?usp=sharing" target="_blank" rel="noopener">Read Research Paper ↗</a></p>
+        <p>Researched custom GPT learning assistants grounded in master’s-level course syllabi and assignments, documenting the work in a research paper. <a href="https://drive.google.com/file/d/1taMt_k8VkPiAO56eR0K2uSNhHHyhmCih/view?usp=sharing" target="_blank" rel="noopener">Read Research Paper ↗</a></p>
         <div class="skills-block">
           <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
           <div class="skills-tags">
             <span class="skill-pill">Educational RAG Systems</span>
+            <span class="skill-pill">Course-Grounded GPT Assistants</span>
+            <span class="skill-pill">Academic Research &amp; Writing</span>
+          </div>
+        </div>
+      </div>
+    </details>
+<details class="portfolio-row" id="proj-autograding">
+      <summary><span class="project-logo logo-sdsu" aria-hidden="true"><svg viewBox="0 14 195 67"><image href="assets/logos/sdsu.png" width="429" height="100" filter="url(#project-logo-ink)"/></svg></span><span>Automated Grading Pipeline — Teaching Assistant Work</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
+        <p>As the sole undergraduate Teaching Assistant for graduate systems courses (MIS 695 &amp; 515), developed Python autograding scripts that cut evaluation time by over 70% while improving grading consistency across 30+ graduate students.</p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
             <span class="skill-pill">Python Automation &amp; Autograding</span>
-            <span class="skill-pill">Curriculum Systems Analysis</span>
+            <span class="skill-pill">Grading Workflow Design</span>
             <span class="skill-pill">Technical Communication &amp; Instruction</span>
           </div>
         </div>
       </div>
     </details>
-
-    <details class="portfolio-row" id="proj-spinarchitect">
-      <summary><span class="row-number">09</span><span>Spin Architect — Ride Choreography &amp; Music Intelligence</span><span class="row-plus" aria-hidden="true">+</span></summary>
+<details class="portfolio-row" id="proj-leadership">
+      <summary><span class="project-logo logo-sdsu" aria-hidden="true"><svg viewBox="0 14 195 67"><image href="assets/logos/sdsu.png" width="429" height="100" filter="url(#project-logo-ink)"/></svg></span><span>Hack the Future &amp; CodeBlitz — University Engineering Series</span><span class="row-plus" aria-hidden="true">+</span></summary>
       <div class="row-body">
-        <span class="project-company-badge">Independent Project · Full-Stack Fitness Tech</span>
-        <p>A full-featured spin class planning tool built from scratch for indoor cycling instructors. Plan complete ride profiles with RPM ranges, intensity levels, and move durations with a real-time total duration tracker. Integrates Spotify and SoundCloud Web APIs for track search and real-time audio BPM detection, with one-click export. <a href="https://6996cac613ee3a12ece0e8d5--doseplaylistbuilder.netlify.app/" target="_blank" rel="noopener">Launch Live App ↗</a></p>
-        <div class="skills-block">
-          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
-          <div class="skills-tags">
-            <span class="skill-pill">Web Audio API &amp; BPM Detection</span>
-            <span class="skill-pill">Spotify &amp; SoundCloud REST APIs</span>
-            <span class="skill-pill">Client-Side State Management</span>
-            <span class="skill-pill">Mobile-First Responsive UX</span>
-          </div>
-        </div>
-      </div>
-    </details>
-
-    <details class="portfolio-row" id="proj-leadership">
-      <summary><span class="row-number">10</span><span>Hack the Future &amp; CodeBlitz — University Engineering Series</span><span class="row-plus" aria-hidden="true">+</span></summary>
-      <div class="row-body">
-        <span class="project-company-badge">SDSU Leadership · Sponsored by Anthropic &amp; Zip Launchpad</span>
         <p>Directed SDSU's flagship AI hackathon (sponsored by Anthropic &amp; Zip Launchpad) and founded the CodeBlitz competitive programming series. Authored novel algorithmic problem sets, built automated Python test runners for instant leaderboard scoring, and led logistics for hundreds of participating students.</p>
         <div class="skills-block">
           <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
@@ -282,7 +371,42 @@
         </div>
       </div>
     </details>
-  </div>
+</section>
+<section class="project-group" aria-labelledby="projects-independent"><h3 class="project-group-heading mono" id="projects-independent">Client Work</h3>
+<details class="portfolio-row" id="proj-spinarchitect">
+      <summary><span class="project-logo logo-independent" aria-hidden="true"><svg viewBox="0 0 32 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="20" r="5"/><circle cx="25" cy="20" r="5"/><path d="m7 20 7-12 6 12H7l5-9h9m-3-7h4l3 16M11 8h6"/></svg></span><span>Spin Architect — Ride Choreography &amp; Music Intelligence</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
+        <p>Built a custom spin class planning platform for a spin studio, giving its indoor cycling instructors tools to plan and deliver complete rides. Plan complete ride profiles with RPM ranges, intensity levels, and move durations with a real-time total duration tracker. Integrates Spotify and SoundCloud Web APIs for track search and real-time audio BPM detection, with one-click export. <a href="https://6996cac613ee3a12ece0e8d5--doseplaylistbuilder.netlify.app/" target="_blank" rel="noopener">Launch Live App ↗</a></p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">Web Audio API &amp; BPM Detection</span>
+            <span class="skill-pill">Spotify &amp; SoundCloud REST APIs</span>
+            <span class="skill-pill">Client-Side State Management</span>
+            <span class="skill-pill">Mobile-First Responsive UX</span>
+          </div>
+        </div>
+      </div>
+    </details>
+<details class="portfolio-row" id="proj-real-estate-agent">
+      <summary><span class="project-logo logo-independent" aria-hidden="true"><svg viewBox="0 0 32 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 13 13-10 13 10M6 11v14h20V11M13 25v-9h6v9"/></svg></span><span>Real Estate Client Tracking &amp; Proactive Follow-Up Agent</span><span class="row-plus" aria-hidden="true">+</span></summary>
+      <div class="row-body">
+        <p>Built an agent for a real estate client to track clients, the homes they’re following, and when the realtor last reached out. The system keeps client relationships and property interests organized in one place.</p>
+        <p>Added proactive follow-up so the agent reaches out to clients when the realtor misses a check-in, helping maintain contact without relying on manual reminders.</p>
+        <div class="skills-block">
+          <span class="skills-heading mono">SKILLS LEARNED &amp; USED:</span>
+          <div class="skills-tags">
+            <span class="skill-pill">Client Relationship Tracking</span>
+            <span class="skill-pill">Property Interest Tracking</span>
+            <span class="skill-pill">Outreach History</span>
+            <span class="skill-pill">Proactive Agent Workflows</span>
+            <span class="skill-pill">Automated Client Follow-Up</span>
+          </div>
+        </div>
+      </div>
+    </details>
+</section>
+</div>
 </section>
 
     <section class="human-section wrap" id="human" aria-labelledby="human-heading">
@@ -293,45 +417,17 @@ And a spin instructor off-screen.</p></div>
           <div class="portrait-grid" aria-hidden="true"></div>
           <div class="portrait-halo" aria-hidden="true"><span>HELLO</span></div>
           <div class="portrait-depth"><img class="main-portrait" src="assets/nitin.webp" alt="Nitin Chatlani smiling with his arms crossed" width="540" height="675" fetchpriority="high"></div>
-          <div class="portrait-sticker sticker-ai"><span class="mono">CURRENT OBSESSION</span><b>Agents that<br>actually do things.</b><span aria-hidden="true">↗</span></div>
           <button class="portrait-sticker sticker-human" aria-expanded="false" aria-controls="off-duty"><span aria-hidden="true">↺</span><span>There’s an<br><b>off-duty version.</b></span></button>
           <div id="off-duty" class="off-duty" hidden><img src="assets/spin.webp" alt="Nitin teaching a spin class" width="667" height="1000"><div><span class="mono">SAME ENERGY. DIFFERENT ROOM.</span><b>Also your<br>spin instructor.</b><p>Music up. Laptop closed.</p><button class="off-duty-close" aria-label="Back to Nitin’s portrait">Back to work ↗</button></div></div>
           <p class="portrait-caption mono">ENGINEER AT THE KEYBOARD.<br>HUMAN EVERYWHERE ELSE.</p>
-          <span class="portrait-signature" aria-hidden="true">yep, that’s me ↗</span>
         </div><div class="human-content live-about">
-      <p>I&#x27;m a <strong>Computer Science senior at SDSU</strong> graduating May 2026, with a Mathematics minor. I&#x27;m wired to think like a PM and build like an engineer — I care deeply about <em>why</em> something is built, not just <em>how</em>.</p>
+      <p>I&#x27;m currently pursuing my <strong>master’s in Artificial Intelligence and Technology at SDSU</strong>, building on a B.S. in Computer Science with a Mathematics minor. I&#x27;m wired to think like a PM and build like an engineer — I care deeply about <em>why</em> something is built, not just <em>how</em>.</p>
       <p>I&#x27;ve shipped patent-pending ML models, submitted research to IEEE/ACM, led a <strong>450-member coding community</strong>, and built production software used company-wide — all while TA-ing graduate courses as the only undergrad TA in my department. I thrive at the intersection of user problems, technical craft, and cross-functional leadership.</p>
       <p>Off-screen: I&#x27;m a <strong>certified spin instructor</strong> — which means I&#x27;m equally comfortable reading a room, setting the pace, and making sure everyone leaves having given everything they&#x27;ve got. 🚴</p>
-    <div class="compact-stats"><div><strong>M.S. in AI</strong><span>San Diego State Univ.</span></div><div><strong>B.S. in CS</strong><span>SDSU · Math Minor</span></div><div><strong>450+</strong><span>eLeetCoders Members</span></div><div><strong>30+</strong><span>Grad Students TA&#x27;d</span></div></div></div></div><details class="content-drawer" id="education" open><summary><span>Education &amp; Academic Leadership</span><span class="drawer-count">SDSU · M.S. AI + B.S. CS</span><span aria-hidden="true">+</span></summary><div class="role-list"><article id="edu-ms"><p class="role-date mono">2026 – Present</p><h3>Master of Science (M.S.) in Artificial Intelligence &amp; Technology</h3><p class="role-company">San Diego State University</p><ul><li>Graduate focus in multi-agent architectures, neural retrieval systems, deep learning, and applied machine learning.</li><li>Lab Coordinator at the SDSU AI4Business Research Lab: directing 10+ research projects and contributing to deep learning code search (CodeGPT).</li></ul></article><article id="edu-bs"><p class="role-date mono">Graduating May 2026</p><h3>Bachelor of Science (B.S.) in Computer Science, Minor in Mathematics</h3><p class="role-company">San Diego State University</p><ul><li>Sole undergraduate Teaching Assistant in the MIS department for graduate courses (MIS 695 &amp; MIS 515), supporting 30+ graduate students.</li><li>Vice President of eLeetCoders (450+ members) and Co-Founder / VP of Operations of ACM @ SDSU (200+ members).</li><li>Author / contributor on peer-reviewed research papers submitted to IEEE and ACM venues.</li></ul></article></div></details><details class="content-drawer" id="experience"><summary><span>Where I’ve worked</span><span class="drawer-count">09 ROLES</span><span aria-hidden="true">+</span></summary><div class="role-list"><article id="exp-arm"><p class="role-date mono">Summer 2026</p><h3>Power &amp; Performance Engineering Intern</h3><p class="role-company">Arm — Austin, TX</p><ul><li>Built an automated RAG intake pipeline reconciling cross-team hardware specs and recompiling knowledge embeddings upon verification.</li><li>Developed custom tooling and skills for internal engineering agents with enterprise MSAL authentication.</li><li>Built SQL-backed telemetry tracking query semantic similarity and TTFT to measure and improve agent quality.</li></ul></article><article id="exp-airbuild"><p class="role-date mono">Summer 2025 – Present</p><h3>Software Engineering + AI Intern</h3><p class="role-company">Airbuild Inc. — Remote</p><ul>
-        <li>Built and deployed a full-stack project-management web app, currently in company-wide beta testing.</li>
-        <li>Created an internal LLM trained on company drawings and proprietary data.</li>
-        <li>Rebuilt and currently maintain the Airbuild public-facing website — owning all UI/UX, design, and front-end development.</li>
-        <li>Built data pipelines and visualizations using Firebase, AWS, Pandas, and NumPy to analyze live sensor data from Airbuild&#x27;s microalgae-based wastewater treatment system — part of a carbon-negative cleantech platform with a patent-pending automated harvesting system.</li>
-      </ul></article><article id="exp-pladis"><p class="role-date mono">Spring &amp; Summer 2024</p><h3>Data Integration + Platform Insights Intern</h3><p class="role-company">pladis Global — Remote</p><ul>
-        <li>Built and deployed a brand dynamics dashboard used by the entire North American Insights &amp; Marketing groups.</li>
-        <li>Delivered key market-shift insights that influenced website changes, social media activations, and product initiatives.</li>
-      </ul></article><article id="exp-lab"><p class="role-date mono">Spring 2024 – Present</p><h3>Lab Coordinator</h3><p class="role-company">SDSU AI4Business Research Lab</p><ul>
-        <li>Managing 10+ Python-based research projects under Professor Vivian Huangfu.</li>
-        <li>Contributing to CodeGPT — enhancing a deep learning code search model with LLM pre-training techniques.</li>
-        <li>Interviewing and evaluating research assistant candidates.</li>
-      </ul></article><article id="role-3"><p class="role-date mono">June 2024 – Present</p><h3>Vice President — eLeetCoders Club</h3><p class="role-company">San Diego State University</p><ul>
-        <li>Organizing club meetings for 450+ members to collaborate on LeetCode problems, sometimes with guest lecturers.</li>
-      </ul></article><article id="role-4"><p class="role-date mono">2024–25 School Year</p><h3>Graduate Teaching Assistant</h3><p class="role-company">SDSU — Business Systems Analysis &amp; Design (MIS695 + MIS515)</p><ul>
-        <li>Sole undergraduate TA responsible for 20+ assignments, weekly office hours, and in-class support for 30+ grad students.</li>
-        <li>Wrote Python scripts to automate and streamline grading workflows.</li>
-      </ul></article><article id="role-5"><p class="role-date mono">May 2024 – August 2025</p><h3>Co-Founder &amp; Vice President of Operations — ACM</h3><p class="role-company">Association for Computing Machinery @ SDSU</p><ul>
-        <li>Co-founded and led the ACM chapter at SDSU, growing to 200+ members.</li>
-        <li>Worked to fill learning gaps for CS students by providing supplementary learning material.</li>
-      </ul></article><article id="role-6"><p class="role-date mono">Summer 2023</p><h3>IT Intern + Instructor</h3><p class="role-company">Lavner Education — University of San Diego</p><ul>
-        <li>Taught Java, Python, and C to 100+ students in group and one-on-one settings.</li>
-        <li>Managed on-site hardware, software, and internet connectivity setup and maintenance.</li>
-      </ul></article><article id="exp-research"><p class="role-date mono">Spring 2023</p><h3>Student Research Assistant</h3><p class="role-company">San Diego State University — Prof. Miranda Parker</p><ul>
-        <li>Conducted CS Education research on how spatial skills training affects student success in CS courses.</li>
-        <li>Identified and worked to reduce biases in CS assessments by developing human-subject research studies.</li>
-      </ul></article></div></details><details class="content-drawer" id="skills"><summary><span>What I work with</span><span class="drawer-count">TECH + DESIGN + PRODUCT</span><span aria-hidden="true">+</span></summary><div class="skill-list"><span>Python</span><span>Java</span><span>C++</span><span>C</span><span>SQL</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>Assembly</span><span>Git</span><span>Bootstrap</span><span>Google Cloud</span><span>Firebase</span><span>AWS</span><span>ML / AI</span><span>LLMs</span><span>Arduino</span><span>React</span><span>Figma</span><span>UI / UX Design</span><span>Wireframing</span><span>Prototyping</span><span>Responsive Design</span><span>Design Systems</span><span>Web Development</span><span>Component Design</span><span>0→1 Building</span><span>Cross-functional</span><span>User Research</span><span>Data Viz</span><span>Agile / Scrum</span></div></details>
+    <div class="compact-stats"><div><strong>M.S. in AI &amp; Technology</strong><span>SDSU · Currently pursuing</span></div><div><strong>B.S. in CS</strong><span>SDSU · Math Minor</span></div><div><strong>450+</strong><span>eLeetCoders Members</span></div><div><strong>30+</strong><span>Grad Students TA&#x27;d</span></div></div></div></div><details class="content-drawer" id="leadership" open><summary><span>Leadership</span><span class="drawer-count">SDSU · COMMUNITY + RESEARCH</span><span aria-hidden="true">+</span></summary><div class="role-list"><article><h3>Co-Founder &amp; VP of Operations</h3><p class="role-company">ACM @ SDSU</p><p>Co-founded the chapter and helped grow a community of 200+ members, creating supplementary learning opportunities for CS students.</p></article><article><h3>Vice President</h3><p class="role-company">eLeetCoders Club</p><p>Organized programming practice and club meetings for a community of 450+ members.</p></article><article><h3>Lab Coordinator</h3><p class="role-company">SDSU AI4Business Lab</p><p>Coordinated 10+ Python research projects under Professor Vivian Huangfu and contributed to CodeGPT research.</p></article><article><h3>Student Research Assistant</h3><p class="role-company">SDSU · Professor Miranda Parker</p><p>Conducted computer science education research on spatial skills training and bias in CS assessments.</p></article></div></details><details class="content-drawer" id="skills"><summary><span>What I work with</span><span class="drawer-count">SKILLS + WHERE I USED THEM</span><span aria-hidden="true">+</span></summary><div class="skills-by-organization"><p class="skills-context">Select a skill to explore the project where I used it.</p><section class="skills-source"><h3 class="skills-source-heading"><span class="project-logo logo-arm" aria-hidden="true"><svg viewBox="0 0 4332 1319"><image href="assets/logos/arm.png" width="4332" height="1319" filter="url(#project-logo-ink)"/></svg></span><span>Arm</span></h3><div class="skills-tags"><a class="skill-pill" href="#proj-arm-rag">Microsoft Azure</a><a class="skill-pill" href="#proj-arm-rag">Service Account Integration</a><a class="skill-pill" href="#proj-arm-rag">Machine Learning Model Integration</a><a class="skill-pill" href="#proj-arm-rag">RAG Pipeline Design</a><a class="skill-pill" href="#proj-arm-rag">Function Calling &amp; Agent Tooling</a><a class="skill-pill" href="#proj-arm-rag">Chip Design Engineering Workflows</a><a class="skill-pill" href="#proj-arm-analytics">React Application Instrumentation</a><a class="skill-pill" href="#proj-arm-analytics">Custom Analytics Tracking</a><a class="skill-pill" href="#proj-arm-analytics">MSAL Enterprise Authentication</a><a class="skill-pill" href="#proj-arm-analytics">LLM &amp; Agent Usage Analytics</a><a class="skill-pill" href="#proj-arm-analytics">Time-to-First-Token Observability</a><a class="skill-pill" href="#proj-arm-analytics">Semantic Similarity Analysis</a><a class="skill-pill" href="#proj-arm-analytics">SQL Telemetry &amp; Dashboards</a><a class="skill-pill" href="#proj-arm-build-day">Hands-On Workshop Leadership</a><a class="skill-pill" href="#proj-arm-build-day">ESP32 &amp; E-Ink Displays</a><a class="skill-pill" href="#proj-arm-build-day">Connected Hardware Prototyping</a><a class="skill-pill" href="#proj-arm-build-day">API Integration</a><a class="skill-pill" href="#proj-arm-build-day">Technical Instruction</a><a class="skill-pill" href="#proj-arm-documentation">Context-Aware Documentation</a><a class="skill-pill" href="#proj-arm-documentation">Dynamic Web Interfaces</a><a class="skill-pill" href="#proj-arm-documentation">Agent Tool Documentation</a><a class="skill-pill" href="#proj-arm-documentation">Information Architecture</a><a class="skill-pill" href="#proj-arm-documentation">Platform Guidance &amp; Quick Tips</a></div></section><section class="skills-source"><h3 class="skills-source-heading"><span class="project-logo logo-airbuild" aria-hidden="true"><svg viewBox="34 40 153 128"><image href="assets/logos/airbuild-symbol.png" width="225" height="225" filter="url(#project-logo-ink)"/></svg></span><span>Airbuild</span></h3><div class="skills-tags"><a class="skill-pill" href="#proj-algae">Predictive Machine Learning</a><a class="skill-pill" href="#proj-algae">Biomass Growth Forecasting</a><a class="skill-pill" href="#proj-algae">Algae Health Anomaly Detection</a><a class="skill-pill" href="#proj-algae">Sensor Data Analysis</a><a class="skill-pill" href="#proj-algae">Pandas &amp; NumPy</a><a class="skill-pill" href="#proj-airbuild-iot">AWS Data Integration</a><a class="skill-pill" href="#proj-airbuild-iot">IoT Data Pipelines</a><a class="skill-pill" href="#proj-airbuild-iot">Real-Time Dashboard Development</a><a class="skill-pill" href="#proj-airbuild-iot">Web Interface Design</a><a class="skill-pill" href="#proj-airbuild-iot">Agent Tool Integration</a><a class="skill-pill" href="#proj-airbuild-iot">Live Sensor Context</a><a class="skill-pill" href="#proj-agent-fleet">Enterprise Agent Architecture</a><a class="skill-pill" href="#proj-agent-fleet">Automated Skill Dispatching</a><a class="skill-pill" href="#proj-agent-fleet">Third-Party API Integration (Canva, Calendars)</a><a class="skill-pill" href="#proj-agent-fleet">Task Routing &amp; Prompt Orchestration</a><a class="skill-pill" href="#proj-agent-fleet">Full-Stack Workflow Tooling</a><a class="skill-pill" href="#proj-airbuild">Full-Stack Web Architecture</a><a class="skill-pill" href="#proj-airbuild">React &amp; Modern UI/UX</a><a class="skill-pill" href="#proj-airbuild">Firebase / Cloud Firestore</a><a class="skill-pill" href="#proj-airbuild">Domain LLM Training &amp; Retrieval</a><a class="skill-pill" href="#proj-airbuild">Production Beta Delivery</a><a class="skill-pill" href="#proj-airbuild-sensors">Hardware Component Selection</a><a class="skill-pill" href="#proj-airbuild-sensors">Sensor Panel Assembly</a><a class="skill-pill" href="#proj-airbuild-sensors">Firmware Development</a><a class="skill-pill" href="#proj-airbuild-sensors">Hardware–Software Integration</a><a class="skill-pill" href="#proj-airbuild-sensors">Over-the-Air Updates</a><a class="skill-pill" href="#proj-airbuild-website">Website Development</a><a class="skill-pill" href="#proj-airbuild-website">Website Maintenance</a><a class="skill-pill" href="#proj-airbuild-website">End-to-End Ownership</a></div></section><section class="skills-source"><h3 class="skills-source-heading"><span class="project-logo logo-pladis" aria-hidden="true"><svg viewBox="28 18 126 145"><image href="assets/logos/pladis-symbol.png" width="180" height="180" filter="url(#project-logo-ink)"/></svg></span><span>pladis</span></h3><div class="skills-tags"><a class="skill-pill" href="#proj-pladis">Business Intelligence (BI)</a><a class="skill-pill" href="#proj-pladis">Automated Email-to-Dashboard ETL</a><a class="skill-pill" href="#proj-pladis">Market Sentiment Analysis</a><a class="skill-pill" href="#proj-pladis">Google Cloud Platform</a><a class="skill-pill" href="#proj-pladis">Executive Stakeholder Presentations</a></div></section><section class="skills-source"><h3 class="skills-source-heading"><span class="project-logo logo-sdsu" aria-hidden="true"><svg viewBox="0 14 195 67"><image href="assets/logos/sdsu.png" width="429" height="100" filter="url(#project-logo-ink)"/></svg></span><span>SDSU</span></h3><div class="skills-tags"><a class="skill-pill" href="#proj-codegpt">Deep Learning Representation Learning</a><a class="skill-pill" href="#proj-codegpt">LLM Pre-Training &amp; Embeddings</a><a class="skill-pill" href="#proj-codegpt">PyTorch &amp; Python Data Pipelines</a><a class="skill-pill" href="#proj-codegpt">Academic Research Leadership</a><a class="skill-pill" href="#proj-codegpt">Code Search Benchmarks</a><a class="skill-pill" href="#proj-fallsense">Edge AI Inference</a><a class="skill-pill" href="#proj-fallsense">Embedded C / C++</a><a class="skill-pill" href="#proj-fallsense">Arduino Nano ESP32</a><a class="skill-pill" href="#proj-fallsense">IMU Sensor Signal Processing</a><a class="skill-pill" href="#proj-fallsense">Rapid Hardware Prototyping &amp; 3D Printing</a><a class="skill-pill" href="#proj-fallsense">Webhook Dispatch Architecture</a><a class="skill-pill" href="#proj-gpt">Educational RAG Systems</a><a class="skill-pill" href="#proj-gpt">Course-Grounded GPT Assistants</a><a class="skill-pill" href="#proj-gpt">Academic Research &amp; Writing</a><a class="skill-pill" href="#proj-autograding">Python Automation &amp; Autograding</a><a class="skill-pill" href="#proj-autograding">Grading Workflow Design</a><a class="skill-pill" href="#proj-autograding">Technical Communication &amp; Instruction</a><a class="skill-pill" href="#proj-leadership">Algorithmic Problem Formulation</a><a class="skill-pill" href="#proj-leadership">Real-Time Autograding Infrastructure</a><a class="skill-pill" href="#proj-leadership">Technical Event Operations</a><a class="skill-pill" href="#proj-leadership">Developer Community Leadership</a></div></section><section class="skills-source"><h3 class="skills-source-heading"><span class="project-logo logo-independent" aria-hidden="true"><svg viewBox="0 0 32 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="20" r="5"/><circle cx="25" cy="20" r="5"/><path d="m7 20 7-12 6 12H7l5-9h9m-3-7h4l3 16M11 8h6"/></svg></span><span>Spin studio · Spin Architect</span></h3><div class="skills-tags"><a class="skill-pill" href="#proj-spinarchitect">Web Audio API &amp; BPM Detection</a><a class="skill-pill" href="#proj-spinarchitect">Spotify &amp; SoundCloud REST APIs</a><a class="skill-pill" href="#proj-spinarchitect">Client-Side State Management</a><a class="skill-pill" href="#proj-spinarchitect">Mobile-First Responsive UX</a></div></section><section class="skills-source"><h3 class="skills-source-heading"><span class="project-logo logo-independent" aria-hidden="true"><svg viewBox="0 0 32 28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 13 13-10 13 10M6 11v14h20V11M13 25v-9h6v9"/></svg></span><span>Real estate client</span></h3><div class="skills-tags"><a class="skill-pill" href="#proj-real-estate-agent">Client Relationship Tracking</a><a class="skill-pill" href="#proj-real-estate-agent">Property Interest Tracking</a><a class="skill-pill" href="#proj-real-estate-agent">Outreach History</a><a class="skill-pill" href="#proj-real-estate-agent">Proactive Agent Workflows</a><a class="skill-pill" href="#proj-real-estate-agent">Automated Client Follow-Up</a></div></section></div></details>
     </section>
 
-    <section class="contact-section" id="contact" aria-labelledby="contact-heading"><div class="wrap"><div class="section-top mono"><span>03 / CONTACT ME</span><span>SAN DIEGO, CA</span></div><h2 id="contact-heading">Let’s talk.<br><a href="mailto:nitin.k.chatlani@gmail.com">Human to human.<span aria-hidden="true">↗</span></a></h2><div class="contact-bottom"><p>Hiring for Sales Engineering or Forward Deployed Engineering?<br>I’d love to hear what your team is working on.</p><div><a href="mailto:nitin.k.chatlani@gmail.com">Email me ↗</a><a href="https://linkedin.com/in/nitinchatlani" target="_blank" rel="noopener">LinkedIn ↗</a><a href="assets/nitin-chatlani-resume.pdf" target="_blank" rel="noopener">Résumé ↗</a><a href="https://instagram.com/n.chatlani" target="_blank" rel="noopener">Instagram ↗</a></div></div></div></section>
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading"><div class="wrap"><div class="section-top mono"><span>03 / CONTACT ME</span><span>SAN DIEGO, CA</span></div><h2 id="contact-heading">Contact me.</h2><div class="contact-bottom"><p>I’m seeking full-time opportunities in AI and software engineering,<br>including Sales Engineering and Forward Deployed Engineering.</p><div><a href="mailto:nitin.k.chatlani@gmail.com">Email me ↗</a><a href="https://linkedin.com/in/nitinchatlani" target="_blank" rel="noopener">LinkedIn ↗</a><a href="assets/nitin-chatlani-resume.pdf" target="_blank" rel="noopener">Résumé ↗</a><a href="https://instagram.com/n.chatlani" target="_blank" rel="noopener">Instagram ↗</a></div></div></div></section>
   </main>
   <footer class="site-footer wrap"><span class="mono">© 2026 NITIN CHATLANI</span><span>Built with intention. And a little extra.</span><a class="mono" href="#top">BACK TO TOP ↑</a></footer>
 </body>

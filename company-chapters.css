@@ -72,3 +72,61 @@
  .experience-strip .brand-arm{width:65px}.experience-strip .brand-airbuild{width:110px}.experience-strip .brand-pladis{width:70px}
 }
 @media(max-width:760px) and (max-height:740px){.company-heading>p{font-size:8px;line-height:1.4}.company-wordmark{margin-bottom:7px}}
+
+/* Company-grouped portfolio with monochrome organization marks. */
+.project-logo-filters{position:absolute;pointer-events:none}
+.project-group + .project-group{margin-top:34px}
+.project-group-heading{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.organization-projects .portfolio-row summary{gap:22px;padding:22px 0}
+.project-logo{display:flex;align-items:center;justify-content:center;flex:0 0 46px;width:46px;height:28px;color:var(--ink)}
+.project-logo svg{display:block;width:100%;height:100%;overflow:hidden}
+.logo-arm svg{width:43px;height:20px}
+.logo-airbuild svg{width:29px;height:25px}
+.logo-pladis svg{width:23px;height:27px}
+.logo-sdsu svg{width:44px;height:19px}
+.logo-independent svg{width:25px;height:23px}
+.organization-projects .row-body{padding-left:68px;font-size:16px;line-height:1.8}
+@media(max-width:760px){
+ .project-group + .project-group{margin-top:28px}
+ .organization-projects .portfolio-row summary{gap:14px;padding:18px 0;font-size:16px}
+ .project-logo{flex-basis:38px;width:38px}
+ .logo-arm svg{width:36px}.logo-sdsu svg{width:38px}
+ .organization-projects .row-body{padding-left:52px;font-size:15px}
+ .organization-projects .row-plus{flex-shrink:0}
+}
+
+/* Project-backed skills with organization attribution. */
+.skills-by-organization{padding:4px 0 28px}
+.skills-context{font-size:13px;color:var(--muted);margin-bottom:24px}
+.skills-source + .skills-source{margin-top:28px}
+.skills-source-heading{display:flex;align-items:center;gap:14px;font-size:14px;margin:0 0 12px}
+.skills-source .skills-tags{display:flex;flex-wrap:wrap;gap:8px}
+.skills-source a.skill-pill:hover{background:var(--babyblue-light);text-decoration:underline;text-underline-offset:3px}
+#leadership .role-list article>p:last-child{font-size:13px;line-height:1.8;margin-top:10px}
+
+/* Readable supporting labels and a calmer contact section. */
+.section-top,.section-top>span:last-child{font-size:11px;line-height:1.6}
+.section-top>span:last-child{max-width:none}
+.drawer-count{font-size:11px;line-height:1.5}
+.role-company{font-size:14px;line-height:1.6}
+.human-grid .portrait-caption{font-size:10px;line-height:1.6}
+.off-duty img{object-position:center top}
+.off-duty .mono{font-size:10px;line-height:1.6}
+.skills-heading,.case-patent,.project-group-heading{font-size:11px;line-height:1.6}
+.compact-stats span{font-size:11px;line-height:1.6}
+.section-top{gap:16px;flex-wrap:wrap}
+.content-drawer>summary{flex-wrap:wrap;row-gap:7px}
+.content-drawer>summary>span:first-child{flex:1}
+.contact-section{background:#dde5e5;color:var(--ink);padding:48px 0}
+.contact-section .section-top{border-color:#b9c6c6}
+.contact-section .section-top>span:last-child{color:#526262}
+.contact-section h2{font-size:clamp(42px,6vw,72px);letter-spacing:-.045em;margin:28px 0}
+.contact-bottom p{font-size:15px;line-height:1.7}
+.contact-bottom>div{font-size:14px;flex-wrap:wrap}
+@media(max-width:760px){
+ .section-top,.section-top>span:last-child{font-size:10px}
+ .drawer-count{font-size:10px;max-width:48%;text-align:right}
+ .human-grid .portrait-caption{font-size:9px}
+ .off-duty>div{padding:30px 24px 20px}
+ .contact-bottom>div{gap:20px}
+}
