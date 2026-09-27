@@ -198,19 +198,23 @@ function paintScene(time){
 const navLinks = {
   work: document.querySelector('.site-header nav a[href="#work"]'),
   build: document.querySelector('.site-header nav a[href="#chapter-arm"]'),
-  human: document.querySelector('.site-header nav a[href="#human"]')
+  human: document.querySelector('.site-header nav a[href="#human"]'),
+  contact: document.querySelector('.site-header nav a[href="#contact"]')
 };
 const workSection = document.getElementById('work');
 const humanSection = document.getElementById('human');
+const contactSection = document.getElementById('contact');
 let activeNavKey = null;
 
 function updateActiveNav() {
-  const headerH = siteHeader ? siteHeader.offsetHeight : 60;
+  const headerH = siteHeader ? siteHeader.offsetHeight : 54;
   const threshold = headerH + 60;
   let current = null;
   const isNearBottom = window.innerHeight + window.scrollY >= (document.documentElement.scrollHeight - 50);
 
-  if (isNearBottom || (humanSection && humanSection.getBoundingClientRect().top <= threshold)) {
+  if (isNearBottom || (contactSection && contactSection.getBoundingClientRect().top <= threshold)) {
+    current = 'contact';
+  } else if (humanSection && humanSection.getBoundingClientRect().top <= threshold) {
     current = 'human';
   } else if (workSection && workSection.getBoundingClientRect().top <= threshold) {
     current = 'work';
