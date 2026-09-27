@@ -60,6 +60,6 @@ html:not(.js) .scene-caption{display:none}
  .brain-chip{transform:rotateX(25deg) rotateZ(-10deg)!important}.brain-window{transform:translateZ(10px)!important}.chip-interposer{opacity:0!important}.scene-grid{transform:none!important}.brain-chip-shadow{transform:none!important}.story-motion{display:none}
 }
 @media print{.js .brain-story{height:auto}.js .motion-stage{position:static;height:auto;overflow:visible}.js .story-panel{position:static;height:auto;opacity:1!important;visibility:visible!important}.js .chapter-copy,.js .chapter-proof,.js .intro-bio,.js .intro-person{position:static;transform:none!important;opacity:1!important}.scene-caption{display:none}}
-/* Keep the entire opening composition inside the first viewport under floating header. */
-.js .brain-story{margin-top:-76px}
-@media(max-width:760px){.js .brain-story{margin-top:-64px}.scene-caption{top:13%}}
+/* Keep the entire opening composition inside the first viewport. */
+.js .brain-story{margin-top:-96px}
+@media(max-width:760px){.js .brain-story{margin-top:-78px}.scene-caption{top:13%}}
