@@ -196,8 +196,8 @@ function paintScene(time){
  if(Math.abs(target-progress)>.0001)requestFrame();else previousTime=0;
 }
 const navLinks = {
-  work: document.querySelector('.site-header nav a[href="#work"]'),
   build: document.querySelector('.site-header nav a[href="#chapter-arm"]'),
+  work: document.querySelector('.site-header nav a[href="#work"]'),
   human: document.querySelector('.site-header nav a[href="#human"]'),
   contact: document.querySelector('.site-header nav a[href="#contact"]')
 };
