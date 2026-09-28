@@ -21,14 +21,23 @@ document.addEventListener('keydown', (event) => {
   }
 });
 
-// Sticky header scroll elevation and compacting
+// Separate thresholds prevent tiny scroll reversals from restarting the morph.
+// The header shell reserves its full height, so resizing cannot move the page.
 const siteHeader = document.querySelector('.site-header');
+let headerCompact = false;
+let headerFrame = 0;
 function updateHeader() {
-  if (siteHeader) {
-    siteHeader.classList.toggle('is-scrolled', window.scrollY > 30);
-  }
+  headerFrame = 0;
+  if (!siteHeader) return;
+  const y = Math.max(0, window.scrollY);
+  const next = headerCompact ? y > 12 : y > 48;
+  if (next === headerCompact) return;
+  headerCompact = next;
+  siteHeader.classList.toggle('is-scrolled', next);
 }
-window.addEventListener('scroll', updateHeader, { passive: true });
+window.addEventListener('scroll', () => {
+  if (!headerFrame) headerFrame = requestAnimationFrame(updateHeader);
+}, { passive: true });
 updateHeader();
 
 // A personal portrait with a keyboard-accessible off-duty reveal.

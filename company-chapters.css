@@ -130,3 +130,13 @@
  .off-duty>div{padding:30px 24px 20px}
  .contact-bottom>div{gap:20px}
 }
+
+/* Give the three company scenes room beneath the floating navigation. */
+.brain-story { --company-drop: 32px; }
+.js .company-panel { top: var(--company-drop); bottom: auto; }
+.company-heading h2.company-wordmark { margin: 0; }
+.brain-story[data-company]:not([data-company="intro"]) .story-controls { display: none; }
+.js .brain-story[data-company]:not([data-company="intro"]) :is(.brain-chip-anchor,.scene-object,.story-circuits,.scene-halo) { margin-top: var(--company-drop); }
+@media(max-width:760px) { .brain-story { --company-drop: 24px; } }
+@media(max-width:760px) and (max-height:740px) { .brain-story { --company-drop: 18px; } }
+@media print { .js .company-panel { top: auto; } }

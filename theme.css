@@ -1,0 +1,117 @@
+/* A wire-only circuit with a sun/moon core and a 48px hit target. */
+:root { color-scheme: light; }
+.theme-chip {
+  position: relative; display: grid; place-items: center; flex: 0 0 48px;
+  width: 48px; height: 48px; padding: 0; border: 0; border-radius: 10px;
+  background: transparent; isolation: isolate; touch-action: manipulation;
+}
+.theme-chip { color: #465563; }
+.theme-chip-circuit { width: 44px; height: 44px; overflow: visible; transition: color .35s,filter .35s,transform .2s; }
+.theme-circuit-wires,.theme-circuit-nodes { opacity: .7; transition: opacity .3s; }
+.theme-circuit-body { stroke-width: 1.8; }
+.theme-icon { transform-origin: 32px 32px; transition: opacity .35s,transform .5s cubic-bezier(.2,.8,.2,1); }
+.theme-icon-sun { opacity: 1; transform: rotate(0) scale(1); }
+.theme-icon-moon { opacity: 0; transform: rotate(-45deg) scale(.65); }
+.theme-circuit-current { stroke: #58bcff; stroke-width: 2; stroke-dasharray: .18 .82; stroke-dashoffset: 1; opacity: 0; filter: drop-shadow(0 0 2px #59bdff); }
+[data-theme="dark"] .theme-chip { color: #71c2ff; }
+[data-theme="dark"] .theme-chip-circuit { filter: drop-shadow(0 0 3px #4aaeff45); }
+[data-theme="dark"] .theme-icon-sun { opacity: 0; transform: rotate(90deg) scale(.65); }
+[data-theme="dark"] .theme-icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+.theme-chip-tooltip {
+  position: absolute; top: calc(100% + 12px); right: -5px; display: flex; flex-direction: column; gap: 3px;
+  width: max-content; padding: 10px 13px; border: 1px solid #31485d; border-radius: 7px;
+  background: #101b28; color: #e4f1fc; box-shadow: 0 8px 25px #0003;
+  font: 9px/1.5 var(--mono); letter-spacing: .12em; text-align: left;
+  opacity: 0; transform: translateY(-4px); pointer-events: none; transition: opacity .2s,transform .2s;
+}
+.theme-chip-action { font-size: 8px; color: #80bbdf; }
+.theme-chip:focus-visible .theme-chip-tooltip { opacity: 1; transform: none; }
+.theme-chip:active .theme-chip-circuit { transform: scale(.93); }
+@media(hover:hover) {
+  .theme-chip:hover { color: #1689db; }
+  [data-theme="dark"] .theme-chip:hover { color: #a2daff; }
+  .theme-chip:hover :is(.theme-circuit-wires,.theme-circuit-nodes) { opacity: 1; }
+  .theme-chip:hover .theme-chip-tooltip { opacity: 1; transform: none; }
+}
+.power-pulse .theme-circuit-current { animation: current-in .8s ease-out both; }
+[data-theme="light"].power-pulse .theme-circuit-current { animation-name: current-out; }
+.power-pulse .theme-circuit-body { animation: wire-charge .8s ease-out; }
+@keyframes current-in { 0% { stroke-dashoffset: 1; opacity: 0; } 20% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes current-out { 0% { stroke-dashoffset: 0; opacity: 0; } 20% { opacity: 1; } 100% { stroke-dashoffset: 1; opacity: 0; } }
+@keyframes wire-charge { 25% { stroke: #78caff; filter: drop-shadow(0 0 4px #4daaff); } }
+.theme-reveal::view-transition-old(root) { animation: none; }
+.theme-reveal::view-transition-new(root) { animation: power-reveal .65s cubic-bezier(.16,1,.3,1) both; }
+.theme-reveal::view-transition-group(root) { animation-duration: .65s; }
+@keyframes power-reveal { from { clip-path: circle(0 at var(--power-x) var(--power-y)); } to { clip-path: circle(150vmax at var(--power-x) var(--power-y)); } }
+
+/* A midnight workbench. Material artwork keeps its own colors. */
+:root[data-theme="dark"] {
+  color-scheme: dark; --paper: #0b1018; --ink: #e7edf5; --muted: #9aaabd;
+  --line: #293443; --orange: #73bdff; --babyblue: #73bdff; --babyblue-dark: #8acbff; --babyblue-light: #162c40;
+}
+[data-theme="dark"] .site-header { background: #0b1018df; border-bottom-color: var(--line); }
+[data-theme="dark"] .site-header.is-scrolled { background: #121c29de; border-color: #6687a43d; box-shadow: 0 16px 45px #0006,inset 0 1px 0 #c7e6ff18; }
+[data-theme="dark"] .site-header.is-scrolled :is(.header-contact,.menu-toggle) { background: #21304480; border-color: #7696b32e; box-shadow: inset 0 1px 0 #ffffff0a; }
+[data-theme="dark"] .intro-bio .intro-kicker { color: #9cb1c7; }
+[data-theme="dark"] :is(.intro-desc,.row-body,.live-about>p,.role-list ul,.company-feature .feature-copy) { color: #b4c0ce; }
+[data-theme="dark"] :is(.story-location,.story-motion,.company-heading>p,.patent-note,.compact-stats span,.drawer-count,.role-company,.portrait-caption) { color: #9aaabd; }
+[data-theme="dark"] :is(.section-top>span:last-child,.experience-strip p) { color: #9aaabd; }
+[data-theme="dark"] :is(.row-plus,.content-drawer>summary>span:last-child,.case-patent,.role-date) { color: #8acbff; }
+[data-theme="dark"] .brain-story { --night-accent: #7ec7ff; }
+[data-theme="dark"] .brain-story[data-company="airbuild"] { --night-accent: #accf85; }
+[data-theme="dark"] .brain-story[data-company="pladis"] { --night-accent: #d6ae87; }
+[data-theme="dark"] :is(.feature-index,.feature-figure) { color: var(--night-accent); }
+[data-theme="dark"] .feature-figure { border-color: #a5bfd12b; }
+[data-theme="dark"] .story-wire { stroke: var(--night-accent); filter: drop-shadow(0 0 4px #64baff55); }
+[data-theme="dark"] .story-dots a[aria-current] { background: var(--night-accent); box-shadow: 0 0 8px #6bbfff55; }
+[data-theme="dark"] .scene-grid { background-image: linear-gradient(#76bfff0b 1px,transparent 1px),linear-gradient(90deg,#76bfff0b 1px,transparent 1px); }
+[data-theme="dark"] .brain-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 48%,#16487626,transparent 48%); }
+[data-theme="dark"] .scene-halo { background: radial-gradient(ellipse,#4aa8ff25,transparent 68%); }
+[data-theme="dark"] .brain-window { background: radial-gradient(ellipse at 40% 30%,#163852,#080f1a 80%); border-color: #79cfff88; box-shadow: 0 0 0 3px #142b3c,0 0 0 5px #4a687b,0 0 28px #369dff33,6px 8px 14px #0008,inset 0 0 25px #06101c; }
+[data-theme="dark"] .brain-anatomy { filter: drop-shadow(0 0 5px #42b6ff99); }
+[data-theme="dark"] .package-traces { stroke: #91b4c47d; }
+[data-theme="dark"] .algae-object { mix-blend-mode: screen; }
+[data-theme="dark"] .algae-object img { filter: invert(1) hue-rotate(180deg) saturate(1.3) brightness(.8); mask-image: radial-gradient(ellipse,black 40%,#000b 55%,transparent 72%); }
+[data-theme="dark"] .specimen-label { color: #accf85; }
+[data-theme="dark"] .algae-orbit { border-color: #aacf7950; }
+[data-theme="dark"] .chocolate-object { filter: drop-shadow(0 0 28px #bb916326); }
+[data-theme="dark"] .brand-logo img { filter: grayscale(1) brightness(0) invert(.9); }
+[data-theme="dark"] #project-logo-ink feFlood { flood-color: #dce7f3; }
+[data-theme="dark"] .skills-heading { color: #8acbff; }
+[data-theme="dark"] .skill-pill { background: #13293c; color: #a8d9ff; border-color: #2c506b; }
+[data-theme="dark"] .skills-block { border-color: var(--line); }
+[data-theme="dark"] .portrait-depth { border-color: #2c3949; background: #172331; box-shadow: 9px 12px 0 #0005; }
+[data-theme="dark"] .portrait-halo { background: #153a59; }
+[data-theme="dark"] .portrait-halo span { color: #75b2e0; }
+[data-theme="dark"] .portrait-grid { background-image: linear-gradient(#7aa9cb19 1px,transparent 1px),linear-gradient(90deg,#7aa9cb19 1px,transparent 1px); }
+[data-theme="dark"] .portrait-sticker { background: #203345; border-color: #506477; box-shadow: 4px 6px 0 #0004; }
+[data-theme="dark"] .off-duty { background: #172432; border-color: #4a5c70; }
+[data-theme="dark"] .off-duty>div { color: #e7edf5; }
+[data-theme="dark"] .off-duty-close { color: #e7edf5; background: #152433; border-color: #7b90a5; }
+[data-theme="dark"] .skip-link { color: #0b1018; }
+[data-theme="dark"] .contact-section { background: #121e2b; color: var(--ink); }
+[data-theme="dark"] .contact-section .section-top { border-color: #334659; }
+[data-theme="dark"] .contact-section .section-top>span:last-child { color: #9db2c8; }
+[data-theme="dark"] .contact-section h2 a { color: #d7eaff; }
+[data-theme="dark"] .contact-bottom a { border-color: #63809b; }
+.site-header { gap: 20px; }
+.header-contact { margin-left: auto; }
+@media(min-width:761px) { .site-header nav { margin-left: auto; } }
+@media(max-width:1100px) and (min-width:761px) { .site-header { gap: 14px; }.site-header nav { gap: 14px; } }
+@media(max-width:760px) {
+  .intro-scroll { display: none; }
+  .site-header { gap: 10px; padding-inline: 20px; }
+  .menu-toggle { margin-right: 0; }
+  .header-contact { margin-left: 0; }
+  .theme-chip { flex-basis: 44px; width: 44px; height: 44px; }
+  .theme-chip-circuit { width: 38px; height: 38px; }
+  .site-header.is-scrolled { gap: 7px; padding-inline: 12px; }
+  [data-theme="dark"] .site-header nav { background: #142030f5; border-color: #4e68804d; box-shadow: 0 20px 40px #0006,inset 0 1px 0 #ffffff0a; }
+  [data-theme="dark"] .site-header nav a { border-color: #7696b31a; }
+}
+@media(max-width:380px) { .site-header { padding-inline: 12px; gap: 7px; }.site-header.is-scrolled .identity span:last-child { font-size: 9px; }.site-header.is-scrolled .header-contact { padding-inline: 7px; } }
+@media(prefers-reduced-motion:reduce) {
+  .theme-chip * { animation: none!important; transition: none!important; }
+  .theme-reveal::view-transition-group(root),.theme-reveal::view-transition-new(root),.theme-reveal::view-transition-old(root) { animation: none!important; }
+}
+@media print { .theme-chip { display: none; } }
